@@ -1,0 +1,21 @@
+package net.scratch221171.astralenchant.datagen;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.scratch221171.astralenchant.AstralEnchant;
+import net.scratch221171.astralenchant.enchantment.ModEnchantments;
+
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+
+public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
+    public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
+
+    public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries, BUILDER, Set.of(AstralEnchant.MOD_ID));
+    }
+}

@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchants;
+package net.scratch221171.astralenchant;
 
 import java.util.List;
 
