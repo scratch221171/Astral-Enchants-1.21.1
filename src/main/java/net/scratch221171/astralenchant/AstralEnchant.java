@@ -1,5 +1,6 @@
 package net.scratch221171.astralenchant;
 
+import net.scratch221171.astralenchant.enchantment.ModEnchantmentComponents;
 import net.scratch221171.astralenchant.enchantment.ModEnchantmentEffect;
 import org.slf4j.Logger;
 
@@ -32,6 +33,7 @@ public class AstralEnchant {
         NeoForge.EVENT_BUS.register(this);
 
         ModEnchantmentEffect.register(modEventBus);
+        ModEnchantmentComponents.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

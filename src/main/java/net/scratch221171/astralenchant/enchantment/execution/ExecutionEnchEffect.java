@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.custom;
+package net.scratch221171.astralenchant.enchantment.execution;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,8 +8,8 @@ import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 
-public record ExecutionEnchantment() implements EnchantmentEntityEffect {
-    public static final MapCodec<ExecutionEnchantment> CODEC = MapCodec.unit(ExecutionEnchantment::new);
+public record ExecutionEnchEffect() implements EnchantmentEntityEffect {
+    public static final MapCodec<ExecutionEnchEffect> CODEC = MapCodec.unit(ExecutionEnchEffect::new);
 
     @Override
     public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {

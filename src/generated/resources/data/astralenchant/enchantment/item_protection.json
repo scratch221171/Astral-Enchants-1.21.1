@@ -1,0 +1,25 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.astralenchant.item_protection"
+  },
+  "max_cost": {
+    "base": 150,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 100,
+    "per_level_above_first": 10
+  },
+  "primary_items": {
+    "type": "neoforge:any"
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": {
+    "type": "neoforge:any"
+  },
+  "weight": 1
+}

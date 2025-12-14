@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.system;
+package net.scratch221171.astralenchant.enchantment.laststand;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,13 +18,12 @@ import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.enchantment.ModEnchantments;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class LastStandEnchantmentSystem {
+public class LastStandEnchEventHandler {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
-        AstralEnchant.LOGGER.info(event.getEntity()+" died");
         if (!(event.getEntity() instanceof Player)) return;
-        if (event.getSource().is(DamageTypes.GENERIC_KILL)) return;
+        if (event.getSource().is(DamageTypes.GENERIC_KILL) || event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
 
         LivingEntity entity = event.getEntity();
         Iterable<ItemStack> armorSlots = entity.getArmorSlots();
@@ -44,7 +43,6 @@ public class LastStandEnchantmentSystem {
 
         Player player = (Player) entity;
         int neededExperienceLevels = (int)Math.floor(30f/maxLevel);
-        AstralEnchant.LOGGER.info("neededExperienceLevels: "+neededExperienceLevels+", totalExperience: "+player.totalExperience);
         if (player.experienceLevel < neededExperienceLevels) return;
 
         event.setCanceled(true);
