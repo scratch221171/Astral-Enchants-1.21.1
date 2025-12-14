@@ -29,7 +29,7 @@ public class ModEnchantments {
         var enchantments = context.lookup(Registries.ENCHANTMENT);
         var items = context.registryLookup(Registries.ITEM);
 
-        HolderSet<Item> any = new AnyHolderSet<>(items.get());
+        HolderSet<Item> any = new AnyHolderSet<>(items.orElseThrow());
         HolderSet<Item> armor = items.get().getOrThrow(ItemTags.ARMOR_ENCHANTABLE);
         HolderSet<Item> weapon = items.get().getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
 
@@ -40,10 +40,11 @@ public class ModEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                32,
                 EquipmentSlotGroup.MAINHAND))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
                         EnchantmentTarget.VICTIM, new ExecutionEnchEffect()));
+
         register(context, LAST_STAND, Enchantment.enchantment(Enchantment.definition(
                 armor,
                 armor,
@@ -51,8 +52,9 @@ public class ModEnchantments {
                 3,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                32,
                 EquipmentSlotGroup.ARMOR)));
+
         register(context, ITEM_PROTECTION, Enchantment.enchantment(Enchantment.definition(
                 any,
                 any,
@@ -60,8 +62,9 @@ public class ModEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
-                EquipmentSlotGroup.MAINHAND)));
+                16,
+                EquipmentSlotGroup.ANY)));
+
         register(context, ESSENCE_OF_ENCHANT, Enchantment.enchantment(Enchantment.definition(
                 any,
                 any,
@@ -69,7 +72,7 @@ public class ModEnchantments {
                 5,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                32,
                 EquipmentSlotGroup.ANY)));
     }
 

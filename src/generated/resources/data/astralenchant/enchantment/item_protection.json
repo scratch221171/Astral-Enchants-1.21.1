@@ -1,5 +1,5 @@
 {
-  "anvil_cost": 8,
+  "anvil_cost": 16,
   "description": {
     "translate": "enchantment.astralenchant.item_protection"
   },
@@ -16,7 +16,7 @@
     "type": "neoforge:any"
   },
   "slots": [
-    "mainhand"
+    "any"
   ],
   "supported_items": {
     "type": "neoforge:any"

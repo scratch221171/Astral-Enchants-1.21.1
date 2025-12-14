@@ -24,22 +24,6 @@ public class ModEnchantmentEffect {
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ITEM_PROTECTION =
             ENCHANTMENT_ENTITY_EFFECTS.register("item_protection", () -> ItemProtectionEnchEffect.CODEC);
 
-//    public static final Codec<TestRecord> BASIC_CODEC = RecordCodecBuilder.create(instance ->
-//            instance.group(
-//                    Codec.INT.fieldOf("value1").forGetter(TestRecord::val1),
-//                    Codec.INT.fieldOf("value2").forGetter(TestRecord::val2)
-//            ).apply(instance, TestRecord::new)
-//    );
-//
-//    public static final DeferredRegister.DataComponents TEST = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, AstralEnchant.MOD_ID);
-//
-//    public static final Supplier<DataComponentType<TestRecord>> BASIC_EXAMPLE = TEST.registerComponentType(
-//            "test",
-//            builder -> builder
-//                    // The codec to read/write the data to disk
-//                    .persistent(BASIC_CODEC)
-//    );
-
     public static void register(IEventBus eventBus) {
         ENCHANTMENT_ENTITY_EFFECTS.register(eventBus);
     }
