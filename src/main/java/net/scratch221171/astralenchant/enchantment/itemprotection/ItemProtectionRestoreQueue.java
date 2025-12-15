@@ -1,10 +1,19 @@
 package net.scratch221171.astralenchant.enchantment.itemprotection;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.phys.Vec3;
 import net.scratch221171.astralenchant.enchantment.ModEnchantmentComponents;
 
 import java.util.ArrayList;
@@ -27,7 +36,7 @@ public class ItemProtectionRestoreQueue {
             }
             if (!isProtected(stack)) continue;
 
-            ItemProtectionRestoreQueue.process();
+            ItemProtectionRestoreQueue.process(player);
         }
     }
 
@@ -36,20 +45,25 @@ public class ItemProtectionRestoreQueue {
         QUEUE.add(new QueuedRestore(original, saved, player));
     }
 
-    private static void process() {
+    private static void process(Player player) {
         Iterator<QueuedRestore> it = QUEUE.iterator();
 
         while(it.hasNext()) {
             QueuedRestore r = it.next();
 
-            ItemStack original = r.original;
-            ItemStack saved = r.saved;
-
             if (!doesExistInInv(r.original, r.player)) { it.remove(); continue; }
             if (ItemStack.isSameItemSameComponents(r.original, r.saved)) continue;
 
             // originalのコンポーネントをsavedで上書きする
-            original.applyComponents(saved.getComponents());
+            // 耐久値は上書きしない
+            r.saved.setDamageValue(r.original.getDamageValue());
+            r.original.applyComponents(r.saved.getComponents());
+
+            // エフェクトは大事
+            if (player.level() instanceof ServerLevel serverLevel) {
+                serverLevel.sendParticles(ParticleTypes.ENCHANT, player.getX(), player.getY() + 1, player.getZ(), 50, 0.5f, 1f, 0.5f, 0.f);
+                serverLevel.playSound(null, player.getX(), player.getY() + 1, player.getZ(), SoundEvents.NOTE_BLOCK_BASS.value(), SoundSource.PLAYERS, 200f, 1f);
+            }
         }
     }
 

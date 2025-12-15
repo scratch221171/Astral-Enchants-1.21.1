@@ -1,6 +1,10 @@
 {
   "enchantment.astralenchant.execution": "Execution",
+  "enchantment.astralenchant.execution.desc": "Attacks with this item will have their damage type converted to \"generic.kill\".",
   "enchantment.astralenchant.last_stand": "Last Stand",
+  "enchantment.astralenchant.last_stand.desc": "Consume experience points to avoid death.",
   "enchantment.astralenchant.item_protection": "Item Protection",
-  "enchantment.astralenchant.essence_of_enchant": "Essence of Enchant"
+  "enchantment.astralenchant.item_protection.desc": "Protects the item's components. Note: Durability is not protected.",
+  "enchantment.astralenchant.essence_of_enchant": "Essence of Enchant",
+  "enchantment.astralenchant.essence_of_enchant.desc": "All stats of the item increase based on the total level of all other enchantments besides this one."
 }

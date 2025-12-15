@@ -1,6 +1,10 @@
 {
   "enchantment.astralenchant.execution": "処刑",
+  "enchantment.astralenchant.execution.desc": "このアイテムでの攻撃はダメージタイプがgeneric.killに変更されます。",
   "enchantment.astralenchant.last_stand": "ラストスタンド",
+  "enchantment.astralenchant.last_stand.desc": "経験値を消費して死を回避します。",
   "enchantment.astralenchant.item_protection": "アイテム保護",
-  "enchantment.astralenchant.essence_of_enchant": "エンチャントの極意"
+  "enchantment.astralenchant.item_protection.desc": "アイテムのコンポーネントを保護します。注意：耐久力は保護されません。",
+  "enchantment.astralenchant.essence_of_enchant": "エンチャントの極意",
+  "enchantment.astralenchant.essence_of_enchant.desc": "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全てのステータスが上昇します。"
 }

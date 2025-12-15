@@ -13,7 +13,7 @@ public record ExecutionEnchEffect() implements EnchantmentEntityEffect {
 
     @Override
     public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {
-        level.sendParticles(ParticleTypes.END_ROD, entity.getX(), entity.getY(), entity.getZ(), 50, 0f, 1f, 0f, 0.04f);
+        level.sendParticles(ParticleTypes.END_ROD, entity.getX(), entity.getY(), entity.getZ(), 10, 0f, 1f, 0f, 0.04f);
     }
 
     @Override
