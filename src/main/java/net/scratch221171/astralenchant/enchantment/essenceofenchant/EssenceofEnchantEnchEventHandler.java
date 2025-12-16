@@ -24,60 +24,6 @@ import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtection
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class EssenceofEnchantEnchEventHandler {
 
-//    @SubscribeEvent
-//    private static void ApplyAttributeModifier(PlayerTickEvent.Pre event) {
-//        Player player = event.getEntity();
-//        if (player.level().isClientSide()) return;
-//
-//        MinecraftServer server = player.getServer();
-//        if (server == null) return;
-//
-//        Holder<Enchantment> essenceOfEnchant = server.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.ITEM_PROTECTION);
-//        tickInv(player, essenceOfEnchant);
-//    }
-//
-//    private static void tickInv(Player player, Holder<Enchantment> essenceOfEnchant) {
-//        Inventory inv = player.getInventory();
-//
-//        for (int i = 0; i < inv.getContainerSize(); i++) {
-//            ItemStack stack = inv.getItem(i);
-//            int enchLvl = stack.getEnchantmentLevel(essenceOfEnchant);
-//            if (stack.isEmpty() && enchLvl <= 0) continue;
-//
-//            int totalEnchLvl = getTotalEnchLvl(stack);
-//
-//            applyModifier(stack, totalEnchLvl, enchLvl);
-//        }
-//    }
-//
-//    private static int getTotalEnchLvl(ItemStack stack) {
-//        int totalLvl = 0;
-//        for (Object2IntMap.Entry<Holder<Enchantment>> enchant : stack.getTagEnchantments().entrySet()) {
-//            totalLvl += enchant.getIntValue();
-//        }
-//        return totalLvl;
-//    }
-//
-//    private static void applyModifier(ItemStack stack, int enchLvl, int totalEnchLvl) {
-//        ItemAttributeModifiers modifiers = stack.getAttributeModifiers();
-//
-//        for (ItemAttributeModifiers.Entry entry : modifiers.modifiers()) {
-//            String id = entry.modifier().id().getPath();
-//
-//            if (!id.matches(".*_eoe_bonus")){
-//                ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, id + "_eoe_bonus");
-//                AttributeModifier newBonusModifier = new AttributeModifier(
-//                        newId,
-//                        totalEnchLvl * enchLvl / 100f,
-//                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-//                );
-//
-//                stack.getAttributeModifiers().modifiers().add(new ItemAttributeModifiers.Entry(entry.attribute(), newBonusModifier, entry.slot()));
-//
-//                AstralEnchant.LOGGER.info("processed: " + entry);
-//            }
-//        }
-//    }
     @SubscribeEvent
     private static void ApplyAttributeModifier(ItemAttributeModifierEvent event) {
         ItemStack stack = event.getItemStack();
@@ -109,24 +55,5 @@ public class EssenceofEnchantEnchEventHandler {
                 event.addModifier(entry.attribute(), newBonusModifier, entry.slot());
             }
         }
-
-//        ItemAttributeModifiers modifiers = stack.getAttributeModifiers();
-//
-//        for (ItemAttributeModifiers.Entry entry : modifiers.modifiers()) {
-//            String id = entry.modifier().id().equals()
-//
-//            if (!id.matches(".*_eoe_bonus")){
-//                ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, id + "_eoe_bonus");
-//                AttributeModifier newBonusModifier = new AttributeModifier(
-//                        newId,
-//                        totalLvl * enchLvl / 100f,
-//                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-//                );
-//
-//                event.addModifier(entry.attribute(), newBonusModifier, entry.slot());
-//
-//                AstralEnchant.LOGGER.info("processed: " + entry);
-//            }
-//        }
     }
 }

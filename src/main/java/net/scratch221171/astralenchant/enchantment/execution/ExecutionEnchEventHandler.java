@@ -15,7 +15,7 @@ import net.scratch221171.astralenchant.enchantment.ModEnchantments;
 
 import java.util.Arrays;
 
-@EventBusSubscriber(modid = AstralEnchant.MOD_ID)
+// @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class ExecutionEnchEventHandler {
 
     @SubscribeEvent

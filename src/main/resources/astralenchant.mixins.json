@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.scratch221171.astralenchant.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ItemCooldownsMixin",
+    "CooldownInstanceMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

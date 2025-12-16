@@ -13,7 +13,9 @@ import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.AstralEnchant;
+import net.scratch221171.astralenchant.enchantment.cooldownreduction.CooldownReductionEnchEffect;
 import net.scratch221171.astralenchant.enchantment.execution.ExecutionEnchEffect;
+import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
 
 public class ModEnchantments {
     public static final ResourceKey<Enchantment> EXECUTION = ResourceKey.create(Registries.ENCHANTMENT,
@@ -24,6 +26,8 @@ public class ModEnchantments {
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
     public static final ResourceKey<Enchantment> ESSENCE_OF_ENCHANT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "essence_of_enchant"));
+    public static final ResourceKey<Enchantment> COOLDOWN_REDUCTION = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cooldown_reduction"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var enchantments = context.lookup(Registries.ENCHANTMENT);
@@ -40,7 +44,7 @@ public class ModEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                32,
+                16,
                 EquipmentSlotGroup.MAINHAND))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
                         EnchantmentTarget.VICTIM, new ExecutionEnchEffect()));
@@ -52,7 +56,7 @@ public class ModEnchantments {
                 3,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                32,
+                16,
                 EquipmentSlotGroup.ARMOR)));
 
         register(context, ITEM_PROTECTION, Enchantment.enchantment(Enchantment.definition(
@@ -62,8 +66,9 @@ public class ModEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
-                EquipmentSlotGroup.ANY)));
+                8,
+                EquipmentSlotGroup.ANY))
+                .withEffect(EnchantmentEffectComponents.TICK, new ItemProtectionEnchEffect()));
 
         register(context, ESSENCE_OF_ENCHANT, Enchantment.enchantment(Enchantment.definition(
                 any,
@@ -72,8 +77,19 @@ public class ModEnchantments {
                 5,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                32,
+                16,
                 EquipmentSlotGroup.ANY)));
+
+        register(context, COOLDOWN_REDUCTION, Enchantment.enchantment(Enchantment.definition(
+                any,
+                any,
+                1,
+                3,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
+                EquipmentSlotGroup.ANY))
+                .withEffect(EnchantmentEffectComponents.TICK, new CooldownReductionEnchEffect()));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
