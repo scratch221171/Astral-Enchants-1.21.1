@@ -22,25 +22,3 @@ public interface ItemCooldownsMixin {
     @Accessor("tickCount")
     int getTickCount();
 }
-//@Mixin(ItemCooldowns.class)
-//public abstract class ItemCooldownsMixin {
-//
-//    @Shadow @Final
-//    private Player player;
-//
-//    @Inject(
-//            method = "addCooldown",
-//            at = @At("HEAD"),
-//            cancellable = true
-//    )
-//    private void modifyCooldown(Item item, int originalTicks, CallbackInfo ci) {
-//        ItemStack stack = player.getMainHandItem();
-//
-//        int reduced = applyEnchantmentReduction(player, originalTicks);
-//
-//        if (reduced != originalTicks) {
-//            this.addCooldown(item, reduced);
-//            ci.cancel();
-//        }
-//    }
-//}

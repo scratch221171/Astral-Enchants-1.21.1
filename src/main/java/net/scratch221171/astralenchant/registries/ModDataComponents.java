@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment;
+package net.scratch221171.astralenchant.registries;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
@@ -10,7 +10,7 @@ import net.scratch221171.astralenchant.AstralEnchant;
 
 import java.util.function.UnaryOperator;
 
-public class ModEnchantmentComponents {
+public class ModDataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
             DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, AstralEnchant.MOD_ID);
 

@@ -1,20 +1,15 @@
 package net.scratch221171.astralenchant.enchantment.itemprotection;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.phys.Vec3;
-import net.scratch221171.astralenchant.enchantment.ModEnchantmentComponents;
+import net.scratch221171.astralenchant.registries.ModDataComponents;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,7 +26,7 @@ public class ItemProtectionRestoreQueue {
             if (stack.isEmpty()) continue;
 
             if (stack.getEnchantmentLevel(itemProtection) > 0 && !ItemProtectionRestoreQueue.isContained(stack)) {
-                stack.set(ModEnchantmentComponents.IS_PROTECTED, true);
+                stack.set(ModDataComponents.IS_PROTECTED, true);
                 ItemProtectionRestoreQueue.add(stack, stack.copy(), player);
             }
             if (!isProtected(stack)) continue;
@@ -68,7 +63,7 @@ public class ItemProtectionRestoreQueue {
     }
 
     private static boolean isProtected(ItemStack stack) {
-        return stack.getOrDefault(ModEnchantmentComponents.IS_PROTECTED, false);
+        return stack.getOrDefault(ModDataComponents.IS_PROTECTED, false);
     }
 
     private static boolean isContained(ItemStack stack) {

@@ -21,14 +21,10 @@
     "base": 100,
     "per_level_above_first": 10
   },
-  "primary_items": {
-    "type": "neoforge:any"
-  },
+  "primary_items": "#minecraft:enchantable/chest_armor",
   "slots": [
-    "any"
+    "chest"
   ],
-  "supported_items": {
-    "type": "neoforge:any"
-  },
+  "supported_items": "#minecraft:enchantable/chest_armor",
   "weight": 1
 }

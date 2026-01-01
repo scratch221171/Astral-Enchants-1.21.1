@@ -1,6 +1,7 @@
-// 1.21.1	2025-12-15T18:16:58.0647389	Registries
-44ea234cb6635fd8f85558dd267d5e7e9a468b51 data/astralenchant/enchantment/cooldown_reduction.json
+// 1.21.1	2025-12-31T16:47:05.5175064	Registries
+ae597d7b07de342ea7d76531e7e3479f01813a66 data/astralenchant/enchantment/cooldown_reduction.json
 df3d48c1abd34e3c04fc0eb5633358c869fcf7c9 data/astralenchant/enchantment/essence_of_enchant.json
-e2b7ec562ed64d89885484d1d9405ebbd62d8e13 data/astralenchant/enchantment/execution.json
+70d86f8a764f8e9a1be780e3380c07c334289d33 data/astralenchant/enchantment/feather_touch.json
 d68976a01f115b231e721fd5bb86b3a28ff42075 data/astralenchant/enchantment/item_protection.json
 58dda15fc997c775f11dcc1711ab683c2efafd9c data/astralenchant/enchantment/last_stand.json
+9daca1796bd5586231eabe7f44bad39329ea2c6c data/astralenchant/enchantment/mitigation_piercing.json

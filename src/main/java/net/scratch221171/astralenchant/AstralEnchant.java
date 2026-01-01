@@ -1,7 +1,8 @@
 package net.scratch221171.astralenchant;
 
-import net.scratch221171.astralenchant.enchantment.ModEnchantmentComponents;
-import net.scratch221171.astralenchant.enchantment.ModEnchantmentEffect;
+import net.scratch221171.astralenchant.registries.ModDataComponents;
+import net.scratch221171.astralenchant.registries.ModEnchantmentEffects;
+import net.scratch221171.astralenchant.registries.ModLootModifiers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -32,8 +33,9 @@ public class AstralEnchant {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        ModEnchantmentEffect.register(modEventBus);
-        ModEnchantmentComponents.register(modEventBus);
+        ModEnchantmentEffects.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

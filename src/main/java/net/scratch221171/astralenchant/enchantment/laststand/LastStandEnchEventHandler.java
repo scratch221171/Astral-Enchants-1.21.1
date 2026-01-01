@@ -31,18 +31,18 @@ public class LastStandEnchEventHandler {
         Holder<Enchantment> lastStandEnchantment = entity.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT)
                 .getHolderOrThrow(ModEnchantments.LAST_STAND);
         boolean hasEnchantment = false;
-        int maxLevel = 0;
+        int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
             int level = armor.getEnchantmentLevel(lastStandEnchantment);
             if (level > 0) {
                 hasEnchantment = true;
-                maxLevel = Math.max(level, maxLevel);
+                totalLevel += level;
             }
         }
         if (!hasEnchantment) return;
 
         Player player = (Player) entity;
-        int neededExperienceLevels = (int)Math.floor(30f/maxLevel);
+        int neededExperienceLevels = (int)Math.floor(30f/totalLevel);
         if (player.experienceLevel < neededExperienceLevels) return;
 
         event.setCanceled(true);

@@ -28,19 +28,18 @@ public record CooldownReductionEnchEffect() implements EnchantmentEntityEffect {
             Map<Item, ?> cooldowns = cooldownsMixin.getCooldowns();
 
             for (Map.Entry<Item, ?> entry : cooldowns.entrySet()) {
-                CooldownInstanceMixin cooldownInstMixin = (CooldownInstanceMixin) entry.getValue();
-                if (cooldownInstMixin.getStartTime() + 1 >= cooldownsMixin.getTickCount()) {
-                    if (enchantmentLevel < 10) {
-                        float ticks = (float) (cooldownInstMixin.getEndTime() - cooldownInstMixin.getStartTime());
-                        int newTicks = (int) Math.ceil(ticks * (1 - enchantmentLevel * 0.1f));
-
-                        player.getCooldowns().addCooldown(entry.getKey(), newTicks);
-                        player.getCooldowns().tick();
-                        player.getCooldowns().tick();
-                    } else {
-                        player.getCooldowns().removeCooldown(entry.getKey());
-                    }
+                if (player.getCooldowns().getCooldownPercent(entry.getKey(), 0) < enchantmentLevel * 0.1) {
+                    player.getCooldowns().removeCooldown(entry.getKey());
                 }
+//                CooldownInstanceMixin cooldownInstMixin = (CooldownInstanceMixin) entry.getValue();
+//                if (cooldownInstMixin.getStartTime() + 1 >= cooldownsMixin.getTickCount()) {
+//                    float ticks = (float) (cooldownInstMixin.getEndTime() - cooldownInstMixin.getStartTime());
+//                    int newTicks = (int) Math.ceil(ticks * Math.max(1 - enchantmentLevel * 0.1f, 0));
+//
+//                    player.getCooldowns().addCooldown(entry.getKey(), newTicks);
+//                    player.getCooldowns().tick();
+//                    player.getCooldowns().tick();
+//                }
             }
         }
     }
