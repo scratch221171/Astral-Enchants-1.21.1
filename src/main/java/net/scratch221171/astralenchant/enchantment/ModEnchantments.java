@@ -8,11 +8,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import net.minecraft.world.item.enchantment.*;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.AstralEnchant;
+import net.scratch221171.astralenchant.enchantment.adventurepreparation.AdventurersLoreEnchEffect;
 import net.scratch221171.astralenchant.enchantment.cooldownreduction.CooldownReductionEnchEffect;
 import net.scratch221171.astralenchant.enchantment.mitigationpiercing.MitigationPiercingEnchEffect;
 import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
@@ -30,6 +29,8 @@ public class ModEnchantments {
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cooldown_reduction"));
     public static final ResourceKey<Enchantment> FEATHER_TOUCH = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "feather_touch"));
+    public static final ResourceKey<Enchantment> ADVENTURERS_LORE = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "adventurers_lore"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var enchantments = context.lookup(Registries.ENCHANTMENT);
@@ -38,6 +39,7 @@ public class ModEnchantments {
         HolderSet<Item> any = new AnyHolderSet<>(items.orElseThrow());
         HolderSet<Item> armor = items.get().getOrThrow(ItemTags.ARMOR_ENCHANTABLE);
         HolderSet<Item> chestPlate = items.get().getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE);
+        HolderSet<Item> foot = items.get().getOrThrow(ItemTags.FOOT_ARMOR);
         HolderSet<Item> weapon = items.get().getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
         HolderSet<Item> mining = items.get().getOrThrow(ItemTags.MINING_LOOT_ENCHANTABLE);
 
@@ -51,7 +53,8 @@ public class ModEnchantments {
                 16,
                 EquipmentSlotGroup.MAINHAND))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
-                        EnchantmentTarget.VICTIM, new MitigationPiercingEnchEffect()));
+                        EnchantmentTarget.VICTIM, new MitigationPiercingEnchEffect())
+        );
 
         register(context, LAST_STAND, Enchantment.enchantment(Enchantment.definition(
                 armor,
@@ -98,11 +101,21 @@ public class ModEnchantments {
                 mining,
                 mining,
                 1,
-                3,
+                1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 8,
                 EquipmentSlotGroup.MAINHAND)));
+        register(context, ADVENTURERS_LORE, Enchantment.enchantment(Enchantment.definition(
+                foot,
+                foot,
+                1,
+                3,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
+                EquipmentSlotGroup.FEET))
+                .withEffect(EnchantmentEffectComponents.TICK, new AdventurersLoreEnchEffect()));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

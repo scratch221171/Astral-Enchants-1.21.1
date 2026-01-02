@@ -8,5 +8,7 @@
   "enchantment.astralenchant.essence_of_enchant": "エンチャントの極意",
   "enchantment.astralenchant.essence_of_enchant.desc": "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全てのステータスが上昇します。",
   "enchantment.astralenchant.cooldwon_reduction": "クールダウン短縮",
-  "enchantment.astralenchant.cooldwon_reduction.desc": "盾やエンダーパールなどすべてのアイテムのクールダウンを短縮します。"
+  "enchantment.astralenchant.cooldwon_reduction.desc": "盾やエンダーパールなどすべてのアイテムのクールダウンを短縮します。",
+  "enchantment.astralenchant.adventurers_lore": "冒険者の心得",
+  "enchantment.astralenchant.adventurers_lore.desc": "完了した実績の数に応じて運を上げます"
 }

@@ -8,5 +8,7 @@
   "enchantment.astralenchant.essence_of_enchant": "Essence of Enchant",
   "enchantment.astralenchant.essence_of_enchant.desc": "All stats of the item increase based on the total level of all other enchantments besides this one.",
   "enchantment.astralenchant.cooldwon_reduction": "Cooldown Reduction",
-  "enchantment.astralenchant.cooldwon_reduction.desc": "Reduces the cooldown for all items, such as Shields and Ender Pearls."
+  "enchantment.astralenchant.cooldwon_reduction.desc": "Reduces the cooldown for all items, such as Shields and Ender Pearls.",
+  "enchantment.astralenchant.adventurers_lore": "Adventurer’s Lore",
+  "enchantment.astralenchant.adventurers_lore.desc": "Increase your luck based on the number of completed achievements."
 }

@@ -16,6 +16,10 @@ public class ModDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> IS_PROTECTED = register("is_protected",
             builder -> builder.persistent(Codec.BOOL));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ADVANCEMENTS = register("advancements",
+            builder -> builder.persistent(Codec.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> COMPATIBLE = register("compatible",
+            builder -> builder.persistent(Codec.BOOL));
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
                                                                                            UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
