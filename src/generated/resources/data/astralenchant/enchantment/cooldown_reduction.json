@@ -4,11 +4,16 @@
     "translate": "enchantment.astralenchant.cooldown_reduction"
   },
   "effects": {
-    "minecraft:tick": [
+    "minecraft:attributes": [
       {
-        "effect": {
-          "type": "astralenchant:cooldown_reduction"
-        }
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.1,
+          "per_level_above_first": 0.1
+        },
+        "attribute": "astralenchant:cooldown_reduction",
+        "id": "astralenchant:cr_bonus",
+        "operation": "add_value"
       }
     ]
   },

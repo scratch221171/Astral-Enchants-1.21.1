@@ -7,7 +7,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.enchantment.adventurepreparation.AdventurersLoreEnchEffect;
-import net.scratch221171.astralenchant.enchantment.cooldownreduction.CooldownReductionEnchEffect;
+import net.scratch221171.astralenchant.enchantment.compatible.CompatibleEnchEffect;
 import net.scratch221171.astralenchant.enchantment.mitigationpiercing.MitigationPiercingEnchEffect;
 import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
 
@@ -21,10 +21,10 @@ public class ModEnchantmentEffects {
             ENCHANTMENT_ENTITY_EFFECTS.register("mitigation_piercing", () -> MitigationPiercingEnchEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ITEM_PROTECTION =
             ENCHANTMENT_ENTITY_EFFECTS.register("item_protection", () -> ItemProtectionEnchEffect.CODEC);
-    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> CooldownReduction =
-            ENCHANTMENT_ENTITY_EFFECTS.register("cooldown_reduction", () -> CooldownReductionEnchEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ADVENTURE_PREPARATION =
             ENCHANTMENT_ENTITY_EFFECTS.register("adventurers_lore", () -> AdventurersLoreEnchEffect.CODEC);
+    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> COMPATIBLE =
+            ENCHANTMENT_ENTITY_EFFECTS.register("compatible", () -> CompatibleEnchEffect.CODEC);
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENT_ENTITY_EFFECTS.register(eventBus);

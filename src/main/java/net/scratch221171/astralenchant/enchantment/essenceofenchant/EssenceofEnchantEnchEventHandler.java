@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.AstralEnchant;
-import net.scratch221171.astralenchant.enchantment.ModEnchantments;
+import net.scratch221171.astralenchant.datagen.ModEnchantments;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class EssenceofEnchantEnchEventHandler {

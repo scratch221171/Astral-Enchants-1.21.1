@@ -4,8 +4,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ItemCooldownsMixin",
-    "CooldownInstanceMixin",
-    "DamageSourceMixin"
+    "IItemExtensionMixin",
+    "DamageSourceMixin",
+    "InventoryMixin",
+    "ItemStackMixin",
+    "ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

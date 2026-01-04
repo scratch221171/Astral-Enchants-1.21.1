@@ -3,7 +3,7 @@ package net.scratch221171.astralenchant.mixin;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
-import net.scratch221171.astralenchant.util.DamageSourceAccessor;
+import net.scratch221171.astralenchant.util.IDamageSourceExtension;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Mixin(value = DamageSource.class, remap = false)
-public class DamageSourceMixin implements DamageSourceAccessor {
+public class DamageSourceMixin implements IDamageSourceExtension {
 
     @Unique
     private Set<TagKey<DamageType>> astralenchant$extraTags;

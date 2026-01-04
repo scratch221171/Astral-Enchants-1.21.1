@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.scratch221171.astralenchant.AstralEnchant;
-import net.scratch221171.astralenchant.enchantment.ModEnchantments;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.scratch221171.astralenchant.AstralEnchant;
-import net.scratch221171.astralenchant.enchantment.ModEnchantments;
+import net.scratch221171.astralenchant.datagen.ModEnchantments;
 import net.scratch221171.astralenchant.registries.ModDataComponents;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)

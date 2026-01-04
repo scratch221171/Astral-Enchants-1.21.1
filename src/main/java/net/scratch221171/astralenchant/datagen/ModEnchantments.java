@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment;
+package net.scratch221171.astralenchant.datagen;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -7,14 +7,16 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.enchantment.adventurepreparation.AdventurersLoreEnchEffect;
-import net.scratch221171.astralenchant.enchantment.cooldownreduction.CooldownReductionEnchEffect;
 import net.scratch221171.astralenchant.enchantment.mitigationpiercing.MitigationPiercingEnchEffect;
 import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
+import net.scratch221171.astralenchant.registries.ModAttributes;
 
 public class ModEnchantments {
     public static final ResourceKey<Enchantment> MITIGATION_PIERCING = ResourceKey.create(Registries.ENCHANTMENT,
@@ -31,6 +33,8 @@ public class ModEnchantments {
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "feather_touch"));
     public static final ResourceKey<Enchantment> ADVENTURERS_LORE = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "adventurers_lore"));
+    public static final ResourceKey<Enchantment> COMPATIBLE = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatible"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var enchantments = context.lookup(Registries.ENCHANTMENT);
@@ -96,7 +100,13 @@ public class ModEnchantments {
                 Enchantment.dynamicCost(150,10),
                 8,
                 EquipmentSlotGroup.CHEST))
-                .withEffect(EnchantmentEffectComponents.TICK, new CooldownReductionEnchEffect()));
+                .withEffect(EnchantmentEffectComponents.ATTRIBUTES, new EnchantmentAttributeEffect(
+                        ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cr_bonus"),
+                        ModAttributes.COOLDOWN_REDUCTION,
+                        LevelBasedValue.perLevel(0.1F),
+                        AttributeModifier.Operation.ADD_VALUE
+
+                )));
         register(context, FEATHER_TOUCH, Enchantment.enchantment(Enchantment.definition(
                 mining,
                 mining,
@@ -116,6 +126,15 @@ public class ModEnchantments {
                 8,
                 EquipmentSlotGroup.FEET))
                 .withEffect(EnchantmentEffectComponents.TICK, new AdventurersLoreEnchEffect()));
+        register(context, COMPATIBLE, Enchantment.enchantment(Enchantment.definition(
+                        any,
+                        any,
+                        1,
+                        1,
+                        Enchantment.dynamicCost(100,10),
+                        Enchantment.dynamicCost(150,10),
+                        8,
+                        EquipmentSlotGroup.ANY)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

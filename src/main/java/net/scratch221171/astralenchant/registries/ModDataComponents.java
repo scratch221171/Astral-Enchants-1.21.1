@@ -1,6 +1,7 @@
 package net.scratch221171.astralenchant.registries;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
@@ -8,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.AstralEnchant;
 
+import java.util.UUID;
 import java.util.function.UnaryOperator;
 
 public class ModDataComponents {
@@ -16,10 +18,10 @@ public class ModDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> IS_PROTECTED = register("is_protected",
             builder -> builder.persistent(Codec.BOOL));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<UUID>> UUID = register("uuid",
+            builder -> builder.persistent(UUIDUtil.CODEC));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ADVANCEMENTS = register("advancements",
             builder -> builder.persistent(Codec.INT));
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> COMPATIBLE = register("compatible",
-            builder -> builder.persistent(Codec.BOOL));
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
                                                                                            UnaryOperator<DataComponentType.Builder<T>> builderOperator) {

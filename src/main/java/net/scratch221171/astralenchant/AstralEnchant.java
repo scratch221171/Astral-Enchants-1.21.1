@@ -1,5 +1,6 @@
 package net.scratch221171.astralenchant;
 
+import net.scratch221171.astralenchant.registries.ModAttributes;
 import net.scratch221171.astralenchant.registries.ModDataComponents;
 import net.scratch221171.astralenchant.registries.ModEnchantmentEffects;
 import net.scratch221171.astralenchant.registries.ModLootModifiers;
@@ -33,6 +34,7 @@ public class AstralEnchant {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        ModAttributes.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModLootModifiers.register(modEventBus);
