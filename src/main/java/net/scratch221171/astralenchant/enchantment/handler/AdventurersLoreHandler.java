@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.adventurepreparation;
+package net.scratch221171.astralenchant.enchantment.handler;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +14,7 @@ import net.scratch221171.astralenchant.datagen.ModEnchantments;
 import net.scratch221171.astralenchant.registries.ModDataComponents;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class AdventurersLoreEnchEventHandler {
+public class AdventurersLoreHandler {
     @SubscribeEvent
     public static void onDrops(BlockDropsEvent event) {
         if (!(event.getBreaker() instanceof Player player)) return;

@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.mitigationpiercing;
+package net.scratch221171.astralenchant.enchantment.handler;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +15,7 @@ import net.scratch221171.astralenchant.datagen.ModEnchantments;
 import net.scratch221171.astralenchant.util.IDamageSourceExtension;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class MitigationPiercingEnchEventHandler {
+public class MitigationPiercingHandler {
     @SubscribeEvent
     public static void addDamageTag(EntityInvulnerabilityCheckEvent event) {
         DamageSource source = event.getSource();

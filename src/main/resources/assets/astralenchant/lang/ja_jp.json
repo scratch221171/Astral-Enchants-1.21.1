@@ -13,6 +13,9 @@
   "enchantment.astralenchant.adventurers_lore.desc": "完了した実績の数に応じて運を上げます",
   "enchantment.astralenchant.compatible": "適合",
   "enchantment.astralenchant.compatible.desc": "アイテムにどんなエンチャントも付けられるようにします。",
+  "enchantment.astralenchant.endless_appetite": "果てしない食欲",
+  "enchantment.astralenchant.endless_appetite.desc": "自然再生を促進し、上限を超過した満腹度と隠し満腹度の分だけ直接回復します。",
+
 
   "astralenchant:cooldown_reduction": "クールダウン短縮率"
 }
