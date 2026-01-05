@@ -13,6 +13,8 @@
   "enchantment.astralenchant.adventurers_lore.desc": "Increase your luck based on the number of completed achievements.",
   "enchantment.astralenchant.compatible": "Compatible",
   "enchantment.astralenchant.compatible.desc": "Enables any enchantment to be put on items.",
+  "enchantment.astralenchant.endless_appetite": "Endless Appetite",
+  "enchantment.astralenchant.endless_appetite.desc": "Enhances natural regeneration and directly restores an amount equal to the excess over the cap of food-level and hidden saturation-level.",
 
   "astralenchant:cooldown_reduction": "Cooldown Reduction"
 }

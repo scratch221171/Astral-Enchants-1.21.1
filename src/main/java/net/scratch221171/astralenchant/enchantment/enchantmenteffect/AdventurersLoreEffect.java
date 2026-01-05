@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.adventurepreparation;
+package net.scratch221171.astralenchant.enchantment.enchantmenteffect;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.AdvancementHolder;
@@ -19,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public record AdventurersLoreEnchEffect() implements EnchantmentEntityEffect {
-    public static final MapCodec<AdventurersLoreEnchEffect> CODEC = MapCodec.unit(AdventurersLoreEnchEffect::new);
+public record AdventurersLoreEffect() implements EnchantmentEntityEffect {
+    public static final MapCodec<AdventurersLoreEffect> CODEC = MapCodec.unit(AdventurersLoreEffect::new);
 
     @Override
     public void apply(@NotNull ServerLevel level, int enchantmentLevel, @NotNull EnchantedItemInUse item, @NotNull Entity entity, @NotNull Vec3 origin) {

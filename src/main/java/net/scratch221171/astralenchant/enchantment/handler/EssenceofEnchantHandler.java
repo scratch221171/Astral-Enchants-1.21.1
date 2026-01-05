@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.essenceofenchant;
+package net.scratch221171.astralenchant.enchantment.handler;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
@@ -17,7 +17,7 @@ import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.datagen.ModEnchantments;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class EssenceofEnchantEnchEventHandler {
+public class EssenceofEnchantHandler {
 
     @SubscribeEvent
     private static void ApplyAttributeModifier(ItemAttributeModifierEvent event) {

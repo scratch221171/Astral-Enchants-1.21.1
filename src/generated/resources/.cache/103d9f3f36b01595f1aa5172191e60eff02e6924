@@ -1,7 +1,8 @@
-// 1.21.1	2026-01-04T18:52:43.3039619	Registries
-35af40696809438e5402fb4f25d12fe4232d5fe3 data/astralenchant/enchantment/adventurers_lore.json
+// 1.21.1	2026-01-05T16:35:15.3287901	Registries
+f763fba9ea98f23566802986d1446ba80f2713fd data/astralenchant/enchantment/adventurers_lore.json
 38f8607335f1872a28769c37db15dcf37edf05cb data/astralenchant/enchantment/compatible.json
 8c7864dae8cb46d75fb035c16774e157deee2b03 data/astralenchant/enchantment/cooldown_reduction.json
+ae2b2bf35bb67c8ae6b988785320f14a53e852a8 data/astralenchant/enchantment/endless_appetite.json
 df3d48c1abd34e3c04fc0eb5633358c869fcf7c9 data/astralenchant/enchantment/essence_of_enchant.json
 266449d90094d6b51887d776c58ce78410cbe75c data/astralenchant/enchantment/feather_touch.json
 d68976a01f115b231e721fd5bb86b3a28ff42075 data/astralenchant/enchantment/item_protection.json

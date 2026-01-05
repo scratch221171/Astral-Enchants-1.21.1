@@ -3,10 +3,11 @@
   "package": "net.scratch221171.astralenchant.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ItemCooldownsMixin",
-    "IItemExtensionMixin",
     "DamageSourceMixin",
+    "FoodDataMixin",
+    "IItemExtensionMixin",
     "InventoryMixin",
+    "ItemCooldownsMixin",
     "ItemStackMixin",
     "ServerPlayerMixin"
   ],

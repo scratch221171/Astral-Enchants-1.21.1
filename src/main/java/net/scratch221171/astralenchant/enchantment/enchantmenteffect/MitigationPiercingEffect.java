@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.mitigationpiercing;
+package net.scratch221171.astralenchant.enchantment.enchantmenteffect;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,8 +8,8 @@ import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 
-public record MitigationPiercingEnchEffect() implements EnchantmentEntityEffect {
-    public static final MapCodec<MitigationPiercingEnchEffect> CODEC = MapCodec.unit(MitigationPiercingEnchEffect::new);
+public record MitigationPiercingEffect() implements EnchantmentEntityEffect {
+    public static final MapCodec<MitigationPiercingEffect> CODEC = MapCodec.unit(MitigationPiercingEffect::new);
 
     @Override
     public void apply(ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, Entity entity, Vec3 origin) {

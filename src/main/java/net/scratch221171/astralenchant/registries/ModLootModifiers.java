@@ -6,9 +6,6 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.scratch221171.astralenchant.AstralEnchant;
-import net.scratch221171.astralenchant.enchantment.feathertouch.FeatherTouchLootModifier;
-
-import java.util.function.Supplier;
 
 public class ModLootModifiers {
 

@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.feathertouch;
+package net.scratch221171.astralenchant.util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;

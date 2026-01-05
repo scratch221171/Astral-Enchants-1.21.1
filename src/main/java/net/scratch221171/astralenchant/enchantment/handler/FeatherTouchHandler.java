@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.enchantment.feathertouch;
+package net.scratch221171.astralenchant.enchantment.handler;
 
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
@@ -18,9 +18,10 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.util.FeatherTouchCache;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class FeatherTouchEnchEventHandler {
+public class FeatherTouchHandler {
     @SubscribeEvent
     public static void onBreak(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
