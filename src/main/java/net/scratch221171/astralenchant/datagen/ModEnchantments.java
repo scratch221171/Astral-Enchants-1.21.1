@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.enchantment.enchantmenteffect.AdventurersLoreEffect;
 import net.scratch221171.astralenchant.enchantment.enchantmenteffect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
+import net.scratch221171.astralenchant.enchantment.enchantmenteffect.ItemProtectionEffect;
 import net.scratch221171.astralenchant.registries.ModAttributes;
 
 public class ModEnchantments {
@@ -81,7 +81,7 @@ public class ModEnchantments {
                 Enchantment.dynamicCost(150,10),
                 8,
                 EquipmentSlotGroup.ANY))
-                .withEffect(EnchantmentEffectComponents.TICK, new ItemProtectionEnchEffect()));
+                .withEffect(EnchantmentEffectComponents.TICK, new ItemProtectionEffect()));
 
         register(context, ESSENCE_OF_ENCHANT, Enchantment.enchantment(Enchantment.definition(
                 any,

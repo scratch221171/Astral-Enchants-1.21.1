@@ -9,7 +9,7 @@ import net.scratch221171.astralenchant.AstralEnchant;
 import net.scratch221171.astralenchant.enchantment.enchantmenteffect.AdventurersLoreEffect;
 import net.scratch221171.astralenchant.enchantment.enchantmenteffect.CompatibleEffect;
 import net.scratch221171.astralenchant.enchantment.enchantmenteffect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.enchantment.itemprotection.ItemProtectionEnchEffect;
+import net.scratch221171.astralenchant.enchantment.enchantmenteffect.ItemProtectionEffect;
 
 import java.util.function.Supplier;
 
@@ -20,7 +20,7 @@ public class ModEnchantmentEffects {
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> MITIGATION_PIERCING =
             ENCHANTMENT_ENTITY_EFFECTS.register("mitigation_piercing", () -> MitigationPiercingEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ITEM_PROTECTION =
-            ENCHANTMENT_ENTITY_EFFECTS.register("item_protection", () -> ItemProtectionEnchEffect.CODEC);
+            ENCHANTMENT_ENTITY_EFFECTS.register("item_protection", () -> ItemProtectionEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ADVENTURE_PREPARATION =
             ENCHANTMENT_ENTITY_EFFECTS.register("adventurers_lore", () -> AdventurersLoreEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> COMPATIBLE =
