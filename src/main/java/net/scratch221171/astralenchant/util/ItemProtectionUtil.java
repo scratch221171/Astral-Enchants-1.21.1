@@ -1,18 +1,16 @@
 package net.scratch221171.astralenchant.util;
 
-import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ItemProtectionUtil {
-    private static final Map<ItemStack, DataComponentMap> cache = new HashMap<>();
+    private static final Map<UUID, ItemStack> cache = new HashMap<>();
 
-    public static void add(ItemStack stack) { cache.put(stack, ((PatchedDataComponentMap)stack.copy().getComponents()).copy()); }
-    public static void remove(ItemStack stack) { cache.remove(stack); }
+    public static void add(UUID uuid, ItemStack copy) { cache.put(uuid, copy); }
 
-    public static boolean isContained(ItemStack itemStack) { return cache.containsKey(itemStack); }
-    public static DataComponentMap get(ItemStack itemStack) { return cache.get(itemStack); }
+    public static boolean isContained(UUID uuid) { return cache.containsKey(uuid); }
+    public static ItemStack get(UUID uuid) { return cache.get(uuid); }
 }

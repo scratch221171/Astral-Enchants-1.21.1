@@ -42,7 +42,7 @@ public record AdventurersLoreEffect() implements EnchantmentEntityEffect {
     }
 
     @Override
-    public MapCodec<? extends EnchantmentEntityEffect> codec() {
+    public @NotNull MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
     }
 }

@@ -12,10 +12,10 @@ public record CompatibleEffect() implements EnchantmentEntityEffect {
     public static final MapCodec<CompatibleEffect> CODEC = MapCodec.unit(CompatibleEffect::new);
 
     @Override
-    public void apply(@NotNull ServerLevel level, int enchantmentLevel, EnchantedItemInUse item, @NotNull Entity entity, @NotNull Vec3 origin) {}
+    public void apply(@NotNull ServerLevel level, int enchantmentLevel, @NotNull EnchantedItemInUse item, @NotNull Entity entity, @NotNull Vec3 origin) {}
 
     @Override
-    public MapCodec<? extends EnchantmentEntityEffect> codec() {
+    public @NotNull MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
     }
 }

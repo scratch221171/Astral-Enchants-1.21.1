@@ -16,8 +16,6 @@ public class ModDataComponents {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
             DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, AstralEnchant.MOD_ID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> IS_PROTECTED = register("is_protected",
-            builder -> builder.persistent(Codec.BOOL));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<UUID>> UUID = register("uuid",
             builder -> builder.persistent(UUIDUtil.CODEC));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ADVANCEMENTS = register("advancements",
