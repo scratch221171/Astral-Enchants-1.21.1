@@ -5,10 +5,12 @@
   "enchantment.astralenchant.last_stand.desc": "経験値を消費して死を回避します。",
   "enchantment.astralenchant.item_protection": "アイテム保護",
   "enchantment.astralenchant.item_protection.desc": "アイテムのコンポーネントを保護します。注意：耐久力は保護されません。",
-  "enchantment.astralenchant.essence_of_enchant": "エンチャントの極意",
-  "enchantment.astralenchant.essence_of_enchant.desc": "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全てのステータスが上昇します。",
+  "enchantment.astralenchant.essence_of_enchantment": "エンチャントの極意",
+  "enchantment.astralenchant.essence_of_enchantment.desc": "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全てのステータスが上昇します。",
   "enchantment.astralenchant.cooldown_reduction": "クールダウン削減",
   "enchantment.astralenchant.cooldown_reduction.desc": "盾やエンダーパールなどすべてのアイテムのクールダウンを短縮します。",
+  "enchantment.astralenchant.feather_touch": "フェザータッチ",
+  "enchantment.astralenchant.feather_touch.desc": "破壊可能なブロックが全て回収できるようになります。コンポーネントも保存されます。",
   "enchantment.astralenchant.adventurers_lore": "冒険者の心得",
   "enchantment.astralenchant.adventurers_lore.desc": "完了した実績の数に応じて運を上げます",
   "enchantment.astralenchant.compatible": "適合",
@@ -16,6 +18,16 @@
   "enchantment.astralenchant.endless_appetite": "果てしない食欲",
   "enchantment.astralenchant.endless_appetite.desc": "自然再生を促進し、上限を超過した満腹度と隠し満腹度の分だけ直接回復します。",
 
+  "astralenchant:cooldown_reduction": "クールダウン短縮率",
 
-  "astralenchant:cooldown_reduction": "クールダウン短縮率"
+  "astralenchant.configuration.enchantment_toggling": "エンチャントの切り替え",
+  "astralenchant.configuration.mitigation_piercing": "軽減貫通",
+  "astralenchant.configuration.last_stand": "ラストスタンド",
+  "astralenchant.configuration.item_protection": "アイテム保護",
+  "astralenchant.configuration.essence_of_enchantment": "エンチャントの極意",
+  "astralenchant.configuration.cooldown_reduction": "クールダウン削減",
+  "astralenchant.configuration.feather_touch": "フェザータッチ",
+  "astralenchant.configuration.adventurers_lore": "冒険者の心得",
+  "astralenchant.configuration.compatible": "適合",
+  "astralenchant.configuration.endless_appetite": "果てしない食欲"
 }

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.scratch221171.astralenchant.mixin",
+  "package": "net.scratch221171.astralenchant.common.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "DamageSourceMixin",
