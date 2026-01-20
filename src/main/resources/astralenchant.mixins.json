@@ -6,7 +6,8 @@
     "DamageSourceMixin",
     "FoodDataMixin",
     "IItemExtensionMixin",
-    "ItemCooldownsMixin"
+    "ItemCooldownsMixin",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

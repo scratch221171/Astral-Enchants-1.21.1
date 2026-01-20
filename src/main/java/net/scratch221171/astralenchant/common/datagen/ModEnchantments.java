@@ -39,7 +39,6 @@ public class ModEnchantments {
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "endless_appetite"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
-        var enchantments = context.lookup(Registries.ENCHANTMENT);
         var items = context.registryLookup(Registries.ITEM);
 
         HolderSet<Item> any = new AnyHolderSet<>(items.orElseThrow());
@@ -48,6 +47,7 @@ public class ModEnchantments {
         HolderSet<Item> foot = items.get().getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
         HolderSet<Item> weapon = items.get().getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
         HolderSet<Item> mining = items.get().getOrThrow(ItemTags.MINING_LOOT_ENCHANTABLE);
+        HolderSet<Item> bundle = items.get().getOrThrow(ModItemTagsProvider.BUNDLE);
 
         register(context, MITIGATION_PIERCING, Enchantment.enchantment(Enchantment.definition(
                 weapon,
@@ -131,14 +131,14 @@ public class ModEnchantments {
                 .withEffect(EnchantmentEffectComponents.TICK, new AdventurersLoreEffect()));
 
         register(context, COMPATIBLE, Enchantment.enchantment(Enchantment.definition(
-                        any,
-                        any,
-                        1,
-                        1,
-                        Enchantment.dynamicCost(100,10),
-                        Enchantment.dynamicCost(150,10),
-                        8,
-                        EquipmentSlotGroup.ANY)));
+                bundle,
+                bundle,
+                1,
+                1,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
+                EquipmentSlotGroup.ANY)));
 
         register(context, ENDLESS_APPETITE, Enchantment.enchantment(Enchantment.definition(
                 chest,
