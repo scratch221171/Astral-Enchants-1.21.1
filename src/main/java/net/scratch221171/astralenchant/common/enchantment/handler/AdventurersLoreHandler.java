@@ -13,6 +13,7 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
 import net.scratch221171.astralenchant.common.registries.ModDataComponents;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class AdventurersLoreHandler {
@@ -21,9 +22,9 @@ public class AdventurersLoreHandler {
         if (!Config.ADVENTURERS_LORE.isTrue()) return;
         if (!(event.getBreaker() instanceof Player player)) return;
 
-        Holder<Enchantment> adventurePreparation = player.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.ADVENTURERS_LORE);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.ADVENTURERS_LORE, player.level());
         ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
-        int level = foot.getEnchantmentLevel(adventurePreparation);
+        int level = foot.getEnchantmentLevel(enchantment);
         if (level <= 0) return;
 
         int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(ModDataComponents.ADVANCEMENTS, 0);

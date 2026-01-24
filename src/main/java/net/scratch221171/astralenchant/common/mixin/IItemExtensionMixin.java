@@ -12,6 +12,7 @@ import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,7 +28,7 @@ public interface IItemExtensionMixin {
         if (!Config.COMPATIBILITY.isTrue()) return;
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        Holder<Enchantment> compatible = server.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.COMPATIBILITY);
+        Holder<Enchantment> compatible = AstralEnchantUtils.getEnchantmentHolderFromServer(ModEnchantments.COMPATIBILITY, server);
 
         if (stack.is(Items.BUNDLE) && stack.get(DataComponents.BUNDLE_CONTENTS) != BundleContents.EMPTY && stack.getEnchantmentLevel(compatible) > 0) {
             stack.set(DataComponents.REPAIR_COST, 0);

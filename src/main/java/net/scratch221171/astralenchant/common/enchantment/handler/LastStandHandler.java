@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class LastStandHandler {
@@ -30,10 +31,10 @@ public class LastStandHandler {
         LivingEntity entity = event.getEntity();
         Iterable<ItemStack> armorSlots = entity.getArmorSlots();
 
-        Holder<Enchantment> lastStandEnchantment = entity.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.LAST_STAND);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.LAST_STAND, entity.level());
         int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
-            int level = armor.getEnchantmentLevel(lastStandEnchantment);
+            int level = armor.getEnchantmentLevel(enchantment);
             if (level > 0) {
                 totalLevel += level;
             }

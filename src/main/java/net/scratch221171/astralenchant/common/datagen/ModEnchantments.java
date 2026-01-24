@@ -139,11 +139,24 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> MOMENTUM = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "momentum"));
 
+    /**
+     * エンダーパール使用時、瞬時に視線の先に真っ直ぐテレポートする。スニーク時はブロックを貫通する。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.EnderPearlItemMixin}
+     */
+    public static final ResourceKey<Enchantment> INSTANT_TELEPORT = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
+
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var items = context.registryLookup(Registries.ITEM);
 
         HolderSet<Item> any = new AnyHolderSet<>(items.orElseThrow());
         HolderSet<Item> armor = items.get().getOrThrow(ItemTags.ARMOR_ENCHANTABLE);
+        HolderSet<Item> head = items.get().getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE);
         HolderSet<Item> chest = items.get().getOrThrow(ItemTags.CHEST_ARMOR_ENCHANTABLE);
         HolderSet<Item> foot = items.get().getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
         HolderSet<Item> weapon = items.get().getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
@@ -250,6 +263,15 @@ public class ModEnchantments {
                 Enchantment.dynamicCost(150,10),
                 8,
                 EquipmentSlotGroup.CHEST)));
+
+        register(context, INSTANT_TELEPORT, Enchantment.enchantment(Enchantment.definition(
+                head,
+                1,
+                4,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
+                EquipmentSlotGroup.HEAD)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

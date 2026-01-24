@@ -16,6 +16,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class EssenceOfEnchantmentHandler {
@@ -27,14 +28,14 @@ public class EssenceOfEnchantmentHandler {
 
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        Holder<Enchantment> essenceOfEnchantment = server.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.ESSENCE_OF_ENCHANTMENT);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(ModEnchantments.ESSENCE_OF_ENCHANTMENT, server);
 
-        int enchLvl = stack.getEnchantmentLevel(essenceOfEnchantment);
+        int enchLvl = stack.getEnchantmentLevel(enchantment);
         if (stack.isEmpty() || enchLvl <= 0) return;
 
         int totalLvl = 0;
         for (Object2IntMap.Entry<Holder<Enchantment>> enchant : stack.getTagEnchantments().entrySet()) {
-            if (!enchant.getKey().equals(essenceOfEnchantment)) totalLvl += enchant.getIntValue();
+            if (!enchant.getKey().equals(enchantment)) totalLvl += enchant.getIntValue();
         }
 
         ItemAttributeModifiers attributeModifiers = event.getDefaultModifiers();

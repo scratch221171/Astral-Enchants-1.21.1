@@ -26,6 +26,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -38,14 +39,10 @@ public class FeatherTouchHandler {
         Level level = event.getPlayer().level();
         BlockState state = event.getState();
         BlockPos pos = event.getPos();
-
-        Holder<Enchantment> featherTouch = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.FEATHER_TOUCH);
-
-        if (player.getMainHandItem().getEnchantmentLevel(featherTouch) <= 0)
-            return;
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.FEATHER_TOUCH, level);
+        if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
 
         ItemStack stack;
-
         BlockEntity be = level.getBlockEntity(pos);
         if (player.isCrouching()) {
             if (be != null) {
@@ -67,7 +64,6 @@ public class FeatherTouchHandler {
         }
 
         FeatherTouchCache.CACHE.put(pos, stack);
-
     }
 
     @SubscribeEvent

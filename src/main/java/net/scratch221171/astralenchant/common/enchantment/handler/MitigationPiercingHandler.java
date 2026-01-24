@@ -13,6 +13,7 @@ import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -22,13 +23,13 @@ public class MitigationPiercingHandler {
         if (!Config.MITIGATION_PIERCING.isTrue()) return;
         DamageSource source = event.getSource();
         if (source.getEntity() instanceof LivingEntity attacker) {
-            Holder<Enchantment> mitigationPiercingEnchantment = attacker.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.MITIGATION_PIERCING);
-            if ((source.getWeaponItem() instanceof ItemStack weapon) && weapon.getEnchantmentLevel(mitigationPiercingEnchantment) > 0) {
+            Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.MITIGATION_PIERCING, attacker.level());
+            if ((source.getWeaponItem() instanceof ItemStack weapon) && weapon.getEnchantmentLevel(enchantment) > 0) {
                 IDamageSourceExtension acc = (IDamageSourceExtension) source;
-                acc.astralenchant$addDamageTag(DamageTypeTags.BYPASSES_ARMOR);
-                acc.astralenchant$addDamageTag(DamageTypeTags.BYPASSES_COOLDOWN);
-                acc.astralenchant$addDamageTag(DamageTypeTags.BYPASSES_EFFECTS);
-                acc.astralenchant$addDamageTag(DamageTypeTags.BYPASSES_INVULNERABILITY);
+                acc.astralEnchant$addDamageTag(DamageTypeTags.BYPASSES_ARMOR);
+                acc.astralEnchant$addDamageTag(DamageTypeTags.BYPASSES_COOLDOWN);
+                acc.astralEnchant$addDamageTag(DamageTypeTags.BYPASSES_EFFECTS);
+                acc.astralEnchant$addDamageTag(DamageTypeTags.BYPASSES_INVULNERABILITY);
             }
         }
     }

@@ -14,13 +14,17 @@
   "enchantment.astralenchant.adventurers_lore": "冒険者の心得",
   "enchantment.astralenchant.adventurers_lore.desc": "完了した実績の数に応じて運を上げます",
   "enchantment.astralenchant.compatibility": "適合",
-  "enchantment.astralenchant.compatibility.desc": "アイテムにどんなエンチャントも付けられるようにします。",
+  "enchantment.astralenchant.compatibility.desc": "バンドルの代わりに、競合などを無視して内部アイテムにエンチャントが付与されるようになります。",
   "enchantment.astralenchant.endless_appetite": "果てしない食欲",
   "enchantment.astralenchant.endless_appetite.desc": "自然再生を促進し、上限を超過した満腹度と隠し満腹度の分だけ直接回復します。",
   "enchantment.astralenchant.momentum": "速度維持",
   "enchantment.astralenchant.momentum.desc": "アイテム使用やブロックによる速度低下を無効化します。",
+  "enchantment.astralenchant.instant_teleport": "即時テレポート",
+  "enchantment.astralenchant.instant_teleport.desc": "エンダーパール使用時、視線の先にテレポートします。スニークしている場合はブロックの向こう側にテレポートします。",
 
   "astralenchant:cooldown_reduction": "クールダウン短縮率",
+
+  "astralenchant.message.teleport.fail": "距離内に有効なブロックが存在しません！",
 
   "astralenchant.configuration.enchantment_toggling": "エンチャントの切り替え",
   "astralenchant.configuration.mitigation_piercing": "軽減貫通",
