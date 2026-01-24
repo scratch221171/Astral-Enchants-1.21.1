@@ -13,10 +13,12 @@
   "enchantment.astralenchant.feather_touch.desc": "Allows you to collect all destructible blocks. Components are also saved.",
   "enchantment.astralenchant.adventurers_lore": "Adventurer’s Lore",
   "enchantment.astralenchant.adventurers_lore.desc": "Increases your luck based on the number of completed achievements.",
-  "enchantment.astralenchant.compatible": "Compatible",
-  "enchantment.astralenchant.compatible.desc": "Enables any enchantment to be put on items.",
+  "enchantment.astralenchant.compatibility": "Compatibility",
+  "enchantment.astralenchant.compatibility.desc": "Enables any enchantment to be put on items.",
   "enchantment.astralenchant.endless_appetite": "Endless Appetite",
   "enchantment.astralenchant.endless_appetite.desc": "Enhances natural regeneration and directly restores an amount equal to the excess over the cap of food level and hidden saturation level.",
+  "enchantment.astralenchant.momentum": "Momentum",
+  "enchantment.astralenchant.momentum.desc": "Disables speed reductions caused by item usage or blocks.",
 
   "astralenchant:cooldown_reduction": "Cooldown Reduction Rate",
 
@@ -28,6 +30,6 @@
   "astralenchant.configuration.cooldown_reduction": "Cooldown Reduction",
   "astralenchant.configuration.feather_touch": "Feather Touch",
   "astralenchant.configuration.adventurers_lore": "Adventurer’s Lore",
-  "astralenchant.configuration.compatible": "Compatible",
+  "astralenchant.configuration.compatibility": "Compatibility",
   "astralenchant.configuration.endless_appetite": "Endless Appetite"
 }

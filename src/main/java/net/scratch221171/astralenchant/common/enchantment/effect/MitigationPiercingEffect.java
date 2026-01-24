@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common.enchantment.enchantmenteffect;
+package net.scratch221171.astralenchant.common.enchantment.effect;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleTypes;

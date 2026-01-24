@@ -30,18 +30,15 @@ public class LastStandHandler {
         LivingEntity entity = event.getEntity();
         Iterable<ItemStack> armorSlots = entity.getArmorSlots();
 
-        Holder<Enchantment> lastStandEnchantment = entity.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT)
-                .getHolderOrThrow(ModEnchantments.LAST_STAND);
-        boolean hasEnchantment = false;
+        Holder<Enchantment> lastStandEnchantment = entity.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.LAST_STAND);
         int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
             int level = armor.getEnchantmentLevel(lastStandEnchantment);
             if (level > 0) {
-                hasEnchantment = true;
                 totalLevel += level;
             }
         }
-        if (!hasEnchantment) return;
+        if (totalLevel <= 0) return;
 
         Player player = (Player) entity;
         int neededExperienceLevels = (int)Math.floor(30f/totalLevel);

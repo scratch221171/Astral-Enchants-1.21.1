@@ -6,9 +6,9 @@ import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.AdventurersLoreEffect;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.ItemProtectionEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.AdventurersLoreEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.MitigationPiercingEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.ItemProtectionEffect;
 
 import java.util.function.Supplier;
 

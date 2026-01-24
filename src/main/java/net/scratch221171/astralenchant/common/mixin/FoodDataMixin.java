@@ -2,10 +2,10 @@ package net.scratch221171.astralenchant.common.mixin;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,11 +27,11 @@ public abstract class FoodDataMixin {
     @Unique
     private float astralenchant$overflowed = 0;
 
-    @Inject(
-            method = "add",
-            at = @At("HEAD")
-    )
-    private void onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
+    /**
+     * {@link ModEnchantments#ENDLESS_APPETITE} が付いている場合は溢れた(隠し)満腹度分だけ回復する。
+     */
+    @Inject(method = "add", at = @At("HEAD"))
+    private void astralEnchant$onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
         if (!Config.ENDLESS_APPETITE.isTrue()) return;
         FoodData self = (FoodData)(Object)this;
         int newFoodLevel = Math.clamp(foodLevel + self.getFoodLevel(), 0, 20);
@@ -39,14 +39,14 @@ public abstract class FoodDataMixin {
         astralenchant$overflowed += Math.max(0, saturationLevel + self.getSaturationLevel() - newFoodLevel);
     }
 
-    @Inject(
-            method = "tick",
-            at = @At("HEAD")
-    )
-    private void onTick(Player player, CallbackInfo ci) {
+    /**
+     * {@link ModEnchantments#ENDLESS_APPETITE} が付いている場合は自然治癒を加速する。
+     */
+    @Inject(method = "tick", at = @At("HEAD"))
+    private void astralEnchant$onTick(Player player, CallbackInfo ci) {
         if (!Config.ENDLESS_APPETITE.isTrue()) return;
         Holder<Enchantment> enchantment = player.level().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(ModEnchantments.ENDLESS_APPETITE);
-        if (player.getItemBySlot(EquipmentSlot.CHEST).getEnchantmentLevel(enchantment) > 0) {
+        if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
             if (this.getFoodLevel() > 0) this.tickTimer = 80;
             player.heal(this.astralenchant$overflowed);
             astralenchant$overflowed = 0;

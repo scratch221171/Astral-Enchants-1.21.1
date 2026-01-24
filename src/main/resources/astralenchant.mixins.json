@@ -4,10 +4,13 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "DamageSourceMixin",
+    "EntityMixin",
     "FoodDataMixin",
     "IItemExtensionMixin",
     "ItemCooldownsMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "LocalPlayerMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

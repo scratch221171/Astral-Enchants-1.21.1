@@ -16,7 +16,7 @@ public class Config {
         COOLDOWN_REDUCTION = BUILDER.define("cooldown_reduction", true);
         FEATHER_TOUCH = BUILDER.define("feather_touch", true);
         ADVENTURERS_LORE = BUILDER.define("adventurers_lore", true);
-        COMPATIBLE = BUILDER.define("compatible", true);
+        COMPATIBILITY = BUILDER.define("compatibility", true);
         ENDLESS_APPETITE = BUILDER.define("endless_appetite", true);
     }
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
@@ -26,7 +26,7 @@ public class Config {
     public static final ModConfigSpec.BooleanValue COOLDOWN_REDUCTION;
     public static final ModConfigSpec.BooleanValue FEATHER_TOUCH;
     public static final ModConfigSpec.BooleanValue ADVENTURERS_LORE;
-    public static final ModConfigSpec.BooleanValue COMPATIBLE;
+    public static final ModConfigSpec.BooleanValue COMPATIBILITY;
     public static final ModConfigSpec.BooleanValue ENDLESS_APPETITE;
 
     static final ModConfigSpec CONFIG_SPEC = BUILDER.build();

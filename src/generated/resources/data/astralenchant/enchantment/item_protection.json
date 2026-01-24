@@ -21,9 +21,6 @@
     "base": 100,
     "per_level_above_first": 10
   },
-  "primary_items": {
-    "type": "neoforge:any"
-  },
   "slots": [
     "any"
   ],

@@ -20,11 +20,7 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     @Unique
     private Set<TagKey<DamageType>> astralenchant$extraTags;
 
-    @Inject(
-            method = "is(Lnet/minecraft/tags/TagKey;)Z",
-            at = @At("RETURN"),
-            cancellable = true
-    )
+    @Inject(method = "is(Lnet/minecraft/tags/TagKey;)Z", at = @At("RETURN"), cancellable = true)
     private void astralenchant$isExtraTag(TagKey<DamageType> tag, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.MITIGATION_PIERCING.isTrue()) return;
         if (this.astralenchant$extraTags != null && this.astralenchant$extraTags.contains(tag)) {

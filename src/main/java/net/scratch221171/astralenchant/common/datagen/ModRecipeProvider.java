@@ -107,7 +107,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('9', Items.DEEPSLATE_COAL_ORE)
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "adventurers_lore"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(ModEnchantments.COMPATIBLE, 1, holderLookup))
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(ModEnchantments.COMPATIBILITY, 1, holderLookup))
                 .pattern("313").pattern("121").pattern("313")
                 .define('1', Items.ANVIL)
                 .define('2', Items.BOOK)

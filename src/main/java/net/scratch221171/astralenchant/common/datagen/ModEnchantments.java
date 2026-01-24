@@ -13,30 +13,131 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.AdventurersLoreEffect;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.common.enchantment.enchantmenteffect.ItemProtectionEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.AdventurersLoreEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.MitigationPiercingEffect;
+import net.scratch221171.astralenchant.common.enchantment.effect.ItemProtectionEffect;
 import net.scratch221171.astralenchant.common.registries.ModAttributes;
 
 public class ModEnchantments {
+    /**
+     * 与えた攻撃に様々なダメージタイプタグを付与し、ダメージ軽減を貫通する。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.LocalPlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}
+     */
     public static final ResourceKey<Enchantment> MITIGATION_PIERCING = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mitigation_piercing"));
+
+    /**
+     * 経験値を消費して死亡イベントをキャンセルする。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.LastStandHandler}
+     * <p>
+     * Mixin : none
+     */
     public static final ResourceKey<Enchantment> LAST_STAND = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "last_stand"));
+
+    /**
+     * 耐久力を除くアイテムのDataComponentを毎ティック置き換える。
+     * <p>
+     * Effect : {@link ItemProtectionEffect}
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.ItemProtectionHandler}
+     * <p>
+     * Mixin : none
+     */
     public static final ResourceKey<Enchantment> ITEM_PROTECTION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
+
+    /**
+     * アイテムの合計エンチャントレベル(自身を除く)に応じて全てのAttributeModifierを上昇させる。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.EssenceOfEnchantmentHandler}
+     * <p>
+     * Mixin : none
+     */
     public static final ResourceKey<Enchantment> ESSENCE_OF_ENCHANTMENT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "essence_of_enchantment"));
+
+    /**
+     * アイテム使用のクールダウンを短縮する。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.CooldownAttributeHandler}
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.ItemCooldownsMixin}
+     */
     public static final ResourceKey<Enchantment> COOLDOWN_REDUCTION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cooldown_reduction"));
+
+    /**
+     * ブロック破壊時に必ずドロップするようにし、スニーク時はBlockStateやBlockEntityのコンポーネントを保持したままアイテム化させる。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.FeatherTouchHandler}
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.LocalPlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}
+     */
     public static final ResourceKey<Enchantment> FEATHER_TOUCH = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "feather_touch"));
+
+    /**
+     * 総実績数に応じて運とブロック由来の経験値を増加させる。
+     * <p>
+     * Effect : {@link AdventurersLoreEffect}
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.AdventurersLoreHandler}
+     * <p>
+     * Mixin : none
+     * */
     public static final ResourceKey<Enchantment> ADVENTURERS_LORE = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "adventurers_lore"));
-    public static final ResourceKey<Enchantment> COMPATIBLE = ResourceKey.create(Registries.ENCHANTMENT,
-            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatible"));
+
+    /**
+     * このエンチャントがついたバンドルに付けられたエンチャントが、競合などを無視して内部アイテムに付与される。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.ItemStackMixin}, {@link net.scratch221171.astralenchant.common.mixin.IItemExtensionMixin}
+     */
+    public static final ResourceKey<Enchantment> COMPATIBILITY = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatibility"));
+
+    /**
+     * 溢れた満腹度分だけ回復し、自然治癒を加速し、常時食事可能にする。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.FoodDataMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}
+     */
     public static final ResourceKey<Enchantment> ENDLESS_APPETITE = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "endless_appetite"));
+
+    /**
+     * 様々な移動速度低下効果を無効化する。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.LocalPlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.EntityMixin}
+     */
+    public static final ResourceKey<Enchantment> MOMENTUM = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "momentum"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var items = context.registryLookup(Registries.ITEM);
@@ -51,7 +152,6 @@ public class ModEnchantments {
 
         register(context, MITIGATION_PIERCING, Enchantment.enchantment(Enchantment.definition(
                 weapon,
-                weapon,
                 1,
                 1,
                 Enchantment.dynamicCost(100,10),
@@ -64,7 +164,6 @@ public class ModEnchantments {
 
         register(context, LAST_STAND, Enchantment.enchantment(Enchantment.definition(
                 armor,
-                armor,
                 1,
                 3,
                 Enchantment.dynamicCost(100,10),
@@ -73,7 +172,6 @@ public class ModEnchantments {
                 EquipmentSlotGroup.ARMOR)));
 
         register(context, ITEM_PROTECTION, Enchantment.enchantment(Enchantment.definition(
-                any,
                 any,
                 1,
                 1,
@@ -85,7 +183,6 @@ public class ModEnchantments {
 
         register(context, ESSENCE_OF_ENCHANTMENT, Enchantment.enchantment(Enchantment.definition(
                 any,
-                any,
                 1,
                 5,
                 Enchantment.dynamicCost(100,10),
@@ -94,7 +191,6 @@ public class ModEnchantments {
                 EquipmentSlotGroup.ANY)));
 
         register(context, COOLDOWN_REDUCTION, Enchantment.enchantment(Enchantment.definition(
-                chest,
                 chest,
                 1,
                 3,
@@ -111,7 +207,6 @@ public class ModEnchantments {
 
         register(context, FEATHER_TOUCH, Enchantment.enchantment(Enchantment.definition(
                 mining,
-                mining,
                 1,
                 1,
                 Enchantment.dynamicCost(100,10),
@@ -121,7 +216,6 @@ public class ModEnchantments {
 
         register(context, ADVENTURERS_LORE, Enchantment.enchantment(Enchantment.definition(
                 foot,
-                foot,
                 1,
                 3,
                 Enchantment.dynamicCost(100,10),
@@ -130,8 +224,7 @@ public class ModEnchantments {
                 EquipmentSlotGroup.FEET))
                 .withEffect(EnchantmentEffectComponents.TICK, new AdventurersLoreEffect()));
 
-        register(context, COMPATIBLE, Enchantment.enchantment(Enchantment.definition(
-                bundle,
+        register(context, COMPATIBILITY, Enchantment.enchantment(Enchantment.definition(
                 bundle,
                 1,
                 1,
@@ -142,12 +235,20 @@ public class ModEnchantments {
 
         register(context, ENDLESS_APPETITE, Enchantment.enchantment(Enchantment.definition(
                 chest,
-                chest,
                 1,
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 16,
+                EquipmentSlotGroup.CHEST)));
+
+        register(context, MOMENTUM, Enchantment.enchantment(Enchantment.definition(
+                chest,
+                1,
+                1,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
                 EquipmentSlotGroup.CHEST)));
     }
 
