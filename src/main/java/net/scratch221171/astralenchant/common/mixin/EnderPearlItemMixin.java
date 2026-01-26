@@ -36,13 +36,11 @@ public class EnderPearlItemMixin {
     public void astralEnchant$instantTeleport(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.INSTANT_TELEPORT, level);
         int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(enchantment, player);
-        if ( enchantmentLevel > 0) {
+        if (enchantmentLevel > 0) {
             ItemStack itemstack = player.getItemInHand(hand);
-            level.playSound(null,player.getX(),player.getY(),player.getZ(),SoundEvents.ENDER_PEARL_THROW,SoundSource.NEUTRAL,0.5F,0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
-            player.getCooldowns().addCooldown(Items.ENDER_PEARL, 20);
 
             if (!level.isClientSide) {
-                double maxDistance = 16 * enchantmentLevel;
+                double maxDistance = 32 * enchantmentLevel;
                 Vec3 start = player.getEyePosition(1.0F);
                 Vec3 angle = player.getLookAngle();
                 Vec3 end = start.add(angle.scale(maxDistance));
@@ -51,38 +49,40 @@ public class EnderPearlItemMixin {
                 BlockHitResult result = level.clip(new ClipContext(start,end,ClipContext.Block.OUTLINE,ClipContext.Fluid.NONE,player));
 
                 if (result.getType() == HitResult.Type.BLOCK) {
+                    Vec3 tp = null;
                     if (player.isCrouching()) {
                         Vec3 current = result.getLocation();
                         maxDistance -= Math.sqrt(result.getBlockPos().distSqr(player.getOnPos()));
                         // スニークしている場合は衝突判定がなくなるまで(ブロックの外に出るまで)前進を繰り返す
-                        while (maxDistance > 0) {
-                            current = current.add(angle.scale(0.25));
-                            BlockHitResult next = level.clip(new ClipContext(current,current.add(angle.scale(0.25)),ClipContext.Block.COLLIDER,ClipContext.Fluid.NONE,player));
-
-                            if (next.getType() == HitResult.Type.MISS) {
-                                result = next;
-                                break;
+                        BlockHitResult next = result;
+                        for (; next.getType() != HitResult.Type.MISS; maxDistance -= 0.25) {
+                            next = level.clip(new ClipContext(current,current.add(angle.scale(0.25)),ClipContext.Block.COLLIDER,ClipContext.Fluid.NONE,player));
+                            if (maxDistance <= 0) {
+                                player.displayClientMessage(Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"), true);
+                                cir.setReturnValue(InteractionResultHolder.fail(itemstack));
+                                cir.cancel();
+                                return;
                             }
-                            maxDistance -= 0.25;
+                            current = current.add(angle.scale(0.25));
                         }
-                        // 壁が分厚すぎるのでテレポート不可
-                        if (maxDistance <= 0) {
-                            player.displayClientMessage(Component.translatable("astralenchant.message.teleport.fail"), true);
-                            cir.setReturnValue(InteractionResultHolder.fail(itemstack));
-                            cir.cancel();
-                            return;
-                        }
+                        tp = next.getLocation();
+                    } else {
+                        tp = result.getBlockPos().relative(result.getDirection(), 1).getBottomCenter();
                     }
                     // テレポートに成功
-                    Vec3 tp = result.getLocation();
+                    level.playSound(null,player.getX(),player.getY(),player.getZ(),SoundEvents.ENDER_PEARL_THROW,SoundSource.NEUTRAL,0.5F,0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+                    player.getCooldowns().addCooldown(Items.ENDER_PEARL, 20);
                     player.teleportTo(tp.x, tp.y, tp.z);
+                    player.setDeltaMovement(Vec3.ZERO);
+                    player.resetFallDistance();
+                    player.hurtMarked = true;
                     ((ServerLevel)level).sendParticles(ParticleTypes.PORTAL, tp.x, tp.y, tp.z, 32, 0, 0, 0, 0.5);
                     level.playSound(null, tp.x, tp.y, tp.z, SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
                     player.awardStat(Stats.ITEM_USED.get(Items.ENDER_PEARL));
                     itemstack.consume(1, player);
                 } else {
                     // 空を向いているときなど、最初から判定がなかったとき
-                    player.displayClientMessage(Component.translatable("astralenchant.message.teleport.fail"), true);
+                    player.displayClientMessage(Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"), true);
                     cir.setReturnValue(InteractionResultHolder.fail(itemstack));
                     cir.cancel();
                     return;

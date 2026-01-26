@@ -142,35 +142,6 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    runtimeOnly "maven.modrinth:cloth-config:15.0.140+neoforge"
-    runtimeOnly "maven.modrinth:entityculling:DwB2BGbW"
-    runtimeOnly "maven.modrinth:fastquit-forge:3.0.1+1.21neoforge"
-    runtimeOnly "maven.modrinth:ferrite-core:7.0.2-neoforge"
-    runtimeOnly "maven.modrinth:immediatelyfast:1.6.9+1.21.1-neoforge"
-    runtimeOnly "maven.modrinth:lithium:mc1.21.1-0.15.1-neoforge"
-    runtimeOnly "maven.modrinth:modernfix:8Be8uJW6"
-    runtimeOnly "maven.modrinth:moreculling:1.0.6"
-    runtimeOnly "maven.modrinth:reeses-sodium-options:mc1.21.4-1.8.3+neoforge"
-    runtimeOnly "maven.modrinth:sodium:mc1.21.1-0.6.13-neoforge"
-    runtimeOnly "maven.modrinth:sodium-extra:mc1.21.1-0.6.0+neoforge"
-
-    runtimeOnly "maven.modrinth:appleskin:3.0.7+mc1.21"
-    runtimeOnly "maven.modrinth:better-modlist:1.1.20"
-    runtimeOnly "maven.modrinth:caramel-chat:qSoQkIII"
-    runtimeOnly "maven.modrinth:cubes-without-borders:epixUL1j"
-    runtimeOnly "maven.modrinth:emi:1.1.22+1.21.1+neoforge"
-    runtimeOnly "maven.modrinth:tmrv:0.7.1+mc.21.1"
-    runtimeOnly "maven.modrinth:jade:15.10.4+neoforge"
-    runtimeOnly "maven.modrinth:mouse-tweaks:1.21-2.26.1-neoforge"
-
-    runtimeOnly "maven.modrinth:moonlight:1.21-2.29.9-neoforge"
-    runtimeOnly "maven.modrinth:mmmmmmmmmmmm:1.21-2.0.11-neoforge"
-    runtimeOnly "maven.modrinth:prickle:EE1FHDyD"
-    runtimeOnly "maven.modrinth:bookshelf-lib:21.1.80"
-    runtimeOnly "maven.modrinth:enchantment-descriptions:zfAkJn0r"
-    runtimeOnly "maven.modrinth:attributefix:21.1.3"
-    runtimeOnly "maven.modrinth:puzzles-lib:v21.1.39-1.21.1-NeoForge"
-    runtimeOnly "maven.modrinth:overflowing-bars:v21.1.1-1.21.1-NeoForge"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

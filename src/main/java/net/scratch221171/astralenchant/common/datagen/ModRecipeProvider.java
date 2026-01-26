@@ -11,6 +11,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -127,5 +129,23 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('9', Items.GLISTERING_MELON_SLICE)
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "endless_appetite"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(ModEnchantments.MOMENTUM, 1, holderLookup))
+                .pattern("434").pattern("212").pattern("535")
+                .define('1', EnchantedBookIngredientWith(Enchantments.SWIFT_SNEAK, 3, holderLookup))
+                .define('2', DataComponentIngredient.of(true, DataComponents.POTION_CONTENTS, new PotionContents(Potions.STRONG_SWIFTNESS), Items.POTION))
+                .define('3', Items.COBWEB)
+                .define('4', Items.RABBIT_FOOT)
+                .define('5', Items.SOUL_SAND)
+                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "momentum"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(ModEnchantments.INSTANT_TELEPORT, 1, holderLookup))
+                .pattern("353").pattern("212").pattern("343")
+                .define('1', EnchantedBookIngredientWith(Enchantments.RIPTIDE, 3, holderLookup))
+                .define('2', Items.AMETHYST_SHARD)
+                .define('3', Items.ENDER_PEARL)
+                .define('4', Items.END_CRYSTAL)
+                .define('5', Items.ENDER_EYE)
+                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
     }
 }

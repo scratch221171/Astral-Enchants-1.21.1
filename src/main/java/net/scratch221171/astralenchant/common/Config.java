@@ -1,6 +1,7 @@
 package net.scratch221171.astralenchant.common;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
@@ -9,15 +10,17 @@ public class Config {
 
     static {
         BUILDER.push("enchantment_toggling");
-        MITIGATION_PIERCING = BUILDER.define("mitigation_piercing", true);
-        LAST_STAND = BUILDER.define("last_stand", true);
-        ITEM_PROTECTION = BUILDER.define("item_protection", true);
-        ESSENCE_OF_ENCHANTMENT = BUILDER.define("essence_of_enchantment", true);
-        COOLDOWN_REDUCTION = BUILDER.define("cooldown_reduction", true);
-        FEATHER_TOUCH = BUILDER.define("feather_touch", true);
-        ADVENTURERS_LORE = BUILDER.define("adventurers_lore", true);
-        COMPATIBILITY = BUILDER.define("compatibility", true);
-        ENDLESS_APPETITE = BUILDER.define("endless_appetite", true);
+        MITIGATION_PIERCING = BUILDER.define(ModEnchantments.MITIGATION_PIERCING.location().getPath(), true);
+        LAST_STAND = BUILDER.define(ModEnchantments.LAST_STAND.location().getPath(), true);
+        ITEM_PROTECTION = BUILDER.define(ModEnchantments.ITEM_PROTECTION.location().getPath(), true);
+        ESSENCE_OF_ENCHANTMENT = BUILDER.define(ModEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), true);
+        COOLDOWN_REDUCTION = BUILDER.define(ModEnchantments.COOLDOWN_REDUCTION.location().getPath(), true);
+        FEATHER_TOUCH = BUILDER.define(ModEnchantments.FEATHER_TOUCH.location().getPath(), true);
+        ADVENTURERS_LORE = BUILDER.define(ModEnchantments.ADVENTURERS_LORE.location().getPath(), true);
+        COMPATIBILITY = BUILDER.define(ModEnchantments.COMPATIBILITY.location().getPath(), true);
+        ENDLESS_APPETITE = BUILDER.define(ModEnchantments.ENDLESS_APPETITE.location().getPath(), true);
+        MOMENTUM = BUILDER.define(ModEnchantments.MOMENTUM.location().getPath(), true);
+        INSTANT_TELEPORT = BUILDER.define(ModEnchantments.INSTANT_TELEPORT.location().getPath(), true);
     }
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
     public static final ModConfigSpec.BooleanValue LAST_STAND;
@@ -28,6 +31,8 @@ public class Config {
     public static final ModConfigSpec.BooleanValue ADVENTURERS_LORE;
     public static final ModConfigSpec.BooleanValue COMPATIBILITY;
     public static final ModConfigSpec.BooleanValue ENDLESS_APPETITE;
+    public static final ModConfigSpec.BooleanValue MOMENTUM;
+    public static final ModConfigSpec.BooleanValue INSTANT_TELEPORT;
 
     static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
 }

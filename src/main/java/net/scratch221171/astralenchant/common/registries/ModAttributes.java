@@ -14,7 +14,7 @@ public class ModAttributes {
             DeferredRegister.create(Registries.ATTRIBUTE, AstralEnchant.MOD_ID);
 
     public static final Holder<Attribute> COOLDOWN_REDUCTION = ATTRIBUTES.register("cooldown_reduction",
-            () -> new RangedAttribute("astralenchant:cooldown_reduction", 1, 0, 1024).setSyncable(true));
+            () -> new RangedAttribute("cooldown_reduction", 1, 0, 1024).setSyncable(true));
 
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
