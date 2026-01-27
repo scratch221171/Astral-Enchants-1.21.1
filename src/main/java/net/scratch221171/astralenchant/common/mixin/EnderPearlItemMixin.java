@@ -49,7 +49,7 @@ public class EnderPearlItemMixin {
                 BlockHitResult result = level.clip(new ClipContext(start,end,ClipContext.Block.OUTLINE,ClipContext.Fluid.NONE,player));
 
                 if (result.getType() == HitResult.Type.BLOCK) {
-                    Vec3 tp = null;
+                    Vec3 tp;
                     if (player.isCrouching()) {
                         Vec3 current = result.getLocation();
                         maxDistance -= Math.sqrt(result.getBlockPos().distSqr(player.getOnPos()));
