@@ -2,7 +2,6 @@ package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,7 +15,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -31,7 +30,7 @@ public class LastStandHandler {
         LivingEntity entity = event.getEntity();
         Iterable<ItemStack> armorSlots = entity.getArmorSlots();
 
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.LAST_STAND, entity.level());
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, entity.level());
         int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
             int level = armor.getEnchantmentLevel(enchantment);

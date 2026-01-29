@@ -1,13 +1,12 @@
 package net.scratch221171.astralenchant.common.mixin;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,7 +28,7 @@ public abstract class FoodDataMixin {
     private float astralenchant$overflowed = 0;
 
     /**
-     * {@link ModEnchantments#ENDLESS_APPETITE} が付いている場合は溢れた(隠し)満腹度分だけ回復する。
+     * {@link AEEnchantments#ENDLESS_APPETITE} が付いている場合は溢れた(隠し)満腹度分だけ回復する。
      */
     @Inject(method = "add", at = @At("HEAD"))
     private void astralEnchant$onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
@@ -41,12 +40,12 @@ public abstract class FoodDataMixin {
     }
 
     /**
-     * {@link ModEnchantments#ENDLESS_APPETITE} が付いている場合は自然治癒を加速する。
+     * {@link AEEnchantments#ENDLESS_APPETITE} が付いている場合は自然治癒を加速する。
      */
     @Inject(method = "tick", at = @At("HEAD"))
     private void astralEnchant$onTick(Player player, CallbackInfo ci) {
         if (!Config.ENDLESS_APPETITE.isTrue()) return;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.ENDLESS_APPETITE, player.level());
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
             if (this.getFoodLevel() > 0) this.tickTimer = 80;
             player.heal(this.astralenchant$overflowed);

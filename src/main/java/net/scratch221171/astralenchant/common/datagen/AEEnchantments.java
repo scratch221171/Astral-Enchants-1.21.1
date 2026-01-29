@@ -15,10 +15,9 @@ import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.enchantment.effect.AdventurersLoreEffect;
 import net.scratch221171.astralenchant.common.enchantment.effect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.common.enchantment.effect.ItemProtectionEffect;
-import net.scratch221171.astralenchant.common.registries.ModAttributes;
+import net.scratch221171.astralenchant.common.registries.AEAttributes;
 
-public class ModEnchantments {
+public class AEEnchantments {
     /**
      * 与えた攻撃に様々なダメージタイプタグを付与し、ダメージ軽減を貫通する。
      * <p>
@@ -46,11 +45,11 @@ public class ModEnchantments {
     /**
      * 耐久力を除くアイテムのDataComponentを毎ティック置き換える。
      * <p>
-     * Effect : {@link ItemProtectionEffect}
+     * Effect : none
      * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.ItemProtectionHandler}
      * <p>
-     * Mixin : none
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.ItemStackMixin}
      */
     public static final ResourceKey<Enchantment> ITEM_PROTECTION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
@@ -161,7 +160,7 @@ public class ModEnchantments {
         HolderSet<Item> foot = items.get().getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE);
         HolderSet<Item> weapon = items.get().getOrThrow(ItemTags.WEAPON_ENCHANTABLE);
         HolderSet<Item> mining = items.get().getOrThrow(ItemTags.MINING_LOOT_ENCHANTABLE);
-        HolderSet<Item> bundle = items.get().getOrThrow(ModItemTagsProvider.BUNDLE);
+        HolderSet<Item> bundle = items.get().getOrThrow(AEItemTagsProvider.BUNDLE);
 
         register(context, MITIGATION_PIERCING, Enchantment.enchantment(Enchantment.definition(
                 weapon,
@@ -191,8 +190,7 @@ public class ModEnchantments {
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 8,
-                EquipmentSlotGroup.ANY))
-                .withEffect(EnchantmentEffectComponents.TICK, new ItemProtectionEffect()));
+                EquipmentSlotGroup.ANY)));
 
         register(context, ESSENCE_OF_ENCHANTMENT, Enchantment.enchantment(Enchantment.definition(
                 any,
@@ -213,7 +211,7 @@ public class ModEnchantments {
                 EquipmentSlotGroup.CHEST))
                 .withEffect(EnchantmentEffectComponents.ATTRIBUTES, new EnchantmentAttributeEffect(
                         ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cr_bonus"),
-                        ModAttributes.COOLDOWN_REDUCTION,
+                        AEAttributes.COOLDOWN_REDUCTION,
                         LevelBasedValue.perLevel(0.1F),
                         AttributeModifier.Operation.ADD_VALUE
                 )));

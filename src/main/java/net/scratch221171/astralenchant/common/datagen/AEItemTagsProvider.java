@@ -15,12 +15,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagsProvider extends ItemTagsProvider {
-    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags, ExistingFileHelper existingFileHelper) {
+public class AEItemTagsProvider extends ItemTagsProvider {
+    public AEItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTags, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTags, AstralEnchant.MOD_ID, existingFileHelper);
     }
 
-    public static final TagKey<Item> BUNDLE = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("astralenchant", "bundle"));
+    public static final TagKey<Item> BUNDLE = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "bundle"));
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {

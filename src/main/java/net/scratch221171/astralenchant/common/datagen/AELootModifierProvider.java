@@ -7,8 +7,8 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModLootModifierProvider extends GlobalLootModifierProvider {
-    public ModLootModifierProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+public class AELootModifierProvider extends GlobalLootModifierProvider {
+    public AELootModifierProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, AstralEnchant.MOD_ID);
     }
 

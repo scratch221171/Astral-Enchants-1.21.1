@@ -9,7 +9,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 
 
-public class ModAttributes {
+public class AEAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES =
             DeferredRegister.create(Registries.ATTRIBUTE, AstralEnchant.MOD_ID);
 

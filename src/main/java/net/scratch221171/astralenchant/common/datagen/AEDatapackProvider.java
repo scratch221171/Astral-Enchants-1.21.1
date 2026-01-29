@@ -10,11 +10,11 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
+public class AEDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap);
+            .add(Registries.ENCHANTMENT, AEEnchantments::bootstrap);
 
-    public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public AEDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(AstralEnchant.MOD_ID));
     }
 }

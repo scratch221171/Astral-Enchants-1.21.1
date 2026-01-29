@@ -1,52 +1,29 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.registries.ModDataComponents;
-import net.scratch221171.astralenchant.common.util.ItemProtectionUtil;
-
-import java.util.UUID;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class ItemProtectionHandler {
-    @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
-        if (!Config.ITEM_PROTECTION.isTrue()) return;
-        Player player = event.getEntity();
-        // クリエイティブタブ下部のホットバーにエンチャントされたアイテムがあるとなぜか問題が起きる
-        if (player.level().isClientSide) return;
-        for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
-            ItemStack stack = player.getItemBySlot(equipmentslot);
-            UUID uuid = stack.get(ModDataComponents.UUID);
-            if (uuid != null) {
-                if (!ItemProtectionUtil.isContained(uuid)) {
-                    ItemProtectionUtil.add(uuid, stack.copy());
-                }
-                int damage = stack.getOrDefault(DataComponents.DAMAGE, -1);
-                for (DataComponentType<?> component : stack.getComponents().keySet()) { stack.remove(component); }
-                stack.applyComponents(ItemProtectionUtil.get(uuid).getComponents());
-                if (damage > 0) stack.set(DataComponents.DAMAGE, damage);
-            }
-        }
-    }
 
     @SubscribeEvent
     public static void onItemEntitySpawn(EntityJoinLevelEvent event) {
         if (!Config.ITEM_PROTECTION.isTrue()) return;
-        if (!(event.getEntity() instanceof ItemEntity itemEntity) || itemEntity.getItem().get(ModDataComponents.UUID) == null) return;
-        itemEntity.setUnlimitedLifetime();
-        itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));
-        itemEntity.setNoGravity(true);
-        itemEntity.setInvulnerable(true);
+        if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
+        if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {
+            itemEntity.setUnlimitedLifetime();
+            itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));
+            itemEntity.setNoGravity(true);
+            itemEntity.setInvulnerable(true);
+        }
     }
 }

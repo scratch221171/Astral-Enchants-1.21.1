@@ -5,7 +5,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +24,7 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
 
@@ -39,7 +38,7 @@ public class FeatherTouchHandler {
         Level level = event.getPlayer().level();
         BlockState state = event.getState();
         BlockPos pos = event.getPos();
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.FEATHER_TOUCH, level);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
         if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
 
         ItemStack stack;

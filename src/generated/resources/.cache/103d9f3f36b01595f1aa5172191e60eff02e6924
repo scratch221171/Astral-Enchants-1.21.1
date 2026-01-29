@@ -1,4 +1,4 @@
-// 1.21.1	2026-01-24T20:26:38.5009169	Registries
+// 1.21.1	2026-01-29T21:59:13.6871132	Registries
 2f0ca2acab8ef14a4c192517db66b8c2b630aca8 data/astralenchant/enchantment/adventurers_lore.json
 203aa9d1213578138046c3f74d28bdf19c713517 data/astralenchant/enchantment/compatibility.json
 86f4957648ba88f13934395e8d2ab5f23810a472 data/astralenchant/enchantment/cooldown_reduction.json
@@ -6,7 +6,7 @@ a7039a6c319e4c12375963d3f19c94d91aa748f9 data/astralenchant/enchantment/endless_
 d07310c08044a55a800c5edd7ec6377edb54f828 data/astralenchant/enchantment/essence_of_enchantment.json
 2d0bf4723e121d94b54a7089706344360e42eecd data/astralenchant/enchantment/feather_touch.json
 80a220f42b7b83a05e9211627e6198d61100db81 data/astralenchant/enchantment/instant_teleport.json
-0dc7234b6fe6573d37dad8f4c13b64f09ae1a45e data/astralenchant/enchantment/item_protection.json
+dd2cad186a865aaa0c649f9328f84357e152958d data/astralenchant/enchantment/item_protection.json
 e2a05f6a6a17750ea9df8c086fe030cc1105a1dc data/astralenchant/enchantment/last_stand.json
 073d76aa10bce5de2d48d29d4a3fe4767458bad7 data/astralenchant/enchantment/mitigation_piercing.json
 baa8b25fdfa5023b362aa8e447daab55727d6701 data/astralenchant/enchantment/momentum.json

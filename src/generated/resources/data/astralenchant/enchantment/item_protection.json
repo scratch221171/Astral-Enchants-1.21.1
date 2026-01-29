@@ -3,15 +3,6 @@
   "description": {
     "translate": "enchantment.astralenchant.item_protection"
   },
-  "effects": {
-    "minecraft:tick": [
-      {
-        "effect": {
-          "type": "astralenchant:item_protection"
-        }
-      }
-    ]
-  },
   "max_cost": {
     "base": 150,
     "per_level_above_first": 10

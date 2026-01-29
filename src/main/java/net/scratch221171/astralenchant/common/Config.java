@@ -1,7 +1,7 @@
 package net.scratch221171.astralenchant.common;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
@@ -10,17 +10,17 @@ public class Config {
 
     static {
         BUILDER.push("enchantment_toggling");
-        MITIGATION_PIERCING = BUILDER.define(ModEnchantments.MITIGATION_PIERCING.location().getPath(), true);
-        LAST_STAND = BUILDER.define(ModEnchantments.LAST_STAND.location().getPath(), true);
-        ITEM_PROTECTION = BUILDER.define(ModEnchantments.ITEM_PROTECTION.location().getPath(), true);
-        ESSENCE_OF_ENCHANTMENT = BUILDER.define(ModEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), true);
-        COOLDOWN_REDUCTION = BUILDER.define(ModEnchantments.COOLDOWN_REDUCTION.location().getPath(), true);
-        FEATHER_TOUCH = BUILDER.define(ModEnchantments.FEATHER_TOUCH.location().getPath(), true);
-        ADVENTURERS_LORE = BUILDER.define(ModEnchantments.ADVENTURERS_LORE.location().getPath(), true);
-        COMPATIBILITY = BUILDER.define(ModEnchantments.COMPATIBILITY.location().getPath(), true);
-        ENDLESS_APPETITE = BUILDER.define(ModEnchantments.ENDLESS_APPETITE.location().getPath(), true);
-        MOMENTUM = BUILDER.define(ModEnchantments.MOMENTUM.location().getPath(), true);
-        INSTANT_TELEPORT = BUILDER.define(ModEnchantments.INSTANT_TELEPORT.location().getPath(), true);
+        MITIGATION_PIERCING = BUILDER.define(AEEnchantments.MITIGATION_PIERCING.location().getPath(), true);
+        LAST_STAND = BUILDER.define(AEEnchantments.LAST_STAND.location().getPath(), true);
+        ITEM_PROTECTION = BUILDER.define(AEEnchantments.ITEM_PROTECTION.location().getPath(), true);
+        ESSENCE_OF_ENCHANTMENT = BUILDER.define(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), true);
+        COOLDOWN_REDUCTION = BUILDER.define(AEEnchantments.COOLDOWN_REDUCTION.location().getPath(), true);
+        FEATHER_TOUCH = BUILDER.define(AEEnchantments.FEATHER_TOUCH.location().getPath(), true);
+        ADVENTURERS_LORE = BUILDER.define(AEEnchantments.ADVENTURERS_LORE.location().getPath(), true);
+        COMPATIBILITY = BUILDER.define(AEEnchantments.COMPATIBILITY.location().getPath(), true);
+        ENDLESS_APPETITE = BUILDER.define(AEEnchantments.ENDLESS_APPETITE.location().getPath(), true);
+        MOMENTUM = BUILDER.define(AEEnchantments.MOMENTUM.location().getPath(), true);
+        INSTANT_TELEPORT = BUILDER.define(AEEnchantments.INSTANT_TELEPORT.location().getPath(), true);
     }
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
     public static final ModConfigSpec.BooleanValue LAST_STAND;

@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,11 +30,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(EnderpearlItem.class)
 public class EnderPearlItemMixin {
     /**
-     * {@link ModEnchantments#INSTANT_TELEPORT} が付いている場合はエンダーパールの使用プロセスを丸ごと書き換える。
+     * {@link AEEnchantments#INSTANT_TELEPORT} が付いている場合はエンダーパールの使用プロセスを丸ごと書き換える。
      */
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     public void astralEnchant$instantTeleport(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.INSTANT_TELEPORT, level);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.INSTANT_TELEPORT, level);
         int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(enchantment, player);
         if (enchantmentLevel > 0) {
             ItemStack itemstack = player.getItemInHand(hand);

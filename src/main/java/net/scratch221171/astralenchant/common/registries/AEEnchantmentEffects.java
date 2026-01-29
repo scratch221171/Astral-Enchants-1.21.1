@@ -8,18 +8,15 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.enchantment.effect.AdventurersLoreEffect;
 import net.scratch221171.astralenchant.common.enchantment.effect.MitigationPiercingEffect;
-import net.scratch221171.astralenchant.common.enchantment.effect.ItemProtectionEffect;
 
 import java.util.function.Supplier;
 
-public class ModEnchantmentEffects {
+public class AEEnchantmentEffects {
     public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENCHANTMENT_ENTITY_EFFECTS =
             DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, AstralEnchant.MOD_ID);
 
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> MITIGATION_PIERCING =
             ENCHANTMENT_ENTITY_EFFECTS.register("mitigation_piercing", () -> MitigationPiercingEffect.CODEC);
-    public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ITEM_PROTECTION =
-            ENCHANTMENT_ENTITY_EFFECTS.register("item_protection", () -> ItemProtectionEffect.CODEC);
     public static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> ADVENTURE_PREPARATION =
             ENCHANTMENT_ENTITY_EFFECTS.register("adventurers_lore", () -> AdventurersLoreEffect.CODEC);
 

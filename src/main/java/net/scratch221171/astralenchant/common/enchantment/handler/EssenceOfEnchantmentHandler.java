@@ -2,7 +2,6 @@ package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -15,7 +14,7 @@ import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -28,7 +27,7 @@ public class EssenceOfEnchantmentHandler {
 
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(ModEnchantments.ESSENCE_OF_ENCHANTMENT, server);
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ESSENCE_OF_ENCHANTMENT, server);
 
         int enchLvl = stack.getEnchantmentLevel(enchantment);
         if (stack.isEmpty() || enchLvl <= 0) return;

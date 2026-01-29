@@ -21,13 +21,14 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
 
-        lookupProvider = generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider)).getRegistryProvider();
-        generator.addProvider(event.includeServer(), new ModLootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
-        ModBlockTagsProvider blockTags = new ModBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
+        lookupProvider = generator.addProvider(event.includeServer(), new AEDatapackProvider(packOutput, lookupProvider)).getRegistryProvider();
+        generator.addProvider(event.includeServer(), new AELootModifierProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new AERecipeProvider(packOutput, lookupProvider));
+        AEBlockTagsProvider blockTags = new AEBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new ModItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
-        generator.addProvider(event.includeServer(), new ModLanguageProviderENUS(packOutput));
-        generator.addProvider(event.includeServer(), new ModLanguageProviderJAJP(packOutput));
+        generator.addProvider(event.includeServer(), new AEItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new AEEnchantmentTagsProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new AELanguageProviderENUS(packOutput));
+        generator.addProvider(event.includeServer(), new AELanguageProviderJAJP(packOutput));
     }
 }

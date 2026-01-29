@@ -1,9 +1,9 @@
 package net.scratch221171.astralenchant.common;
 
-import net.scratch221171.astralenchant.common.registries.ModAttributes;
-import net.scratch221171.astralenchant.common.registries.ModDataComponents;
-import net.scratch221171.astralenchant.common.registries.ModEnchantmentEffects;
-import net.scratch221171.astralenchant.common.registries.ModLootModifiers;
+import net.scratch221171.astralenchant.common.registries.AEAttributes;
+import net.scratch221171.astralenchant.common.registries.AEDataComponents;
+import net.scratch221171.astralenchant.common.registries.AEEnchantmentEffects;
+import net.scratch221171.astralenchant.common.registries.AELootModifiers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,10 +26,10 @@ public class AstralEnchant {
     public AstralEnchant(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
-        ModAttributes.register(modEventBus);
-        ModEnchantmentEffects.register(modEventBus);
-        ModDataComponents.register(modEventBus);
-        ModLootModifiers.register(modEventBus);
+        AEAttributes.register(modEventBus);
+        AEEnchantmentEffects.register(modEventBus);
+        AEDataComponents.register(modEventBus);
+        AELootModifiers.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

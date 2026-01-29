@@ -15,7 +15,7 @@ import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.registries.ModDataComponents;
+import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -36,7 +36,7 @@ public record AdventurersLoreEffect() implements EnchantmentEntityEffect {
                 count++;
             }
         }
-        item.itemStack().set(ModDataComponents.ADVANCEMENTS, count);
+        item.itemStack().set(AEDataComponents.ADVANCEMENTS, count);
 
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "ap_bonus");
         AttributeModifier modifier = new AttributeModifier(id, 0.1 * count * enchantmentLevel, AttributeModifier.Operation.ADD_VALUE);

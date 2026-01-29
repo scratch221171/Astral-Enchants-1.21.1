@@ -1,7 +1,6 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -11,8 +10,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.ModEnchantments;
-import net.scratch221171.astralenchant.common.registries.ModDataComponents;
+import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -22,12 +21,12 @@ public class AdventurersLoreHandler {
         if (!Config.ADVENTURERS_LORE.isTrue()) return;
         if (!(event.getBreaker() instanceof Player player)) return;
 
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(ModEnchantments.ADVENTURERS_LORE, player.level());
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
         ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
         int level = foot.getEnchantmentLevel(enchantment);
         if (level <= 0) return;
 
-        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(ModDataComponents.ADVANCEMENTS, 0);
+        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(AEDataComponents.ADVANCEMENTS, 0);
         int exp = event.getDroppedExperience();
         int newExp = (int)Math.floor(exp * (1 + 0.1f * count * level));
         event.setDroppedExperience(newExp);
