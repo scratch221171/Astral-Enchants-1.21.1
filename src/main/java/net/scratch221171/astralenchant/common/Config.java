@@ -21,6 +21,7 @@ public class Config {
         ENDLESS_APPETITE = BUILDER.define(AEEnchantments.ENDLESS_APPETITE.location().getPath(), true);
         MOMENTUM = BUILDER.define(AEEnchantments.MOMENTUM.location().getPath(), true);
         INSTANT_TELEPORT = BUILDER.define(AEEnchantments.INSTANT_TELEPORT.location().getPath(), true);
+        OVERLOAD = BUILDER.define(AEEnchantments.OVERLOAD.location().getPath(), true);
     }
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
     public static final ModConfigSpec.BooleanValue LAST_STAND;
@@ -33,6 +34,7 @@ public class Config {
     public static final ModConfigSpec.BooleanValue ENDLESS_APPETITE;
     public static final ModConfigSpec.BooleanValue MOMENTUM;
     public static final ModConfigSpec.BooleanValue INSTANT_TELEPORT;
+    public static final ModConfigSpec.BooleanValue OVERLOAD;
 
     static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
 }

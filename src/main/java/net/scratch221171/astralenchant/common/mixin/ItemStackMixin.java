@@ -11,6 +11,7 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
+import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
@@ -38,22 +39,24 @@ public abstract class ItemStackMixin {
         if (server == null) return;
 
         // Overload コンポーネントを更新
-        Holder<Enchantment> overload = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
-        int level = itemEnchantments.getLevel(overload);
-        if (level > 0) {
-            ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-            itemEnchantments.entrySet().stream()
-                    .filter(entry -> !entry.getKey().is(AEEnchantments.OVERLOAD))
-                    .forEach(entry -> newEnchantments.set(entry.getKey(), entry.getIntValue()));
-            stack.set(DataComponents.ENCHANTMENTS, newEnchantments.toImmutable());
-            stack.set(AEDataComponents.OVERLOAD, stack.getOrDefault(AEDataComponents.OVERLOAD, 0) + level);
-            cir.setReturnValue(null);
+        if (Config.OVERLOAD.isTrue()) {
+            Holder<Enchantment> overload = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
+            int level = itemEnchantments.getLevel(overload);
+            if (level > 0) {
+                ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+                itemEnchantments.entrySet().stream()
+                        .filter(entry -> !entry.getKey().is(AEEnchantments.OVERLOAD))
+                        .forEach(entry -> newEnchantments.set(entry.getKey(), entry.getIntValue()));
+                stack.set(DataComponents.ENCHANTMENTS, newEnchantments.toImmutable());
+                stack.set(AEDataComponents.OVERLOAD, stack.getOrDefault(AEDataComponents.OVERLOAD, 0) + level);
+                cir.setReturnValue(null);
+            }
         }
 
         // バンドル
-        if (stack.is(Items.BUNDLE)) {
+        if (Config.COMPATIBILITY.isTrue() && stack.is(Items.BUNDLE)) {
             for (Object2IntMap.Entry<Holder<Enchantment>> enchantment : itemEnchantments.entrySet()) {
-                if (stack.is(Items.BUNDLE) && !enchantment.getKey().is(AEEnchantments.COMPATIBILITY)) {
+                if (!enchantment.getKey().is(AEEnchantments.COMPATIBILITY)) {
                     Holder<Enchantment> compatible = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
                     if (stack.getEnchantmentLevel(compatible) > 0) {
                         BundleContents contents = stack.get(DataComponents.BUNDLE_CONTENTS);
@@ -73,9 +76,11 @@ public abstract class ItemStackMixin {
             }
         }
         // エンチャントを変更不可にする
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
-        if (stack.getEnchantmentLevel(enchantment) > 0) {
-            cir.setReturnValue(null);
+        if (Config.ITEM_PROTECTION.isTrue()) {
+            Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
+            if (stack.getEnchantmentLevel(enchantment) > 0) {
+                cir.setReturnValue(null);
+            }
         }
     }
 }

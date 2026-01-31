@@ -40,6 +40,7 @@ public interface IItemExtensionMixin {
      */
     @Inject(method = "getEnchantmentLevel", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment, CallbackInfoReturnable<Integer> cir) {
+        if (!Config.OVERLOAD.isTrue()) return;
         if (enchantment.getKey() == AEEnchantments.OVERLOAD) return;
         int level = cir.getReturnValue();
         if (level > 0) {

@@ -4,6 +4,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,8 +18,10 @@ public class LocalPlayerMixin {
      */
     @Redirect(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
     private boolean astralEnchant$disableUsingItemSlowdown(LocalPlayer instance) {
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
-        if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
+        if (Config.MOMENTUM.isTrue()) {
+            Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
+            if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
+        }
         return instance.isUsingItem();
     }
 
@@ -27,8 +30,10 @@ public class LocalPlayerMixin {
      */
     @Redirect(method = "canStartSprinting", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
     private boolean astralEnchant$enableSprintingWhileUsingItem(LocalPlayer instance) {
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
-        if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
+        if (!Config.MOMENTUM.isTrue()) {
+            Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
+            if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
+        }
         return instance.isUsingItem();
     }
 }

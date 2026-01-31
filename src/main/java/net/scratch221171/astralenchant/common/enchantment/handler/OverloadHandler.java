@@ -23,8 +23,7 @@ public class OverloadHandler {
         }
     }
 
-     private static int getRainbowColor() {
-        // speed: 1.0 = 1周を約6.28秒で回す。大きいほど速い
+     static int getRainbowColor() {
         float hue = System.currentTimeMillis() % 1800 / 1800f;
         return java.awt.Color.HSBtoRGB(hue, 1.0f, 1.0f) & 0xFFFFFF;
     }

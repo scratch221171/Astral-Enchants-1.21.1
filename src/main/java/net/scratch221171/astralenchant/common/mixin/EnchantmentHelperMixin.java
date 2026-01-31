@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class EnchantmentHelperMixin {
     @Inject(method = "runIterationOnItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;)V", at = @At("HEAD"), cancellable = true)
     private static void astralEnchant$modifyLevel(ItemStack stack, EnchantmentHelper.EnchantmentVisitor visitor, CallbackInfo ci) {
+        if (!Config.OVERLOAD.isTrue()) return;
         ItemEnchantments itemenchantments = stack.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
 
         var lookup = net.neoforged.neoforge.common.CommonHooks.resolveLookup(net.minecraft.core.registries.Registries.ENCHANTMENT);
@@ -36,6 +38,7 @@ public class EnchantmentHelperMixin {
 
     @Inject(method = "runIterationOnItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentInSlotVisitor;)V", at = @At("HEAD"), cancellable = true)
     private static void astralEnchant$modifyLevel(ItemStack stack, EquipmentSlot slot, LivingEntity entity, EnchantmentHelper.EnchantmentInSlotVisitor visitor, CallbackInfo ci) {
+        if (!Config.OVERLOAD.isTrue()) return;
         if (!stack.isEmpty()) {
             ItemEnchantments itemenchantments = stack.getAllEnchantments(entity.registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT));
 
