@@ -36,6 +36,9 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment"), "即時テレポート");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "エンダーパール使用時、視線の先にテレポートします。スニークしている場合はブロックの向こう側にテレポートします。");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "message.fail"), "距離内に有効なブロックが存在しません！");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment"), "オーバーロード");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "アイテムにオーバーロードが付与され、既存のエンチャントのレベルがオーバーロードの値だけ上昇します。");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "オーバーロード：%s レベル");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
@@ -53,5 +56,6 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "果てしない食欲");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "速度維持");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "即時テレポート");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "オーバーロード");
     }
 }

@@ -60,7 +60,6 @@ public class EnderPearlItemMixin {
                             if (maxDistance <= 0) {
                                 player.displayClientMessage(Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"), true);
                                 cir.setReturnValue(InteractionResultHolder.fail(itemstack));
-                                cir.cancel();
                                 return;
                             }
                             current = current.add(angle.scale(0.25));
@@ -84,12 +83,10 @@ public class EnderPearlItemMixin {
                     // 空を向いているときなど、最初から判定がなかったとき
                     player.displayClientMessage(Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"), true);
                     cir.setReturnValue(InteractionResultHolder.fail(itemstack));
-                    cir.cancel();
                     return;
                 }
             }
             cir.setReturnValue(InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide()));
-            cir.cancel();
         }
     }
 }

@@ -36,6 +36,9 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment"), "Instant Teleport");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "When using an Ender Pearl, teleport to the location player is looking at. If sneaking, teleports to the other side of the blocks.");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "message.fail"), "No valid block exists within range!");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment"), "Overload");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "Item gains Overload, increasing the level of existing enchantments by the Overload value.");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "Overload: %s level(s)");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
@@ -53,5 +56,6 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "Endless Appetite");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "Momentum");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "Instant Teleport");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "Overload");
     }
 }

@@ -25,6 +25,6 @@ public class CooldownAttributeHandler {
         if (event.getEntity().level().isClientSide) return;
         Player player = event.getEntity();
         float value = 1.0F - (float) player.getAttributeValue(AEAttributes.COOLDOWN_REDUCTION);
-        ((IItemCooldownsExtention) player.getCooldowns()).astralenchant$setCooldownReductionMultiplier(value);
+        ((IItemCooldownsExtention) player.getCooldowns()).astralEnchant$setCooldownReductionMultiplier(value);
     }
 }

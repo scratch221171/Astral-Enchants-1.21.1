@@ -11,6 +11,7 @@ import net.neoforged.neoforge.common.extensions.IItemExtension;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,6 +32,18 @@ public interface IItemExtensionMixin {
         if (stack.is(Items.BUNDLE) && stack.get(DataComponents.BUNDLE_CONTENTS) != BundleContents.EMPTY && stack.getEnchantmentLevel(compatible) > 0) {
             stack.set(DataComponents.REPAIR_COST, 0);
             cir.setReturnValue(true);
+        }
+    }
+
+    /**
+     * {@link AEEnchantments#OVERLOAD} が付いている場合は {@link net.scratch221171.astralenchant.common.registries.AEDataComponents#OVERLOAD} の分だけ他のエンチャントのレベルに上乗せする。
+     */
+    @Inject(method = "getEnchantmentLevel", at = @At("RETURN"), cancellable = true)
+    private void astralEnchant$getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment, CallbackInfoReturnable<Integer> cir) {
+        if (enchantment.getKey() == AEEnchantments.OVERLOAD) return;
+        int level = cir.getReturnValue();
+        if (level > 0) {
+            cir.setReturnValue(level + stack.getOrDefault(AEDataComponents.OVERLOAD, 0));
         }
     }
 }

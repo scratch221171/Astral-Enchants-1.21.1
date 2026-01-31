@@ -150,6 +150,18 @@ public class AEEnchantments {
     public static final ResourceKey<Enchantment> INSTANT_TELEPORT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
 
+    /**
+     * {@link net.scratch221171.astralenchant.common.registries.AEDataComponents#OVERLOAD} の値だけ全てのエンチャントのレベルを上昇させる。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.OverloadHandler}
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.ItemStackMixin}, {@link net.scratch221171.astralenchant.common.mixin.IItemExtensionMixin}, {@link net.scratch221171.astralenchant.common.mixin.EnchantmentHelperMixin}
+     */
+    public static final ResourceKey<Enchantment> OVERLOAD = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "overload"));
+
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var items = context.registryLookup(Registries.ITEM);
 
@@ -270,6 +282,14 @@ public class AEEnchantments {
                 Enchantment.dynamicCost(150,10),
                 8,
                 EquipmentSlotGroup.HEAD)));
+        register(context, OVERLOAD, Enchantment.enchantment(Enchantment.definition(
+                any,
+                1,
+                10,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                8,
+                EquipmentSlotGroup.ANY)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

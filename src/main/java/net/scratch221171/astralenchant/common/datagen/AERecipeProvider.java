@@ -47,19 +47,23 @@ public class AERecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output, HolderLookup.@NotNull Provider holderLookup) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.MITIGATION_PIERCING, 1, holderLookup))
-                .pattern("232").pattern("515").pattern("454")
+                .pattern("262").pattern("515").pattern("434")
                 .define('1', EnchantedBookIngredientWith(Enchantments.BREACH, 4, holderLookup))
                 .define('2', Items.DIAMOND)
-                .define('3', Items.NETHER_STAR)
+                .define('3', DataComponentIngredient.of(true, DataComponents.POTION_CONTENTS, new PotionContents(Potions.STRONG_STRENGTH), Items.POTION))
                 .define('4', Items.NETHERITE_SCRAP)
                 .define('5', Items.OBSIDIAN)
+                .define('6', Items.HEAVY_CORE)
                 .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mitigation_piercing"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.LAST_STAND, 1, holderLookup))
-                .pattern("232").pattern("313").pattern("232")
+                .pattern("242").pattern("313").pattern("536")
                 .define('1', EnchantedBookIngredientWith(Enchantments.PROTECTION, 4, holderLookup))
                 .define('2', Items.EXPERIENCE_BOTTLE)
                 .define('3', Items.TOTEM_OF_UNDYING)
+                .define('4', Items.DRAGON_HEAD)
+                .define('5', DataComponentIngredient.of(true, DataComponents.POTION_CONTENTS, new PotionContents(Potions.STRONG_REGENERATION), Items.POTION))
+                .define('6', DataComponentIngredient.of(true, DataComponents.POTION_CONTENTS, new PotionContents(Potions.LONG_FIRE_RESISTANCE), Items.POTION))
                 .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "last_stand"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.ITEM_PROTECTION, 1, holderLookup))
@@ -70,11 +74,12 @@ public class AERecipeProvider extends RecipeProvider {
                 .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.ESSENCE_OF_ENCHANTMENT, 1, holderLookup))
-                .pattern("333").pattern("323").pattern("414")
+                .pattern("353").pattern("323").pattern("414")
                 .define('1', Items.BOOK)
                 .define('2', Items.ENCHANTING_TABLE)
                 .define('3', Items.BOOKSHELF)
                 .define('4', Items.LAPIS_BLOCK)
+                .define('5', Items.BEACON)
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "essence_of_enchantment"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.COOLDOWN_REDUCTION, 1, holderLookup))
@@ -110,10 +115,12 @@ public class AERecipeProvider extends RecipeProvider {
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "adventurers_lore"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.COMPATIBILITY, 1, holderLookup))
-                .pattern("313").pattern("121").pattern("313")
+                .pattern("313").pattern("525").pattern("414")
                 .define('1', Items.ANVIL)
                 .define('2', Items.BOOK)
-                .define('3', Items.GOLD_INGOT)
+                .define('3', Items.CONDUIT)
+                .define('4', Items.BUDDING_AMETHYST)
+                .define('5', Items.NETHERITE_BLOCK)
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatible"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.ENDLESS_APPETITE, 1, holderLookup))
@@ -147,5 +154,15 @@ public class AERecipeProvider extends RecipeProvider {
                 .define('5', Items.ENDER_EYE)
                 .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.OVERLOAD, 1, holderLookup))
+                .pattern("121").pattern("345").pattern("161")
+                .define('1', Items.ENCHANTING_TABLE)
+                .define('2', EnchantedBookIngredientWith(AEEnchantments.MITIGATION_PIERCING, 1, holderLookup))
+                .define('3', EnchantedBookIngredientWith(AEEnchantments.COMPATIBILITY, 1, holderLookup))
+                .define('4', EnchantedBookIngredientWith(AEEnchantments.ESSENCE_OF_ENCHANTMENT, 1, holderLookup))
+                .define('5', EnchantedBookIngredientWith(AEEnchantments.ADVENTURERS_LORE, 1, holderLookup))
+                .define('6', EnchantedBookIngredientWith(AEEnchantments.LAST_STAND, 1, holderLookup))
+                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "overload"));
     }
 }

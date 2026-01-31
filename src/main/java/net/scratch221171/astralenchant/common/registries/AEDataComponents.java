@@ -16,6 +16,8 @@ public class AEDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ADVANCEMENTS = register("advancements",
             builder -> builder.persistent(Codec.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> OVERLOAD = register("overload",
+            builder -> builder.persistent(Codec.INT));
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
                                                                                            UnaryOperator<DataComponentType.Builder<T>> builderOperator) {

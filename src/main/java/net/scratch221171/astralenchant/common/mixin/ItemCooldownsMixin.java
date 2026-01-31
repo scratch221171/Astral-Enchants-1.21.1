@@ -16,13 +16,13 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
     private int tickCount;
 
     @Unique
-    private float astralenchant$cooldownReductionMultiplier = 1;
+    private float astralEnchant$cooldownReductionMultiplier = 1;
 
     @Override
-    public void astralenchant$setCooldownReductionMultiplier(float f) { this.astralenchant$cooldownReductionMultiplier = f; }
+    public void astralEnchant$setCooldownReductionMultiplier(float f) { this.astralEnchant$cooldownReductionMultiplier = f; }
 
     @Override
-    public float astralenchant$getCooldownReductionMultiplier() { return this.astralenchant$cooldownReductionMultiplier; }
+    public float astralEnchant$getCooldownReductionMultiplier() { return this.astralEnchant$cooldownReductionMultiplier; }
 
     /**
      * {@link AEEnchantments#COOLDOWN_REDUCTION} が付いている場合はクールダウンの終了時間を早める。
@@ -32,7 +32,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
         if (!Config.COOLDOWN_REDUCTION.isTrue()) return endTick;
         int start = this.tickCount;
         int ticks = endTick - start;
-        return start + (int)(ticks * this.astralenchant$cooldownReductionMultiplier);
+        return start + (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
     }
 
     /**
@@ -41,6 +41,6 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;onCooldownStarted(Lnet/minecraft/world/item/Item;I)V"), index = 1)
     private int astralEnchant$modifyStartedTicks(int ticks) {
         if (!Config.COOLDOWN_REDUCTION.isTrue()) return ticks;
-        return (int)(ticks * this.astralenchant$cooldownReductionMultiplier);
+        return (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
     }
 }
