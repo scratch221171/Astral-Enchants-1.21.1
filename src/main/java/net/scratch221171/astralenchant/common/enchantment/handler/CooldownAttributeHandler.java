@@ -14,14 +14,14 @@ import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
 public class CooldownAttributeHandler {
 
     @SubscribeEvent
-    public static void modifyDefaultAttributes(EntityAttributeModificationEvent event) {
+    private static void modifyDefaultAttributes(EntityAttributeModificationEvent event) {
         if (!event.has(EntityType.PLAYER, AEAttributes.COOLDOWN_REDUCTION)) {
             event.add(EntityType.PLAYER, AEAttributes.COOLDOWN_REDUCTION, 0.0);
         }
     }
 
     @SubscribeEvent
-    public static void onPlayerTick(PlayerTickEvent.Post event) {
+    private static void onPlayerTick(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide) return;
         Player player = event.getEntity();
         float value = 1.0F - (float) player.getAttributeValue(AEAttributes.COOLDOWN_REDUCTION);

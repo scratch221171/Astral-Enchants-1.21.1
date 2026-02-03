@@ -15,7 +15,7 @@ import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 public class ItemProtectionHandler {
 
     @SubscribeEvent
-    public static void onItemEntitySpawn(EntityJoinLevelEvent event) {
+    private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
         if (!Config.ITEM_PROTECTION.isTrue()) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
         Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());

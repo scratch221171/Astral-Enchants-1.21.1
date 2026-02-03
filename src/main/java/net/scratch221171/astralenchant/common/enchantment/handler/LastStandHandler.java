@@ -22,7 +22,7 @@ import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 public class LastStandHandler {
 
     @SubscribeEvent
-    public static void onLivingDeath(LivingDeathEvent event) {
+    private static void onLivingDeath(LivingDeathEvent event) {
         if (!Config.LAST_STAND.isTrue()) return;
         if (!(event.getEntity() instanceof Player)) return;
         if (event.getSource().is(DamageTypes.GENERIC_KILL) || event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
@@ -40,13 +40,15 @@ public class LastStandHandler {
         }
         if (totalLevel <= 0) return;
 
+        // default: 2000
+        int baseXP = Config.REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND.getAsInt();
         Player player = (Player) entity;
-        int neededExperienceLevels = (int)Math.floor(30f/totalLevel);
-        if (player.experienceLevel < neededExperienceLevels) return;
+        int required = (int)Math.floor((double) baseXP / totalLevel);
+        if (player.totalExperience < required) return;
+        player.giveExperiencePoints(-required);
 
         event.setCanceled(true);
         entity.setHealth(1f);
-        player.giveExperienceLevels(-neededExperienceLevels);
 
         if (entity.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(

@@ -10,7 +10,6 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
-import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
@@ -53,8 +52,6 @@ public abstract class ItemStackMixin {
                 List<ItemStack> newItems = new ArrayList<>();
                 for (ItemStack s : contents.items()) {
                     ItemStack copy = s.copy();
-                    AstralEnchant.LOGGER.info("stack : {}", copy);
-                    AstralEnchant.LOGGER.info("enchant : {}", newEnchantments.keySet());
                     copy.set(DataComponents.ENCHANTMENTS, newEnchantments.toImmutable());
                     newItems.add(copy);
                 }
@@ -83,7 +80,6 @@ public abstract class ItemStackMixin {
 
         // エンチャントを変更不可にする
         if (Config.ITEM_PROTECTION.isTrue()) {
-            AstralEnchant.LOGGER.info("itemprot detected: {}", stack);
             Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
             if (stack.getEnchantmentLevel(enchantment) > 0) {
                 cir.setReturnValue(null);

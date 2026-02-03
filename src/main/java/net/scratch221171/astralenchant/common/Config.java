@@ -8,7 +8,28 @@ import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
+    public static final ModConfigSpec.IntValue REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND;
+    public static final ModConfigSpec.BooleanValue INCLUDE_OVERLOAD_IN_EOE_CALCULATION;
+
+    public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
+    public static final ModConfigSpec.BooleanValue LAST_STAND;
+    public static final ModConfigSpec.BooleanValue ITEM_PROTECTION;
+    public static final ModConfigSpec.BooleanValue ESSENCE_OF_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue COOLDOWN_REDUCTION;
+    public static final ModConfigSpec.BooleanValue FEATHER_TOUCH;
+    public static final ModConfigSpec.BooleanValue ADVENTURERS_LORE;
+    public static final ModConfigSpec.BooleanValue COMPATIBILITY;
+    public static final ModConfigSpec.BooleanValue ENDLESS_APPETITE;
+    public static final ModConfigSpec.BooleanValue MOMENTUM;
+    public static final ModConfigSpec.BooleanValue INSTANT_TELEPORT;
+    public static final ModConfigSpec.BooleanValue OVERLOAD;
+
     static {
+        BUILDER.push("settings");
+        INCLUDE_OVERLOAD_IN_EOE_CALCULATION = BUILDER.define("include_overload_in_eoe_calculation", false);
+        REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND = BUILDER.defineInRange("required_base_experience_for_last_stand", 2000, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+
         BUILDER.push("enchantment_toggling");
         MITIGATION_PIERCING = BUILDER.define(AEEnchantments.MITIGATION_PIERCING.location().getPath(), true);
         LAST_STAND = BUILDER.define(AEEnchantments.LAST_STAND.location().getPath(), true);
@@ -22,19 +43,8 @@ public class Config {
         MOMENTUM = BUILDER.define(AEEnchantments.MOMENTUM.location().getPath(), true);
         INSTANT_TELEPORT = BUILDER.define(AEEnchantments.INSTANT_TELEPORT.location().getPath(), true);
         OVERLOAD = BUILDER.define(AEEnchantments.OVERLOAD.location().getPath(), true);
+        BUILDER.pop();
     }
-    public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
-    public static final ModConfigSpec.BooleanValue LAST_STAND;
-    public static final ModConfigSpec.BooleanValue ITEM_PROTECTION;
-    public static final ModConfigSpec.BooleanValue ESSENCE_OF_ENCHANTMENT;
-    public static final ModConfigSpec.BooleanValue COOLDOWN_REDUCTION;
-    public static final ModConfigSpec.BooleanValue FEATHER_TOUCH;
-    public static final ModConfigSpec.BooleanValue ADVENTURERS_LORE;
-    public static final ModConfigSpec.BooleanValue COMPATIBILITY;
-    public static final ModConfigSpec.BooleanValue ENDLESS_APPETITE;
-    public static final ModConfigSpec.BooleanValue MOMENTUM;
-    public static final ModConfigSpec.BooleanValue INSTANT_TELEPORT;
-    public static final ModConfigSpec.BooleanValue OVERLOAD;
 
     static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
 }

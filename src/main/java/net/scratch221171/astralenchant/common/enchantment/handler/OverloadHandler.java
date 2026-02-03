@@ -6,12 +6,14 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class OverloadHandler {
     @SubscribeEvent
-    public static void modifyTooltip(ItemTooltipEvent event) {
+    private static void modifyTooltip(ItemTooltipEvent event) {
+        if (!Config.OVERLOAD.isTrue()) return;
         ItemStack stack = event.getItemStack();
         int level = stack.getOrDefault(AEDataComponents.OVERLOAD, 0);
 
@@ -23,7 +25,7 @@ public class OverloadHandler {
         }
     }
 
-     static int getRainbowColor() {
+    static int getRainbowColor() {
         float hue = System.currentTimeMillis() % 1800 / 1800f;
         return java.awt.Color.HSBtoRGB(hue, 1.0f, 1.0f) & 0xFFFFFF;
     }

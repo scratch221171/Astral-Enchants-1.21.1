@@ -44,18 +44,27 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
 
         // 設定画面
+        add(AstralEnchant.MOD_ID + ".configuration.title", "設定");
+        add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant サーバー設定");
+
+        add(AstralEnchant.MOD_ID + ".configuration.settings", "エンチャントの設定");
+        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation", "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
+        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation.tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
+        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand", "ラストスタンドに必要な経験値ポイントの基本値");
+        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand.tooltip", "レベルNのラストスタンドの消費量は(基本値/N)です。デフォルトではおおよそ34レベルです。");
+
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "エンチャントの切り替え");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "軽減貫通 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.LAST_STAND.location().getPath(), "ラストスタンド を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ITEM_PROTECTION.location().getPath(), "アイテム保護 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), "エンチャントの極意 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COOLDOWN_REDUCTION.location().getPath(), "クールダウン削減 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.FEATHER_TOUCH.location().getPath(), "フェザータッチ を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ADVENTURERS_LORE.location().getPath(), "冒険者の心得 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COMPATIBILITY.location().getPath(), "適合 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "果てしない食欲 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "速度維持 を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "即時テレポート を有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "オーバーロード を有効化");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "軽減貫通");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.LAST_STAND.location().getPath(), "ラストスタンド");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ITEM_PROTECTION.location().getPath(), "アイテム保護");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), "エンチャントの極意");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COOLDOWN_REDUCTION.location().getPath(), "クールダウン削減");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.FEATHER_TOUCH.location().getPath(), "フェザータッチ");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ADVENTURERS_LORE.location().getPath(), "冒険者の心得");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COMPATIBILITY.location().getPath(), "適合");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "果てしない食欲");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "速度維持");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "即時テレポート");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "オーバーロード");
     }
 }

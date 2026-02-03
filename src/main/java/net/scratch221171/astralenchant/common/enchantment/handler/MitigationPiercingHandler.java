@@ -18,7 +18,7 @@ import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class MitigationPiercingHandler {
     @SubscribeEvent
-    public static void addDamageTag(EntityInvulnerabilityCheckEvent event) {
+    private static void addDamageTag(EntityInvulnerabilityCheckEvent event) {
         if (!Config.MITIGATION_PIERCING.isTrue()) return;
         DamageSource source = event.getSource();
         if (source.getEntity() instanceof LivingEntity attacker) {

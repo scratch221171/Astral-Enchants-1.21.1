@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
@@ -17,7 +18,7 @@ import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class AdventurersLoreHandler {
     @SubscribeEvent
-    public static void onDrops(BlockDropsEvent event) {
+    private static void onDrops(BlockDropsEvent event) {
         if (!Config.ADVENTURERS_LORE.isTrue()) return;
         if (!(event.getBreaker() instanceof Player player)) return;
 
@@ -32,4 +33,19 @@ public class AdventurersLoreHandler {
         event.setDroppedExperience(newExp);
     }
 
+    @SubscribeEvent
+    private static void onLoot(LivingExperienceDropEvent event) {
+        if (!Config.ADVENTURERS_LORE.isTrue()) return;
+        if (!(event.getAttackingPlayer() instanceof Player player)) return;
+
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
+        ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
+        int level = foot.getEnchantmentLevel(enchantment);
+        if (level <= 0) return;
+
+        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(AEDataComponents.ADVANCEMENTS, 0);
+        int exp = event.getDroppedExperience();
+        int newExp = (int)Math.floor(exp * (1 + 0.1f * count * level));
+        event.setDroppedExperience(newExp);
+    }
 }

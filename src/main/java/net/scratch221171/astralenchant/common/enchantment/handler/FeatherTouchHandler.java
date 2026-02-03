@@ -14,6 +14,9 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -31,7 +34,7 @@ import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class FeatherTouchHandler {
     @SubscribeEvent
-    public static void onBreak(BlockEvent.BreakEvent event) {
+    private static void onBreak(BlockEvent.BreakEvent event) {
         if (!Config.FEATHER_TOUCH.isTrue()) return;
         Player player = event.getPlayer();
 
@@ -40,10 +43,13 @@ public class FeatherTouchHandler {
         BlockPos pos = event.getPos();
         Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
         if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
-
+        // 複数ブロックをもつもの(ドアやベッド)を除外する
+        if (checkBlockState(state, BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER) ||
+            checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
         ItemStack stack;
         BlockEntity be = level.getBlockEntity(pos);
         if (player.isCrouching()) {
+
             if (be != null) {
                 BlockHitResult hitResult = new BlockHitResult(Vec3.atCenterOf(pos), Direction.UP, pos, false);
                 stack = state.getCloneItemStack(hitResult, level, pos, player);
@@ -66,7 +72,7 @@ public class FeatherTouchHandler {
     }
 
     @SubscribeEvent
-    public static void onDrops(BlockDropsEvent event) {
+    private static void onDrops(BlockDropsEvent event) {
         if (!Config.FEATHER_TOUCH.isTrue()) return;
         ItemStack cached = FeatherTouchCache.CACHE.remove(event.getPos());
 
@@ -89,5 +95,9 @@ public class FeatherTouchHandler {
     @SubscribeEvent
     public static void onTick(ServerTickEvent.Post event) {
         FeatherTouchCache.CACHE.clear();
+    }
+
+    static <T extends Comparable<T>> boolean checkBlockState(BlockState state, Property<T> properties, T value) {
+        return state.hasProperty(properties) && state.getValue(properties) == value;
     }
 }

@@ -180,7 +180,7 @@ public class AEEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
+                32,
                 EquipmentSlotGroup.MAINHAND))
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
                         EnchantmentTarget.VICTIM, new MitigationPiercingEffect())
@@ -192,7 +192,7 @@ public class AEEnchantments {
                 3,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
+                32,
                 EquipmentSlotGroup.ARMOR)));
 
         register(context, ITEM_PROTECTION, Enchantment.enchantment(Enchantment.definition(
@@ -201,7 +201,7 @@ public class AEEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                16,
                 EquipmentSlotGroup.ANY)));
 
         register(context, ESSENCE_OF_ENCHANTMENT, Enchantment.enchantment(Enchantment.definition(
@@ -210,7 +210,7 @@ public class AEEnchantments {
                 5,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
+                32,
                 EquipmentSlotGroup.ANY)));
 
         register(context, COOLDOWN_REDUCTION, Enchantment.enchantment(Enchantment.definition(
@@ -253,7 +253,7 @@ public class AEEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                32,
                 EquipmentSlotGroup.ANY)));
 
         register(context, ENDLESS_APPETITE, Enchantment.enchantment(Enchantment.definition(
@@ -262,7 +262,7 @@ public class AEEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
+                32,
                 EquipmentSlotGroup.CHEST)));
 
         register(context, MOMENTUM, Enchantment.enchantment(Enchantment.definition(
@@ -271,7 +271,7 @@ public class AEEnchantments {
                 1,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                16,
                 EquipmentSlotGroup.CHEST)));
 
         register(context, INSTANT_TELEPORT, Enchantment.enchantment(Enchantment.definition(
@@ -280,7 +280,7 @@ public class AEEnchantments {
                 4,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                16,
                 EquipmentSlotGroup.HEAD)));
         register(context, OVERLOAD, Enchantment.enchantment(Enchantment.definition(
                 any,
@@ -288,7 +288,7 @@ public class AEEnchantments {
                 10,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                8,
+                32,
                 EquipmentSlotGroup.ANY)));
     }
 
