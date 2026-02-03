@@ -54,6 +54,8 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "この設定がオフのとき、ダメージソースに無敵貫通タグが付いている場合（/killや奈落など）は復活できません。");
         add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
         add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier", "エンチャントの極意のレベル倍率（％）");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier.tooltip", "アイテムのエンチャントの合計レベルが1レベル増えるごとに、モディファイアの倍率が何％伸びるか指定します。");
 
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "エンチャントの切り替え");

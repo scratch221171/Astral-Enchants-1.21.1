@@ -22,15 +22,9 @@ public class AdventurersLoreHandler {
         if (!Config.ADVENTURERS_LORE.isTrue()) return;
         if (!(event.getBreaker() instanceof Player player)) return;
 
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
-        ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
-        int level = foot.getEnchantmentLevel(enchantment);
+        int level = getLevel(player);
         if (level <= 0) return;
-
-        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(AEDataComponents.ADVANCEMENTS, 0);
-        int exp = event.getDroppedExperience();
-        int newExp = (int)Math.floor(exp * (1 + 0.1f * count * level));
-        event.setDroppedExperience(newExp);
+        event.setDroppedExperience(modifyExperience(player, level, event.getDroppedExperience()));
     }
 
     @SubscribeEvent
@@ -38,14 +32,19 @@ public class AdventurersLoreHandler {
         if (!Config.ADVENTURERS_LORE.isTrue()) return;
         if (!(event.getAttackingPlayer() instanceof Player player)) return;
 
+        int level = getLevel(player);
+        if (level <= 0) return;
+        event.setDroppedExperience(modifyExperience(player, level, event.getDroppedExperience()));
+    }
+
+    private static int modifyExperience(Player player, int level, int original) {
+        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(AEDataComponents.ADVANCEMENTS, 0);
+        return (int)Math.floor(original * (1 + 0.1f * count * level));
+    }
+
+    private static int getLevel(Player player) {
         Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
         ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
-        int level = foot.getEnchantmentLevel(enchantment);
-        if (level <= 0) return;
-
-        int count = player.getItemBySlot(EquipmentSlot.FEET).getOrDefault(AEDataComponents.ADVANCEMENTS, 0);
-        int exp = event.getDroppedExperience();
-        int newExp = (int)Math.floor(exp * (1 + 0.1f * count * level));
-        event.setDroppedExperience(newExp);
+        return foot.getEnchantmentLevel(enchantment);
     }
 }

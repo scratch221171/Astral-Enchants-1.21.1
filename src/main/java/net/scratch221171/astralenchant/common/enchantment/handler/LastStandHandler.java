@@ -72,7 +72,7 @@ public class LastStandHandler {
         }
     }
     
-    static int getTotalPoint(float progress, int level) {
+    private static int getTotalPoint(float progress, int level) {
         int total = 0;
         for (int i = 0; i < level; i++) {
             total += getXpNeededForNextLevel(i);
@@ -84,7 +84,7 @@ public class LastStandHandler {
         return total;
     }
 
-    static int getXpNeededForNextLevel(int j) {
+    private static int getXpNeededForNextLevel(int j) {
         if (j >= 30) {
             return 112 + (j - 30) * 9;
         } else {

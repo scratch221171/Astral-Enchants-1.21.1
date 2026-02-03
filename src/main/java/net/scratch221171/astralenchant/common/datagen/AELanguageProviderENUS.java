@@ -54,6 +54,8 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "When this setting is disabled, revival is not possible if the damage source has the invulnerability-bypassing tag (such as /kill or the void).");
         add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "Include Overload levels in the total level calculation for Essence of Enchanting");
         add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier", "Essence of Enchant level multiplier (%)");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier.tooltip", "Specifies how many percent the modifier multiplier increases for each additional total enchantment level on the item.");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "Mitigation Piercing");

@@ -16,16 +16,12 @@ public class OverloadHandler {
         if (!Config.OVERLOAD.isTrue()) return;
         ItemStack stack = event.getItemStack();
         int level = stack.getOrDefault(AEDataComponents.OVERLOAD, 0);
-
         if (level > 0) {
-            event.getToolTip().add(
-                    Component.translatable("enchantment.astralenchant.overload.tooltip.text", level)
-                            .withColor(getRainbowColor())
-            );
+            event.getToolTip().add(Component.translatable("enchantment.astralenchant.overload.tooltip.text", level).withColor(getRainbowColor()));
         }
     }
 
-    static int getRainbowColor() {
+    private static int getRainbowColor() {
         float hue = System.currentTimeMillis() % 1800 / 1800f;
         return java.awt.Color.HSBtoRGB(hue, 1.0f, 1.0f) & 0xFFFFFF;
     }

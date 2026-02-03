@@ -40,20 +40,16 @@ public class EssenceOfEnchantmentHandler {
         for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments) {
             if (!entry.getKey().is(AEEnchantments.ESSENCE_OF_ENCHANTMENT)) totalLevel += entry.getIntValue();
         }
-        if (Config.INCLUDE_OVERLOAD_IN_EOE_CALCULATION.isTrue()) totalLevel += stack.getOrDefault(AEDataComponents.OVERLOAD, 0) * (enchantments.size() - 1);
+        if (Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.isTrue()) totalLevel += stack.getOrDefault(AEDataComponents.OVERLOAD, 0) * (enchantments.size() - 1);
 
         ItemAttributeModifiers attributeModifiers = event.getDefaultModifiers();
+        double multiplier = Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getAsDouble();
 
         for (ItemAttributeModifiers.Entry entry : attributeModifiers.modifiers()) {
             ResourceLocation id = entry.modifier().id();
-
             if (!id.getNamespace().equals(AstralEnchant.MOD_ID) || !id.getPath().matches("eoe_bonus_.*")){
                 ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "eoe_bonus_" + id.getPath());
-                AttributeModifier newBonusModifier = new AttributeModifier(
-                        newId,
-                        totalLevel * level / 100f,
-                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                );
+                AttributeModifier newBonusModifier = new AttributeModifier(newId, totalLevel * level * multiplier / 100f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
                 event.addModifier(entry.attribute(), newBonusModifier, entry.slot());
             }
         }

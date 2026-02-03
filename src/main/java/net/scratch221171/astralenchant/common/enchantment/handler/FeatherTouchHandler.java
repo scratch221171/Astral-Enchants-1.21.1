@@ -43,9 +43,11 @@ public class FeatherTouchHandler {
         BlockPos pos = event.getPos();
         Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
         if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
-        // 複数ブロックをもつもの(ドアやベッド)を除外する
+
+        // 複数ブロックのもの(ドアやベッド)を除外する
         if (checkBlockState(state, BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER) ||
             checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
+
         ItemStack stack;
         BlockEntity be = level.getBlockEntity(pos);
         if (player.isCrouching()) {
@@ -80,15 +82,7 @@ public class FeatherTouchHandler {
         event.getDrops().clear();
         event.setDroppedExperience(0);
 
-        event.getDrops().add(
-                new ItemEntity(
-                        event.getLevel(),
-                        event.getPos().getX() + 0.5,
-                        event.getPos().getY() + 0.5,
-                        event.getPos().getZ() + 0.5,
-                        cached
-                )
-        );
+        event.getDrops().add(new ItemEntity(event.getLevel(), event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5, cached));
     }
 
     @SubscribeEvent

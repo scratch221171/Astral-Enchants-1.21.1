@@ -10,7 +10,8 @@ public class Config {
 
     public static final ModConfigSpec.IntValue LAST_STAND_REQUIRED_BASE_EXPERIENCE;
     public static final ModConfigSpec.BooleanValue LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG;
-    public static final ModConfigSpec.BooleanValue INCLUDE_OVERLOAD_IN_EOE_CALCULATION;
+    public static final ModConfigSpec.BooleanValue ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION;
+    public static final ModConfigSpec.DoubleValue ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER;
 
 
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
@@ -30,7 +31,8 @@ public class Config {
         BUILDER.push("settings");
         LAST_STAND_REQUIRED_BASE_EXPERIENCE = BUILDER.defineInRange("last_stand_required_base_experience", 2000, 0, Integer.MAX_VALUE);
         LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG = BUILDER.define("last_stand_ignore_bypasses_invulnerability_tag", true);
-        INCLUDE_OVERLOAD_IN_EOE_CALCULATION = BUILDER.define("essence_of_enchant_include_overload_in_calculation", false);
+        ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION = BUILDER.define("essence_of_enchant_include_overload_in_calculation", false);
+        ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER = BUILDER.defineInRange("essence_of_enchant_level_multiplier", 1, 0, Double.MAX_VALUE);
         BUILDER.pop();
 
         BUILDER.push("enchantment_toggling");
