@@ -49,7 +49,6 @@ public class FeatherTouchHandler {
         ItemStack stack;
         BlockEntity be = level.getBlockEntity(pos);
         if (player.isCrouching()) {
-
             if (be != null) {
                 BlockHitResult hitResult = new BlockHitResult(Vec3.atCenterOf(pos), Direction.UP, pos, false);
                 stack = state.getCloneItemStack(hitResult, level, pos, player);

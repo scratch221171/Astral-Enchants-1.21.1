@@ -5,8 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -23,14 +22,14 @@ public class LastStandHandler {
 
     @SubscribeEvent
     private static void onLivingDeath(LivingDeathEvent event) {
+        AstralEnchant.LOGGER.info("fired1");
         if (!Config.LAST_STAND.isTrue()) return;
-        if (!(event.getEntity() instanceof Player)) return;
-        if (event.getSource().is(DamageTypes.GENERIC_KILL) || event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (!Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.isTrue() && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
+        AstralEnchant.LOGGER.info("fired2");
 
-        LivingEntity entity = event.getEntity();
-        Iterable<ItemStack> armorSlots = entity.getArmorSlots();
-
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, entity.level());
+        Iterable<ItemStack> armorSlots = player.getArmorSlots();
+        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player.level());
         int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
             int level = armor.getEnchantmentLevel(enchantment);
@@ -40,32 +39,56 @@ public class LastStandHandler {
         }
         if (totalLevel <= 0) return;
 
+        AstralEnchant.LOGGER.info("fired3");
         // default: 2000
-        int baseXP = Config.REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND.getAsInt();
-        Player player = (Player) entity;
-        int required = (int)Math.floor((double) baseXP / totalLevel);
-        if (player.totalExperience < required) return;
+        int baseXP = Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getAsInt();
+        int required = Math.round((float) (baseXP / totalLevel));
+        AstralEnchant.LOGGER.info("req: {}", required);
+        if (getTotalPoint(player.experienceProgress, player.experienceLevel) < required) return;
         player.giveExperiencePoints(-required);
 
-        event.setCanceled(true);
-        entity.setHealth(1f);
+        AstralEnchant.LOGGER.info("fired4");
 
-        if (entity.level() instanceof ServerLevel serverLevel) {
+        event.setCanceled(true);
+        player.setHealth(1f);
+
+        AstralEnchant.LOGGER.info("fired5");
+        if (player.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(
                     ParticleTypes.TOTEM_OF_UNDYING,
-                    entity.getX(), entity.getY() + 1.0D, entity.getZ(),
+                    player.getX(), player.getY() + 1.0D, player.getZ(),
                     30,
                     0.5, 0.5, 0.5,
                     0.1
             );
             serverLevel.playSound(
                     null,
-                    entity.blockPosition(),
+                    player.blockPosition(),
                     SoundEvents.TOTEM_USE,
                     SoundSource.PLAYERS,
                     1.0F,
                     1.0F
             );
+        }
+    }
+    
+    static int getTotalPoint(float progress, int level) {
+        int total = 0;
+        for (int i = 0; i < level; i++) {
+            total += getXpNeededForNextLevel(i);
+        }
+        AstralEnchant.LOGGER.info("float: {}", progress * getXpNeededForNextLevel(level));
+        // ほぼintなのでround
+        total += Math.round(progress * getXpNeededForNextLevel(level));
+        AstralEnchant.LOGGER.info("total: {}", total);
+        return total;
+    }
+
+    static int getXpNeededForNextLevel(int j) {
+        if (j >= 30) {
+            return 112 + (j - 30) * 9;
+        } else {
+            return j >= 15 ? 37 + (j - 15) * 5 : 7 + j * 2;
         }
     }
 }

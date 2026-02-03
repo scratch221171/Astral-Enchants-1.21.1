@@ -8,8 +8,10 @@ import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    public static final ModConfigSpec.IntValue REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND;
+    public static final ModConfigSpec.IntValue LAST_STAND_REQUIRED_BASE_EXPERIENCE;
+    public static final ModConfigSpec.BooleanValue LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG;
     public static final ModConfigSpec.BooleanValue INCLUDE_OVERLOAD_IN_EOE_CALCULATION;
+
 
     public static final ModConfigSpec.BooleanValue MITIGATION_PIERCING;
     public static final ModConfigSpec.BooleanValue LAST_STAND;
@@ -26,8 +28,9 @@ public class Config {
 
     static {
         BUILDER.push("settings");
-        INCLUDE_OVERLOAD_IN_EOE_CALCULATION = BUILDER.define("include_overload_in_eoe_calculation", false);
-        REQUIRED_BASE_EXPERIENCE_FOR_LAST_STAND = BUILDER.defineInRange("required_base_experience_for_last_stand", 2000, 0, Integer.MAX_VALUE);
+        LAST_STAND_REQUIRED_BASE_EXPERIENCE = BUILDER.defineInRange("last_stand_required_base_experience", 2000, 0, Integer.MAX_VALUE);
+        LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG = BUILDER.define("last_stand_ignore_bypasses_invulnerability_tag", true);
+        INCLUDE_OVERLOAD_IN_EOE_CALCULATION = BUILDER.define("essence_of_enchant_include_overload_in_calculation", false);
         BUILDER.pop();
 
         BUILDER.push("enchantment_toggling");

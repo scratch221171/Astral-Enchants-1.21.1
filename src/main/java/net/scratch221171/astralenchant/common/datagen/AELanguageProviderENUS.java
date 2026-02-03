@@ -48,10 +48,12 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant Server Config");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "Enchantment Settings");
-        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation", "Include Overload levels in the total level calculation for Essence of Enchanting");
-        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation.tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
-        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand", "Base experience points required for Last Stand");
-        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand.tooltip", "The cost for Last Stand at level N is (base value / N). By default, this is approximately equivalent to 34 levels.");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience", "Base experience points required for Last Stand");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience.tooltip", "The cost for Last Stand at level N is (base value / N). By default, this is approximately equivalent to 34 levels.");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag", "Last Stand ignores invulnerability-bypassing damage");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "When this setting is disabled, revival is not possible if the damage source has the invulnerability-bypassing tag (such as /kill or the void).");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "Include Overload levels in the total level calculation for Essence of Enchanting");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "Mitigation Piercing");

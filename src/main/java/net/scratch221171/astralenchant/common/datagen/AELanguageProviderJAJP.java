@@ -48,10 +48,13 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant サーバー設定");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "エンチャントの設定");
-        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation", "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
-        add(AstralEnchant.MOD_ID + ".configuration.include_overload_in_eoe_calculation.tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
-        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand", "ラストスタンドに必要な経験値ポイントの基本値");
-        add(AstralEnchant.MOD_ID + ".configuration.required_base_experience_for_last_stand.tooltip", "レベルNのラストスタンドの消費量は(基本値/N)です。デフォルトではおおよそ34レベルです。");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience", "ラストスタンドに必要な経験値ポイントの基本値");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience.tooltip", "レベルNのラストスタンドの消費量は（基本値/N）です。デフォルトではおおよそ34レベルです。");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag", "ラストスタンドが無敵貫通を無視");
+        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "この設定がオフのとき、ダメージソースに無敵貫通タグが付いている場合（/killや奈落など）は復活できません。");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
+        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
+
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "エンチャントの切り替え");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "軽減貫通");
