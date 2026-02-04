@@ -9,7 +9,10 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.*;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
@@ -162,6 +165,18 @@ public class AEEnchantments {
     public static final ResourceKey<Enchantment> OVERLOAD = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "overload"));
 
+    /**
+     * Accessories連携：アイテムが装着されたスロットの数をエンチャントのレベルだけ増やす。
+     * <p>
+     * Effect : none
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : none
+     */
+    public static final ResourceKey<Enchantment> SLOT_EXPANSION = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "slot_expansion"));
+
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var items = context.registryLookup(Registries.ITEM);
 
@@ -290,6 +305,14 @@ public class AEEnchantments {
                 Enchantment.dynamicCost(150,10),
                 32,
                 EquipmentSlotGroup.ANY)));
+//        register(context, SLOT_EXPANSION, Enchantment.enchantment(Enchantment.definition(
+//                any,
+//                1,
+//                3,
+//                Enchantment.dynamicCost(100,10),
+//                Enchantment.dynamicCost(150,10),
+//                16,
+//                EquipmentSlotGroup.ANY)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

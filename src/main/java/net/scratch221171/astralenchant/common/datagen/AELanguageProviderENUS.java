@@ -14,31 +14,33 @@ public class AELanguageProviderENUS extends LanguageProvider {
     protected void addTranslations() {
         // エンチャント
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment"), "Mitigation Piercing");
-        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "Attacks with this item will penetrate various damage reductions.");
+        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "Attacks penetrate various forms of damage mitigation.");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment"), "Last Stand");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment", "desc"), "Consumes experience points to avoid death.");
         add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment"), "Item Protection");
-        add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment", "desc"), "Protects the item's components. Note: Durability is not protected.");
+        add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment", "desc"), "Dropped items will never disappear by any means. As a trade-off, the enchantments on the item can no longer be modified.");
         add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment"), "Essence of Enchantment");
-        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment", "desc"), "All stats of the item increase based on the total level of all other enchantments besides this one.");
+        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment", "desc"), "All item stats increase based on the total level of all enchantments other than this one.");
         add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment"), "Cooldown Reduction");
-        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment", "desc"), "Reduces the cooldown for all items, such as Shields and Ender Pearls.");
+        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment", "desc"), "Reduces the cooldown of all items, including shields and Ender Pearls.");
         add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment"), "Feather Touch");
-        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment", "desc"), "Allows you to collect all destructible blocks. Components are also saved.");
-        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment"), "Adventurer’s Lore");
-        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment", "desc"), "Increases your luck based on the number of completed achievements.");
+        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment", "desc"), "All breakable blocks are collected as items. While sneaking, block states and components are preserved.");
+        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment"), "Adventurer's Lore");
+        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment", "desc"), "Increases luck and the amount of experience gained from mobs and blocks based on the number of completed advancements.");
         add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment"), "Compatibility");
-        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment", "desc"), "Instead of bundles, enchantments will be applied to internal items, ignoring conflicts.");
+        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment", "desc"), "Allows additional enchantments to be applied to internal items of a bundle with this enchantment while ignoring conflicts.");
         add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment"), "Endless Appetite");
-        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment", "desc"), "Enhances natural regeneration and directly restores an amount equal to the excess over the cap of food level and hidden saturation level.");
+        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment", "desc"), "Enhances natural regeneration and directly heals based on the amount of excess hunger and hidden saturation beyond their caps.");
         add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment"), "Momentum");
-        add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment", "desc"), "Disables speed reductions caused by item usage or blocks.");
+        add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment", "desc"), "Negates movement speed reductions caused by item use or blocks.");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment"), "Instant Teleport");
-        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "When using an Ender Pearl, teleport to the location player is looking at. If sneaking, teleports to the other side of the blocks.");
+        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "When using an Ender Pearl, teleports you to the point you are looking at. While sneaking, the teleport ray passes through a block and sends you to the opposite side of it.");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "message.fail"), "No valid block exists within range!");
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment"), "Overload");
-        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "Item gains Overload, increasing the level of existing enchantments by the Overload value.");
-        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "Overload: %s level(s)");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "Grants Overload to the item, increasing the level of existing enchantments by the Overload value.");
+        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "Overload: %s Levels");
+        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment"), "Slot Expansion");
+        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "Increases the number of accessory slots the item currently occupies by the enchantment level.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");

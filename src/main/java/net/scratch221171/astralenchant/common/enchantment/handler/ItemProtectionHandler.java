@@ -9,7 +9,7 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class ItemProtectionHandler {
@@ -18,7 +18,7 @@ public class ItemProtectionHandler {
     private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
         if (!Config.ITEM_PROTECTION.isTrue()) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
         if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {
             itemEntity.setUnlimitedLifetime();
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));

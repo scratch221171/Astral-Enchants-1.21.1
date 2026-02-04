@@ -28,7 +28,7 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
@@ -41,7 +41,7 @@ public class FeatherTouchHandler {
         Level level = event.getPlayer().level();
         BlockState state = event.getState();
         BlockPos pos = event.getPos();
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
         if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
 
         // 複数ブロックのもの(ドアやベッド)を除外する

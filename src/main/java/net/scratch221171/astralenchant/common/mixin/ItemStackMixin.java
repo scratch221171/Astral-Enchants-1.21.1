@@ -13,7 +13,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -39,7 +39,7 @@ public abstract class ItemStackMixin {
 
         // バンドル
         if (Config.COMPATIBILITY.isTrue() && stack.is(Items.BUNDLE)) {
-            Holder<Enchantment> compatible = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
+            Holder<Enchantment> compatible = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
             BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
             if (stack.getEnchantmentLevel(compatible) > 0 && !contents.isEmpty()) {
                 ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
@@ -65,7 +65,7 @@ public abstract class ItemStackMixin {
 
         // Overload コンポーネントを更新
         if (Config.OVERLOAD.isTrue()) {
-            Holder<Enchantment> overload = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
+            Holder<Enchantment> overload = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
             int level = itemEnchantments.getLevel(overload);
             if (level > 0) {
                 ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
@@ -80,7 +80,7 @@ public abstract class ItemStackMixin {
 
         // エンチャントを変更不可にする
         if (Config.ITEM_PROTECTION.isTrue()) {
-            Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
+            Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
             if (stack.getEnchantmentLevel(enchantment) > 0) {
                 cir.setReturnValue(null);
             }

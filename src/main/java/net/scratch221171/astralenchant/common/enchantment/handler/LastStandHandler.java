@@ -15,7 +15,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class LastStandHandler {
@@ -29,7 +29,7 @@ public class LastStandHandler {
         AstralEnchant.LOGGER.info("fired2");
 
         Iterable<ItemStack> armorSlots = player.getArmorSlots();
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player.level());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player.level());
         int totalLevel = 0;
         for (ItemStack armor : armorSlots) {
             int level = armor.getEnchantmentLevel(enchantment);

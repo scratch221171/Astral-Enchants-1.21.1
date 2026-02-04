@@ -17,7 +17,7 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 
 import java.util.Set;
 
@@ -29,7 +29,7 @@ public class EssenceOfEnchantmentHandler {
         if (!Config.ESSENCE_OF_ENCHANTMENT.isTrue()) return;
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolderFromServer(AEEnchantments.ESSENCE_OF_ENCHANTMENT, server);
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ESSENCE_OF_ENCHANTMENT, server);
 
         ItemStack stack = event.getItemStack();
         int level = stack.getEnchantmentLevel(enchantment);

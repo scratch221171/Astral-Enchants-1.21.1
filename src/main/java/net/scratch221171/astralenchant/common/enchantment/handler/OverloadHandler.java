@@ -21,6 +21,7 @@ public class OverloadHandler {
         }
     }
 
+    // Shiny!!
     private static int getRainbowColor() {
         float hue = System.currentTimeMillis() % 1800 / 1800f;
         return java.awt.Color.HSBtoRGB(hue, 1.0f, 1.0f) & 0xFFFFFF;

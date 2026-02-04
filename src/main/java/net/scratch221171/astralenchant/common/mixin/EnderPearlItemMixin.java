@@ -22,7 +22,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,7 +36,7 @@ public class EnderPearlItemMixin {
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     public void astralEnchant$instantTeleport(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (!Config.INSTANT_TELEPORT.isTrue()) return;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.INSTANT_TELEPORT, level);
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.INSTANT_TELEPORT, level);
         int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(enchantment, player);
         if (enchantmentLevel > 0) {
             ItemStack itemstack = player.getItemInHand(hand);

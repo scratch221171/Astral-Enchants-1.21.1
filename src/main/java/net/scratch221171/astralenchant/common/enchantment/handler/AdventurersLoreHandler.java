@@ -13,7 +13,7 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class AdventurersLoreHandler {
@@ -43,7 +43,7 @@ public class AdventurersLoreHandler {
     }
 
     private static int getLevel(Player player) {
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ADVENTURERS_LORE, player.level());
         ItemStack foot = player.getItemBySlot(EquipmentSlot.FEET);
         return foot.getEnchantmentLevel(enchantment);
     }

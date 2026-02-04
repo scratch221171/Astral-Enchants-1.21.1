@@ -26,6 +26,10 @@ repositories {
         url = "https://api.modrinth.com/maven"
     }
 
+    maven { url 'https://maven.wispforest.io/releases' }
+    maven { url 'https://maven.su5ed.dev/releases' }
+    maven { url 'https://maven.fabricmc.net' }
+
     mavenCentral()
 }
 
@@ -142,6 +146,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+    compileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -1,19 +1,19 @@
 package net.scratch221171.astralenchant.common;
 
+import com.mojang.logging.LogUtils;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.registries.AEEnchantmentEffects;
 import net.scratch221171.astralenchant.common.registries.AELootModifiers;
+import net.scratch221171.astralenchant.compat.accessories.AccessoriesCompat;
 import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(AstralEnchant.MOD_ID)
@@ -36,6 +36,10 @@ public class AstralEnchant {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.CONFIG_SPEC);
+
+        if (ModList.get().isLoaded("accessories")) {
+            AccessoriesCompat.register(modEventBus);
+        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

@@ -9,7 +9,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
-import net.scratch221171.astralenchant.common.util.AstralEnchantUtils;
+import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,7 +25,7 @@ public abstract class PlayerMixin {
     private void astralEnchant$alwaysEdible(CallbackInfoReturnable<Boolean> cir) {
         if (!Config.ENDLESS_APPETITE.isTrue()) return;
         Player player = (Player)(Object)this;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
             cir.setReturnValue(true);
         }
@@ -38,7 +38,7 @@ public abstract class PlayerMixin {
     private void astralEnchant$disableStuckInBlock(CallbackInfo ci) {
         if (!Config.MOMENTUM.isTrue()) return;
         Player player = (Player)(Object)this;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, player.level());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
             ci.cancel();
         }
@@ -52,7 +52,7 @@ public abstract class PlayerMixin {
         if (!Config.ITEM_PROTECTION.isTrue()) return;
         AstralEnchant.LOGGER.info("setItemSlot {} {}", slot, stack);
         Player player = (Player)(Object)this;
-        Holder<Enchantment> enchantment = AstralEnchantUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, player.level());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, player.level());
         if (player.getItemBySlot(slot).getEnchantmentLevel(enchantment) > 0) {
             ci.cancel();
         }

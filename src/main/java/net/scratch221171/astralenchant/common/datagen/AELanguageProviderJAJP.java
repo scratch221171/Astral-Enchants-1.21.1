@@ -14,31 +14,33 @@ public class AELanguageProviderJAJP extends LanguageProvider {
     protected void addTranslations() {
         // エンチャント
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment"), "軽減貫通");
-        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "このアイテムでの攻撃は様々なダメージ軽減を貫通します。");
+        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "攻撃が様々なダメージ軽減を貫通します。");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment"), "ラストスタンド");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment", "desc"), "経験値を消費して死を回避します。");
         add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment"), "アイテム保護");
         add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment", "desc"), "ドロップしたアイテムがいかなる手段でも消えなくなります。代償としてエンチャントが変更できなくなります。");
         add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment"), "エンチャントの極意");
-        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment", "desc"), "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全てのステータスが上昇します。");
+        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment", "desc"), "このエンチャント以外のエンチャントのレベルの合計に応じて、アイテムの全ステータスに補正がかかります");
         add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment"), "クールダウン削減");
-        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment", "desc"), "盾やエンダーパールなどすべてのアイテムのクールダウンを短縮します。");
+        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment", "desc"), "盾やエンダーパールを含む、すべてのアイテムの使用クールダウンを短縮します。");
         add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment"), "フェザータッチ");
-        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment", "desc"), "破壊可能なブロックが全て回収できるようになります。コンポーネントも保存されます。");
+        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment", "desc"), "破壊可能なブロックが全てアイテムとして回収できます。スニークした場合はブロックステート及びコンポーネントが保存されます。");
         add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment"), "冒険者の心得");
-        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment", "desc"), "完了した実績の数に応じて運を上げます");
+        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment", "desc"), "達成した進捗の数に応じて運が良くなり、モブ・ブロックからの経験値の量が増加します。");
         add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment"), "適合");
-        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment", "desc"), "バンドルの代わりに、競合などを無視して内部アイテムにエンチャントが付与されるようになります。");
+        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment", "desc"), "このエンチャントが付与されたバンドルに対し、競合などを無視して内部アイテムにエンチャントを付与できるようになります。");
         add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment"), "果てしない食欲");
-        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment", "desc"), "自然再生を促進し、上限を超過した満腹度と隠し満腹度の分だけ直接回復します。");
+        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment", "desc"), "自然再生を促進し、上限を超過した満腹度と隠し満腹度の量に応じて直接回復します。");
         add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment"), "速度維持");
         add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment", "desc"), "アイテム使用やブロックによる速度低下を無効化します。");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment"), "即時テレポート");
-        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "エンダーパール使用時、視線の先にテレポートします。スニークしている場合はブロックの向こう側にテレポートします。");
+        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "エンダーパール使用時、視線の先にテレポートします。スニークしている場合はブロックの貫通し、その向こう側までテレポートします。");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "message.fail"), "距離内に有効なブロックが存在しません！");
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment"), "オーバーロード");
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "アイテムにオーバーロードが付与され、既存のエンチャントのレベルがオーバーロードの値だけ上昇します。");
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "オーバーロード：%s レベル");
+        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment"), "スロット拡張");
+        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "アイテムが現在装着されているアクセサリースロットの数を、エンチャントのレベル分だけ増加させます。");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
