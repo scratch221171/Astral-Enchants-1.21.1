@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
+import net.scratch221171.astralenchant.common.registries.AEItems;
 
 public class AELanguageProviderENUS extends LanguageProvider {
     public AELanguageProviderENUS(PackOutput output) {
@@ -44,6 +45,11 @@ public class AELanguageProviderENUS extends LanguageProvider {
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
+
+        // アイテム
+        add(AEItems.ENCHANTMENT_SHARD.getKey().location().toLanguageKey("item"), "Enchantment Shard");
+        add(AEItems.ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "Arcanium Ingot");
+        add(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "Shard Embedded Arcanium Ingot");
 
         //　設定画面
         add(AstralEnchant.MOD_ID + ".configuration.title", "Config");

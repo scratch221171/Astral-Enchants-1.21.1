@@ -1,6 +1,7 @@
 package net.scratch221171.astralenchant.common;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -8,10 +9,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.scratch221171.astralenchant.common.registries.AEAttributes;
-import net.scratch221171.astralenchant.common.registries.AEDataComponents;
-import net.scratch221171.astralenchant.common.registries.AEEnchantmentEffects;
-import net.scratch221171.astralenchant.common.registries.AELootModifiers;
+import net.scratch221171.astralenchant.common.registries.*;
 import net.scratch221171.astralenchant.compat.accessories.AccessoriesCompat;
 import org.slf4j.Logger;
 
@@ -26,6 +24,7 @@ public class AstralEnchant {
     public AstralEnchant(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        AEItems.register(modEventBus);
         AEAttributes.register(modEventBus);
         AEEnchantmentEffects.register(modEventBus);
         AEDataComponents.register(modEventBus);
@@ -48,6 +47,10 @@ public class AstralEnchant {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(AEItems.ENCHANTMENT_SHARD);
+            event.accept(AEItems.ARCANIUM_INGOT);
+            event.accept(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT);
+        }
     }
 }

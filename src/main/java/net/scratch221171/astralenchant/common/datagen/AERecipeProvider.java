@@ -3,10 +3,7 @@ package net.scratch221171.astralenchant.common.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.registries.AEItems;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -52,9 +50,9 @@ public class AERecipeProvider extends RecipeProvider {
                 .define('2', Items.DIAMOND)
                 .define('3', DataComponentIngredient.of(true, DataComponents.POTION_CONTENTS, new PotionContents(Potions.STRONG_STRENGTH), Items.POTION))
                 .define('4', Items.NETHERITE_SCRAP)
-                .define('5', Items.OBSIDIAN)
+                .define('5', AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT)
                 .define('6', Items.HEAVY_CORE)
-                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .unlockedBy("has_shard_embedded_arcanium_ingot_book", has(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mitigation_piercing"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.LAST_STAND, 1, holderLookup))
                 .pattern("242").pattern("313").pattern("536")
@@ -70,8 +68,8 @@ public class AERecipeProvider extends RecipeProvider {
                 .pattern("323").pattern("212").pattern("323")
                 .define('1', EnchantedBookIngredientWith(Enchantments.MENDING, 1, holderLookup))
                 .define('2', Items.ENDER_CHEST)
-                .define('3', Items.GOLD_INGOT)
-                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .define('3', AEItems.ARCANIUM_INGOT)
+                .unlockedBy("has_arcanium_ingot_book", has(AEItems.ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.ESSENCE_OF_ENCHANTMENT, 1, holderLookup))
                 .pattern("353").pattern("323").pattern("414")
@@ -83,13 +81,14 @@ public class AERecipeProvider extends RecipeProvider {
                 .unlockedBy("has_book", has(Items.BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "essence_of_enchantment"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.COOLDOWN_REDUCTION, 1, holderLookup))
-                .pattern(" 3 ").pattern("412").pattern(" 5 ")
+                .pattern("636").pattern("412").pattern("656")
                 .define('1', EnchantedBookIngredientWith(Enchantments.EFFICIENCY, 5, holderLookup))
                 .define('2', Items.CHORUS_FRUIT)
                 .define('3', Items.ENDER_PEARL)
                 .define('4', Items.SHIELD)
                 .define('5', Items.WIND_CHARGE)
-                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .define('6', AEItems.ARCANIUM_INGOT)
+                .unlockedBy("has_arcanium_ingot_book", has(AEItems.ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cooldown_reduction"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.FEATHER_TOUCH, 1, holderLookup))
                 .pattern("515").pattern("623").pattern("545")
@@ -119,9 +118,9 @@ public class AERecipeProvider extends RecipeProvider {
                 .define('1', Items.ANVIL)
                 .define('2', Items.BOOK)
                 .define('3', Items.CONDUIT)
-                .define('4', Items.BUDDING_AMETHYST)
+                .define('4', AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT)
                 .define('5', Items.NETHERITE_BLOCK)
-                .unlockedBy("has_book", has(Items.BOOK))
+                .unlockedBy("has_shard_embedded_arcanium_ingot_book", has(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatible"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.ENDLESS_APPETITE, 1, holderLookup))
                 .pattern("635").pattern("124").pattern("897")
@@ -146,13 +145,14 @@ public class AERecipeProvider extends RecipeProvider {
                 .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "momentum"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.INSTANT_TELEPORT, 1, holderLookup))
-                .pattern("353").pattern("212").pattern("343")
+                .pattern("353").pattern("212").pattern("646")
                 .define('1', EnchantedBookIngredientWith(Enchantments.RIPTIDE, 3, holderLookup))
                 .define('2', Items.AMETHYST_SHARD)
                 .define('3', Items.ENDER_PEARL)
                 .define('4', Items.END_CRYSTAL)
                 .define('5', Items.ENDER_EYE)
-                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .define('6', AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT)
+                .unlockedBy("has_shard_embedded_arcanium_ingot_book", has(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.OVERLOAD, 1, holderLookup))
                 .pattern("121").pattern("345").pattern("161")
@@ -162,7 +162,45 @@ public class AERecipeProvider extends RecipeProvider {
                 .define('4', EnchantedBookIngredientWith(AEEnchantments.ESSENCE_OF_ENCHANTMENT, 1, holderLookup))
                 .define('5', EnchantedBookIngredientWith(AEEnchantments.ADVENTURERS_LORE, 1, holderLookup))
                 .define('6', EnchantedBookIngredientWith(AEEnchantments.LAST_STAND, 1, holderLookup))
-                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .unlockedBy("has_shard_embedded_arcanium_ingot_book", has(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT))
                 .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "overload"));
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, EnchantedBookItemWith(AEEnchantments.SLOT_EXPANSION, 1, holderLookup))
+//                .pattern("434").pattern("212").pattern("434")
+//                .define('1', EnchantedBookIngredientWith(Enchantments.BINDING_CURSE, 1, holderLookup))
+//                .define('2', Items.SHULKER_SHELL)
+//                .define('3', Items.BUNDLE)
+//                .define('4', Items.CHAIN)
+//                .unlockedBy("has_book", has(Items.BOOK))
+//                .save(output.withConditions(new ModLoadedCondition("accessories")), ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "slot_expansion"));
+
+        // 精錬レシピ
+        SimpleCookingRecipeBuilder.smelting(
+                Ingredient.of(Items.ENCHANTED_BOOK),
+                RecipeCategory.MISC,
+                AEItems.ENCHANTMENT_SHARD,
+                0.0f,
+                400
+                )
+                .unlockedBy("has_enchanted_book", has(Items.ENCHANTED_BOOK))
+                .save(output, "enchantment_shard_smelting");
+
+
+        // 素材
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.ARCANIUM_INGOT)
+                .pattern("323").pattern("414").pattern("323")
+                .define('1', AEItems.ENCHANTMENT_SHARD)
+                .define('2', Items.GOLD_INGOT)
+                .define('3', Items.IRON_INGOT)
+                .define('4', Items.LAPIS_LAZULI)
+                .unlockedBy("has_enchantment_shard", has(AEItems.ENCHANTMENT_SHARD))
+                .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "arcanium_ingot"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT)
+                .pattern("323").pattern("414").pattern("323")
+                .define('1', AEItems.ARCANIUM_INGOT)
+                .define('2', AEItems.ENCHANTMENT_SHARD)
+                .define('3', Items.DIAMOND)
+                .define('4', Items.AMETHYST_SHARD)
+                .unlockedBy("has_arcanium_ingot", has(AEItems.ARCANIUM_INGOT))
+                .save(output, ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "shard_embedded_arcanium_ingot"));
     }
 }

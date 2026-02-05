@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
+import net.scratch221171.astralenchant.common.registries.AEItems;
 
 public class AELanguageProviderJAJP extends LanguageProvider {
     public AELanguageProviderJAJP(PackOutput output) {
@@ -44,6 +45,11 @@ public class AELanguageProviderJAJP extends LanguageProvider {
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
+
+        // アイテム
+        add(AEItems.ENCHANTMENT_SHARD.getKey().location().toLanguageKey("item"), "エンチャントの欠片");
+        add(AEItems.ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "アルカニウムインゴット");
+        add(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "欠片が埋め込まれたアルカニウムインゴット");
 
         // 設定画面
         add(AstralEnchant.MOD_ID + ".configuration.title", "設定");
