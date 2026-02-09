@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
+import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
 
 public class AELanguageProviderENUS extends LanguageProvider {
@@ -42,14 +43,20 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "Overload: %s Levels");
         add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment"), "Slot Expansion");
         add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "Increases the number of accessory slots the item currently occupies by the enchantment level.");
+        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment"), "Reactive Armor");
+        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "Negates effects that bypass armor and enchantments for certain types of damage.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
 
         // アイテム
         add(AEItems.ENCHANTMENT_SHARD.getKey().location().toLanguageKey("item"), "Enchantment Shard");
+        add(AEItems.ARCANE_QUARTZ.getKey().location().toLanguageKey("item"), "Arcane Quartz");
         add(AEItems.ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "Arcanium Ingot");
-        add(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "Shard Embedded Arcanium Ingot");
+        add(AEItems.BUDDING_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "Budding Arcanium Ingot");
+
+        // ブロック
+        add(AEBlocks.ARCANIUM_BLOCK.getKey().location().toLanguageKey("block"), "Arcanium Block");
 
         //　設定画面
         add(AstralEnchant.MOD_ID + ".configuration.title", "Config");
@@ -78,5 +85,7 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "Momentum");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "Instant Teleport");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "Overload");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.SLOT_EXPANSION.location().getPath(), "Slot Expansion");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.REACTIVE_ARMOR.location().getPath(), "Reactive Armor");
     }
 }

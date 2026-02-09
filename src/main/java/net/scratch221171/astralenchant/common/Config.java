@@ -26,6 +26,8 @@ public class Config {
     public static final ModConfigSpec.BooleanValue MOMENTUM;
     public static final ModConfigSpec.BooleanValue INSTANT_TELEPORT;
     public static final ModConfigSpec.BooleanValue OVERLOAD;
+    public static final ModConfigSpec.BooleanValue SLOT_EXPANSION;
+    public static final ModConfigSpec.BooleanValue REACTIVE_ARMOR;
 
     static {
         BUILDER.push("settings");
@@ -48,6 +50,8 @@ public class Config {
         MOMENTUM = BUILDER.define(AEEnchantments.MOMENTUM.location().getPath(), true);
         INSTANT_TELEPORT = BUILDER.define(AEEnchantments.INSTANT_TELEPORT.location().getPath(), true);
         OVERLOAD = BUILDER.define(AEEnchantments.OVERLOAD.location().getPath(), true);
+        SLOT_EXPANSION = BUILDER.define(AEEnchantments.SLOT_EXPANSION.location().getPath(), true);
+        REACTIVE_ARMOR = BUILDER.define(AEEnchantments.REACTIVE_ARMOR.location().getPath(), true);
         BUILDER.pop();
     }
 

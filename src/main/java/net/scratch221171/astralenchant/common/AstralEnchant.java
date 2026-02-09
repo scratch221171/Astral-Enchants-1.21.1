@@ -25,6 +25,7 @@ public class AstralEnchant {
         modEventBus.addListener(this::commonSetup);
 
         AEItems.register(modEventBus);
+        AEBlocks.register(modEventBus);
         AEAttributes.register(modEventBus);
         AEEnchantmentEffects.register(modEventBus);
         AEDataComponents.register(modEventBus);
@@ -49,8 +50,13 @@ public class AstralEnchant {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(AEItems.ENCHANTMENT_SHARD);
+            event.accept(AEItems.ARCANE_QUARTZ);
             event.accept(AEItems.ARCANIUM_INGOT);
-            event.accept(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT);
+            event.accept(AEItems.BUDDING_ARCANIUM_INGOT);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(AEBlocks.ARCANIUM_BLOCK);
         }
     }
 }

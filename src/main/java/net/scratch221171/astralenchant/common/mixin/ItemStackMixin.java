@@ -42,17 +42,24 @@ public abstract class ItemStackMixin {
             Holder<Enchantment> compatible = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
             BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
             if (stack.getEnchantmentLevel(compatible) > 0 && !contents.isEmpty()) {
-                ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+                ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
                 itemEnchantments.entrySet().stream()
-                        // Compatible自身および現在バンドルについているエンチャントは、中身に付与されないようにする(つまり新しく追加されたエンチャントのみ付与する)
-                        // バンドル自身と合成されたエンチャント本に同じエンチャントが含まれていた場合は...知りません
-                        .filter(entry -> !entry.getKey().is(AEEnchantments.COMPATIBILITY) && stack.getEnchantmentLevel(entry.getKey()) <= 0)
-                        .forEach(entry -> newEnchantments.set(entry.getKey(), entry.getIntValue()));
+                    // Compatible自身および現在バンドルについているエンチャントは、中身に付与されないようにする(つまり新しく追加されたエンチャントのみ付与する)
+                    // バンドル自身と合成されたエンチャント本に同じエンチャントが含まれていた場合は...知りません
+                    .filter(entry -> !entry.getKey().is(AEEnchantments.COMPATIBILITY) && stack.getEnchantmentLevel(entry.getKey()) <= 0)
+                    .forEach(entry -> added.set(entry.getKey(), entry.getIntValue()));
 
                 List<ItemStack> newItems = new ArrayList<>();
                 for (ItemStack s : contents.items()) {
                     ItemStack copy = s.copy();
-                    copy.set(DataComponents.ENCHANTMENTS, newEnchantments.toImmutable());
+
+                    ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
+                    ItemEnchantments result;
+                    if (current != null) {
+                        result = AEUtils.mergeItemEnchants(added.toImmutable(), current);
+                        copy.set(DataComponents.ENCHANTMENTS, result);
+                    }
+
                     newItems.add(copy);
                 }
 

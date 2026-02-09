@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
+import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
 
 public class AELanguageProviderJAJP extends LanguageProvider {
@@ -42,14 +43,20 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "オーバーロード：%s レベル");
         add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment"), "スロット拡張");
         add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "アイテムが現在装着されているアクセサリースロットの数を、エンチャントのレベル分だけ増加させます。");
+        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment"), "反応装甲");
+        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "一部のダメージタイプのアーマーおよびエンチャントを貫通する効果を無効化します。");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
 
         // アイテム
         add(AEItems.ENCHANTMENT_SHARD.getKey().location().toLanguageKey("item"), "エンチャントの欠片");
+        add(AEItems.ARCANE_QUARTZ.getKey().location().toLanguageKey("item"), "アーケインクォーツ");
         add(AEItems.ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "アルカニウムインゴット");
-        add(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "欠片が埋め込まれたアルカニウムインゴット");
+        add(AEItems.BUDDING_ARCANIUM_INGOT.getKey().location().toLanguageKey("item"), "芽生えたアルカニウムインゴット");
+
+        // ブロック
+        add(AEBlocks.ARCANIUM_BLOCK.getKey().location().toLanguageKey("block"), "アルカニウムブロック");
 
         // 設定画面
         add(AstralEnchant.MOD_ID + ".configuration.title", "設定");
@@ -79,5 +86,7 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "速度維持");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "即時テレポート");
         add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "オーバーロード");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.SLOT_EXPANSION.location().getPath(), "スロット拡張");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.REACTIVE_ARMOR.location().getPath(), "反応装甲");
     }
 }

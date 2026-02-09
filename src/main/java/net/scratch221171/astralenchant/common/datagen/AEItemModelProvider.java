@@ -14,7 +14,8 @@ public class AEItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         basicItem(AEItems.ENCHANTMENT_SHARD.get());
+        basicItem(AEItems.ARCANE_QUARTZ.get());
         basicItem(AEItems.ARCANIUM_INGOT.get());
-        basicItem(AEItems.SHARD_EMBEDDED_ARCANIUM_INGOT.get());
+        basicItem(AEItems.BUDDING_ARCANIUM_INGOT.get());
     }
 }

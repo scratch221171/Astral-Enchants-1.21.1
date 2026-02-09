@@ -11,32 +11,25 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.enchantment.effect.AdventurersLoreEffect;
-import net.scratch221171.astralenchant.common.enchantment.effect.MitigationPiercingEffect;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 
 public class AEEnchantments {
     /**
      * 与えた攻撃に様々なダメージタイプタグを付与し、ダメージ軽減を貫通する。
      * <p>
-     * Effect : none
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.MitigationPiercingHandler}
      * <p>
-     * Handler : none
-     * <p>
-     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.LocalPlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.DamageSourceMixin}
      */
     public static final ResourceKey<Enchantment> MITIGATION_PIERCING = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mitigation_piercing"));
 
     /**
      * 経験値を消費して死亡イベントをキャンセルする。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.LastStandHandler}
      * <p>
@@ -48,8 +41,6 @@ public class AEEnchantments {
     /**
      * 耐久力を除くアイテムのDataComponentを毎ティック置き換える。
      * <p>
-     * Effect : none
-     * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.ItemProtectionHandler}
      * <p>
      * Mixin : {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}, {@link net.scratch221171.astralenchant.common.mixin.ItemStackMixin}
@@ -59,8 +50,6 @@ public class AEEnchantments {
 
     /**
      * アイテムの合計エンチャントレベル(自身を除く)に応じて全てのAttributeModifierを上昇させる。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.EssenceOfEnchantmentHandler}
      * <p>
@@ -72,8 +61,6 @@ public class AEEnchantments {
     /**
      * アイテム使用のクールダウンを短縮する。
      * <p>
-     * Effect : none
-     * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.CooldownAttributeHandler}
      * <p>
      * Mixin : {@link net.scratch221171.astralenchant.common.mixin.ItemCooldownsMixin}
@@ -83,8 +70,6 @@ public class AEEnchantments {
 
     /**
      * ブロック破壊時に必ずドロップするようにし、スニーク時はBlockStateやBlockEntityのコンポーネントを保持したままアイテム化させる。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.FeatherTouchHandler}
      * <p>
@@ -96,8 +81,6 @@ public class AEEnchantments {
     /**
      * 総実績数に応じて運とブロック由来の経験値を増加させる。
      * <p>
-     * Effect : {@link AdventurersLoreEffect}
-     * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.AdventurersLoreHandler}
      * <p>
      * Mixin : none
@@ -107,8 +90,6 @@ public class AEEnchantments {
 
     /**
      * このエンチャントがついたバンドルに付けられたエンチャントが、競合などを無視して内部アイテムに付与される。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : none
      * <p>
@@ -120,8 +101,6 @@ public class AEEnchantments {
     /**
      * 溢れた満腹度分だけ回復し、自然治癒を加速し、常時食事可能にする。
      * <p>
-     * Effect : none
-     * <p>
      * Handler : none
      * <p>
      * Mixin : {@link net.scratch221171.astralenchant.common.mixin.FoodDataMixin}, {@link net.scratch221171.astralenchant.common.mixin.PlayerMixin}
@@ -131,8 +110,6 @@ public class AEEnchantments {
 
     /**
      * 様々な移動速度低下効果を無効化する。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : none
      * <p>
@@ -144,8 +121,6 @@ public class AEEnchantments {
     /**
      * エンダーパール使用時、瞬時に視線の先に真っ直ぐテレポートする。スニーク時はブロックを貫通する。
      * <p>
-     * Effect : none
-     * <p>
      * Handler : none
      * <p>
      * Mixin : {@link net.scratch221171.astralenchant.common.mixin.EnderPearlItemMixin}
@@ -155,8 +130,6 @@ public class AEEnchantments {
 
     /**
      * {@link net.scratch221171.astralenchant.common.registries.AEDataComponents#OVERLOAD} の値だけ全てのエンチャントのレベルを上昇させる。
-     * <p>
-     * Effect : none
      * <p>
      * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.OverloadHandler}
      * <p>
@@ -168,14 +141,22 @@ public class AEEnchantments {
     /**
      * Accessories連携：アイテムが装着されたスロットの数をエンチャントのレベルだけ増やす。
      * <p>
-     * Effect : none
-     * <p>
-     * Handler : none
+     * Handler : {@link net.scratch221171.astralenchant.compat.accessories.AccessoriesCompatHandler}
      * <p>
      * Mixin : none
      */
     public static final ResourceKey<Enchantment> SLOT_EXPANSION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "slot_expansion"));
+
+    /**
+     * 与えられた攻撃から防具貫通ダメージタイプタグを削除し、ダメージ貫通を無効化する。{@link #MITIGATION_PIERCING} より権限が低い。
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.ReactiveArmorHandler}
+     * <p>
+     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.DamageSourceMixin}
+     */
+    public static final ResourceKey<Enchantment> REACTIVE_ARMOR = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "reactive_armor"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var items = context.registryLookup(Registries.ITEM);
@@ -196,10 +177,7 @@ public class AEEnchantments {
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 32,
-                EquipmentSlotGroup.MAINHAND))
-                .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
-                        EnchantmentTarget.VICTIM, new MitigationPiercingEffect())
-        );
+                EquipmentSlotGroup.MAINHAND)));
 
         register(context, LAST_STAND, Enchantment.enchantment(Enchantment.definition(
                 armor,
@@ -259,8 +237,7 @@ public class AEEnchantments {
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 8,
-                EquipmentSlotGroup.FEET))
-                .withEffect(EnchantmentEffectComponents.TICK, new AdventurersLoreEffect()));
+                EquipmentSlotGroup.FEET)));
 
         register(context, COMPATIBILITY, Enchantment.enchantment(Enchantment.definition(
                 bundle,
@@ -297,14 +274,16 @@ public class AEEnchantments {
                 Enchantment.dynamicCost(150,10),
                 16,
                 EquipmentSlotGroup.HEAD)));
+        
         register(context, OVERLOAD, Enchantment.enchantment(Enchantment.definition(
                 any,
                 1,
-                10,
+                5,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
                 32,
                 EquipmentSlotGroup.ANY)));
+        
 //        register(context, SLOT_EXPANSION, Enchantment.enchantment(Enchantment.definition(
 //                any,
 //                1,
@@ -313,6 +292,15 @@ public class AEEnchantments {
 //                Enchantment.dynamicCost(150,10),
 //                16,
 //                EquipmentSlotGroup.ANY)));
+        
+        register(context, REACTIVE_ARMOR,  Enchantment.enchantment(Enchantment.definition(
+                chest,
+                1,
+                1,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                16,
+                EquipmentSlotGroup.CHEST)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

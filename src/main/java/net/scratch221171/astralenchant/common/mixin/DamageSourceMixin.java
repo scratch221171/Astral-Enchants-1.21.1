@@ -20,16 +20,23 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     @Unique
     private Set<TagKey<DamageType>> astralenchant$extraTags;
 
+    @Unique
+    private Set<TagKey<DamageType>> astralenchant$disabledTags;
+
+    /**
+     * {@link net.scratch221171.astralenchant.common.datagen.AEEnchantments#MITIGATION_PIERCING} または {@link net.scratch221171.astralenchant.common.datagen.AEEnchantments#REACTIVE_ARMOR} によるタグ編集を反映する。
+     */
     @Inject(method = "is(Lnet/minecraft/tags/TagKey;)Z", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$isExtraTag(TagKey<DamageType> tag, CallbackInfoReturnable<Boolean> cir) {
-        if (!Config.MITIGATION_PIERCING.isTrue()) return;
-        if (this.astralenchant$extraTags != null && this.astralenchant$extraTags.contains(tag)) {
+        if (Config.MITIGATION_PIERCING.isTrue() && this.astralenchant$extraTags != null && this.astralenchant$extraTags.contains(tag)) {
             cir.setReturnValue(true);
+        } else if (Config.REACTIVE_ARMOR.isTrue() && this.astralenchant$disabledTags != null && this.astralenchant$disabledTags.contains(tag)) {
+            cir.setReturnValue(false);
         }
     }
 
     @Override
-    public void astralEnchant$addDamageTag(TagKey<DamageType> tag) {
+    public void astralEnchant$addExtraTag(TagKey<DamageType> tag) {
         if (this.astralenchant$extraTags == null) {
             this.astralenchant$extraTags = new HashSet<>();
         }
@@ -37,9 +44,24 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     }
 
     @Override
-    public void astralEnchant$removeDamageTag(TagKey<DamageType> tag) {
+    public void astralEnchant$removeExtraTag(TagKey<DamageType> tag) {
         if (this.astralenchant$extraTags != null) {
             this.astralenchant$extraTags.remove(tag);
+        }
+    }
+
+    @Override
+    public void astralEnchant$addDisabledTag(TagKey<DamageType> tag) {
+        if (this.astralenchant$disabledTags == null) {
+            this.astralenchant$disabledTags = new HashSet<>();
+        }
+        this.astralenchant$disabledTags.add(tag);
+    }
+
+    @Override
+    public void astralEnchant$removeDisabledTag(TagKey<DamageType> tag) {
+        if (this.astralenchant$disabledTags != null) {
+            this.astralenchant$disabledTags.remove(tag);
         }
     }
 }

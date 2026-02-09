@@ -15,12 +15,16 @@ public class AEItems {
             new Item.Properties().rarity(Rarity.UNCOMMON).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
     ));
 
+    public static final DeferredItem<Item> ARCANE_QUARTZ = ITEMS.register("arcane_quartz", () -> new Item(
+            new Item.Properties()
+    ));
+
     public static final DeferredItem<Item> ARCANIUM_INGOT = ITEMS.register("arcanium_ingot", () -> new Item(
             new Item.Properties()
     ));
 
-    public static final DeferredItem<Item> SHARD_EMBEDDED_ARCANIUM_INGOT = ITEMS.register("shard_embedded_arcanium_ingot", () -> new Item(
-            new Item.Properties().rarity(Rarity.UNCOMMON).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)
+    public static final DeferredItem<Item> BUDDING_ARCANIUM_INGOT = ITEMS.register("budding_arcanium_ingot", () -> new Item(
+            new Item.Properties()
     ));
 
     public static void register(IEventBus eventBus) {

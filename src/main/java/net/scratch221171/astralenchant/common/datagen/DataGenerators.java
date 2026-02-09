@@ -31,5 +31,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new AELanguageProviderENUS(packOutput));
         generator.addProvider(event.includeServer(), new AELanguageProviderJAJP(packOutput));
         generator.addProvider(event.includeClient(), new AEItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new AEBlockStateProvider(packOutput, existingFileHelper));
     }
 }
