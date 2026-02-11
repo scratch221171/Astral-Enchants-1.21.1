@@ -24,8 +24,8 @@ public class AEItemTagsProvider extends ItemTagsProvider {
 
     public static final TagKey<Item> BUNDLE = create(AstralEnchant.MOD_ID, "bundle");
 
+    public static final TagKey<Item> GEMS_ARCANE_QUARTZ = create("c", "gems/arcane_quartz");
     public static final TagKey<Item> INGOTS_ARCANIUM = create("c", "ingots/arcanium");
-
     public static final TagKey<Item> STORAGE_BLOCKS_ARCANIUM = create("c", "storage_blocks/arcanium");
 
     private static TagKey<Item> create(String namespace, String path) {
@@ -35,6 +35,9 @@ public class AEItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         tag(BUNDLE).add(Items.BUNDLE);
+
+        tag(GEMS_ARCANE_QUARTZ).add(AEItems.ARCANE_QUARTZ.get());
+        tag(Tags.Items.GEMS).addTag(GEMS_ARCANE_QUARTZ);
 
         tag(INGOTS_ARCANIUM).add(AEItems.ARCANIUM_INGOT.get());
         tag(Tags.Items.INGOTS).addTag(INGOTS_ARCANIUM);
