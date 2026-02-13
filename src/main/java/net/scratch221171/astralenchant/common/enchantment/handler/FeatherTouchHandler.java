@@ -35,7 +35,7 @@ import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
 public class FeatherTouchHandler {
     @SubscribeEvent
     private static void onBreak(BlockEvent.BreakEvent event) {
-        if (!Config.FEATHER_TOUCH.isTrue()) return;
+        if (Config.FEATHER_TOUCH.isFalse()) return;
         Player player = event.getPlayer();
 
         Level level = event.getPlayer().level();
@@ -74,7 +74,7 @@ public class FeatherTouchHandler {
 
     @SubscribeEvent
     private static void onDrops(BlockDropsEvent event) {
-        if (!Config.FEATHER_TOUCH.isTrue()) return;
+        if (Config.FEATHER_TOUCH.isFalse()) return;
         ItemStack cached = FeatherTouchCache.CACHE.remove(event.getPos());
 
         if (cached == null) return;

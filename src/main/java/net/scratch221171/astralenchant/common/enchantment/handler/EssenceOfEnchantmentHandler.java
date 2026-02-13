@@ -26,7 +26,7 @@ public class EssenceOfEnchantmentHandler {
 
     @SubscribeEvent
     private static void ApplyAttributeModifier(ItemAttributeModifierEvent event) {
-        if (!Config.ESSENCE_OF_ENCHANTMENT.isTrue()) return;
+        if (Config.ESSENCE_OF_ENCHANTMENT.isFalse()) return;
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ESSENCE_OF_ENCHANTMENT, server);

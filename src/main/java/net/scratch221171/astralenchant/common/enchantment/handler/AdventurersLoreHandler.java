@@ -27,7 +27,7 @@ import net.scratch221171.astralenchant.common.util.AEUtils;
 public class AdventurersLoreHandler {
     @SubscribeEvent
     private static void onTick(PlayerTickEvent.Pre event) {
-        if (!Config.ADVENTURERS_LORE.isTrue()) return;
+        if (Config.ADVENTURERS_LORE.isFalse()) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
 
@@ -42,7 +42,7 @@ public class AdventurersLoreHandler {
 
     @SubscribeEvent
     private static void onDrops(BlockDropsEvent event) {
-        if (!Config.ADVENTURERS_LORE.isTrue()) return;
+        if (Config.ADVENTURERS_LORE.isFalse()) return;
         if (!(event.getBreaker() instanceof ServerPlayer player)) return;
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
 
@@ -53,7 +53,7 @@ public class AdventurersLoreHandler {
 
     @SubscribeEvent
     private static void onLoot(LivingExperienceDropEvent event) {
-        if (!Config.ADVENTURERS_LORE.isTrue()) return;
+        if (Config.ADVENTURERS_LORE.isFalse()) return;
         if (!(event.getAttackingPlayer() instanceof ServerPlayer player)) return;
         if (!(player.level() instanceof ServerLevel serverLevel)) return;
 

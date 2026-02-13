@@ -35,7 +35,7 @@ public class EnderPearlItemMixin {
      */
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     public void astralEnchant$instantTeleport(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-        if (!Config.INSTANT_TELEPORT.isTrue()) return;
+        if (Config.INSTANT_TELEPORT.isFalse()) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.INSTANT_TELEPORT, level);
         int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(enchantment, player);
         if (enchantmentLevel > 0) {

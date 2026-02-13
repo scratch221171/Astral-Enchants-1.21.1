@@ -22,9 +22,9 @@ public class LastStandHandler {
 
     @SubscribeEvent
     private static void onLivingDeath(LivingDeathEvent event) {
-        if (!Config.LAST_STAND.isTrue()) return;
+        if (Config.LAST_STAND.isFalse()) return;
         if (!(event.getEntity() instanceof Player player)) return;
-        if (!Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.isTrue() && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
+        if (Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.isFalse() && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
 
         Iterable<ItemStack> armorSlots = player.getArmorSlots();
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player.level());

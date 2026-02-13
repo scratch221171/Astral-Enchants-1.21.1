@@ -29,7 +29,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns$CooldownInstance;<init>(II)V"), index = 1)
     private int astralEnchant$modifyEndTick(int endTick) {
-        if (!Config.COOLDOWN_REDUCTION.isTrue()) return endTick;
+        if (Config.COOLDOWN_REDUCTION.isFalse()) return endTick;
         int start = this.tickCount;
         int ticks = endTick - start;
         return start + (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
@@ -40,7 +40,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;onCooldownStarted(Lnet/minecraft/world/item/Item;I)V"), index = 1)
     private int astralEnchant$modifyStartedTicks(int ticks) {
-        if (!Config.COOLDOWN_REDUCTION.isTrue()) return ticks;
+        if (Config.COOLDOWN_REDUCTION.isFalse()) return ticks;
         return (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
     }
 }

@@ -11,6 +11,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -29,6 +30,8 @@ public class AccessoriesCompatHandler {
         if (capability == null) return;
 
         if (curr > 0) {
+            // オフのとき、取り外した時にSlotModifierが永続しないように、新しく付ける箇所だけ弾く
+            if (Config.SLOT_EXPANSION.isFalse()) return;
             capability.addPersistentSlotModifiers(createMap(reference.slotName(), curr));
         } else if (prev > 0) {
             capability.removeSlotModifiers(createMap(reference.slotName(), prev));

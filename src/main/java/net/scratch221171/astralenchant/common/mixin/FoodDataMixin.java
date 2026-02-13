@@ -32,7 +32,7 @@ public abstract class FoodDataMixin {
      */
     @Inject(method = "add", at = @At("HEAD"))
     private void astralEnchant$onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
-        if (!Config.ENDLESS_APPETITE.isTrue()) return;
+        if (Config.ENDLESS_APPETITE.isFalse()) return;
         FoodData self = (FoodData)(Object)this;
         int newFoodLevel = Math.clamp(foodLevel + self.getFoodLevel(), 0, 20);
         astralenchant$overflowed += Math.max(0, foodLevel + self.getFoodLevel() - 20);
@@ -44,7 +44,7 @@ public abstract class FoodDataMixin {
      */
     @Inject(method = "tick", at = @At("HEAD"))
     private void astralEnchant$onTick(Player player, CallbackInfo ci) {
-        if (!Config.ENDLESS_APPETITE.isTrue()) return;
+        if (Config.ENDLESS_APPETITE.isFalse()) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
             if (this.getFoodLevel() > 0) this.tickTimer = 80;

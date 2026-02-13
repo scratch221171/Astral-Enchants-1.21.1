@@ -6,14 +6,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.phys.AABB;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -24,7 +22,7 @@ public abstract class PlayerMixin {
      */
     @Inject(method = "canEat", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$alwaysEdible(CallbackInfoReturnable<Boolean> cir) {
-        if (!Config.ENDLESS_APPETITE.isTrue()) return;
+        if (Config.ENDLESS_APPETITE.isFalse()) return;
         Player player = (Player)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
@@ -37,7 +35,7 @@ public abstract class PlayerMixin {
      */
     @Inject(method = "makeStuckInBlock", at = @At("HEAD"), cancellable = true)
     private void astralEnchant$disableStuckInBlock(CallbackInfo ci) {
-        if (!Config.MOMENTUM.isTrue()) return;
+        if (Config.MOMENTUM.isFalse()) return;
         Player player = (Player)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
@@ -50,20 +48,11 @@ public abstract class PlayerMixin {
      */
     @Inject(method = "setItemSlot", at = @At("HEAD"), cancellable = true)
     private void astralEnchant$disableSetItemSlot(EquipmentSlot slot, ItemStack stack, CallbackInfo ci) {
-        if (!Config.ITEM_PROTECTION.isTrue()) return;
+        if (Config.ITEM_PROTECTION.isFalse()) return;
         Player player = (Player)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, player.level());
         if (player.getItemBySlot(slot).getEnchantmentLevel(enchantment) > 0) {
             ci.cancel();
         }
-    }
-
-    @ModifyVariable(method = "canInteractWithEntity(Lnet/minecraft/world/phys/AABB;D)Z", at = @At("HEAD"), argsOnly = true)
-    private AABB modifyBoundingBox(AABB boundingBox) {
-        return boundingBox.inflate(
-                boundingBox.getXsize() / 2.0,
-                boundingBox.getYsize() / 2.0,
-                boundingBox.getZsize() / 2.0
-        );
     }
 }

@@ -25,7 +25,7 @@ public interface IItemExtensionMixin {
      */
     @Inject(method = "supportsEnchantment", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$bundleSupportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment, CallbackInfoReturnable<Boolean> cir) {
-        if (!Config.COMPATIBILITY.isTrue()) return;
+        if (Config.COMPATIBILITY.isFalse()) return;
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
         Holder<Enchantment> compatible = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
@@ -40,7 +40,7 @@ public interface IItemExtensionMixin {
      */
     @Inject(method = "getEnchantmentLevel", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment, CallbackInfoReturnable<Integer> cir) {
-        if (!Config.OVERLOAD.isTrue()) return;
+        if (Config.OVERLOAD.isFalse()) return;
         if (enchantment.getKey() == AEEnchantments.OVERLOAD) return;
         int level = cir.getReturnValue();
         if (level > 0) {

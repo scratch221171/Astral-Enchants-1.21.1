@@ -13,7 +13,7 @@ import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 public class OverloadHandler {
     @SubscribeEvent
     private static void modifyTooltip(ItemTooltipEvent event) {
-        if (!Config.OVERLOAD.isTrue()) return;
+        if (Config.OVERLOAD.isFalse()) return;
         ItemStack stack = event.getItemStack();
         int level = stack.getOrDefault(AEDataComponents.OVERLOAD, 0);
         if (level > 0) {

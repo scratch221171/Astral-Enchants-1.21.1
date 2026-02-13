@@ -30,7 +30,7 @@ public class LocalPlayerMixin {
      */
     @Redirect(method = "canStartSprinting", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
     private boolean astralEnchant$enableSprintingWhileUsingItem(LocalPlayer instance) {
-        if (!Config.MOMENTUM.isTrue()) {
+        if (Config.MOMENTUM.isFalse()) {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
             if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
         }

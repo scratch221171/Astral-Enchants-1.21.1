@@ -19,7 +19,7 @@ import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 public class ReactiveArmorHandler {
     @SubscribeEvent
     private static void addDisabledDamageTag(EntityInvulnerabilityCheckEvent event) {
-        if (!Config.REACTIVE_ARMOR.isTrue()) return;
+        if (Config.REACTIVE_ARMOR.isFalse()) return;
         DamageSource source = event.getSource();
         if (event.getEntity() instanceof LivingEntity entity) {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.REACTIVE_ARMOR, entity.level());

@@ -23,7 +23,7 @@ import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 public class MitigationPiercingHandler {
     @SubscribeEvent
     private static void addDamageTag(EntityInvulnerabilityCheckEvent event) {
-        if (!Config.MITIGATION_PIERCING.isTrue()) return;
+        if (Config.MITIGATION_PIERCING.isFalse()) return;
         Entity entity = event.getEntity();
         if (entity.level().isClientSide) return;
         DamageSource source = event.getSource();

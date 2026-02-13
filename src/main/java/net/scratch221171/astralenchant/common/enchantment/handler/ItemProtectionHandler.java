@@ -16,7 +16,7 @@ public class ItemProtectionHandler {
 
     @SubscribeEvent
     private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
-        if (!Config.ITEM_PROTECTION.isTrue()) return;
+        if (Config.ITEM_PROTECTION.isFalse()) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
         if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {

@@ -20,7 +20,7 @@ public abstract class EntityMixin {
      */
     @Inject(method = "getBlockJumpFactor", at = @At("HEAD"), cancellable = true)
     private void astralEnchant$modifyJumpFactor(CallbackInfoReturnable<Float> cir) {
-        if (!Config.MOMENTUM.isTrue()) return;
+        if (Config.MOMENTUM.isFalse()) return;
         Entity self = (Entity)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, self.level());
         if (self instanceof Player player && EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
@@ -33,7 +33,7 @@ public abstract class EntityMixin {
      */
     @Inject(method = "getBlockSpeedFactor", at = @At("HEAD"), cancellable = true)
     private void astralEnchant$modifySpeedFactor(CallbackInfoReturnable<Float> cir) {
-        if (!Config.MOMENTUM.isTrue()) return;
+        if (Config.MOMENTUM.isFalse()) return;
         Entity self = (Entity)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, self.level());
         if (self instanceof Player player && EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
