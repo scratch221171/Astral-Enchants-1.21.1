@@ -2,25 +2,25 @@
   "neoforge:conditions": [
     {
       "type": "astralenchant:config_condition",
-      "path": "last_stand"
+      "path": "compatibility"
     }
   ],
   "anvil_cost": 32,
   "description": {
-    "translate": "enchantment.astralenchant.last_stand"
+    "translate": "enchantment.astralenchant.compatibility"
   },
   "max_cost": {
     "base": 150,
     "per_level_above_first": 10
   },
-  "max_level": 3,
+  "max_level": 1,
   "min_cost": {
     "base": 100,
     "per_level_above_first": 10
   },
   "slots": [
-    "armor"
+    "any"
   ],
-  "supported_items": "#minecraft:enchantable/armor",
+  "supported_items": "#astralenchant:bundle",
   "weight": 1
 }

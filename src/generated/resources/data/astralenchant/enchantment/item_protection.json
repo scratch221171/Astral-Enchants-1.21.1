@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "path": "item_protection"
+    }
+  ],
   "anvil_cost": 16,
   "description": {
     "translate": "enchantment.astralenchant.item_protection"

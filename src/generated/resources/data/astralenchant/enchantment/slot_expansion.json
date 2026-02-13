@@ -1,13 +1,17 @@
 {
   "neoforge:conditions": [
     {
+      "type": "neoforge:mod_loaded",
+      "modid": "accessories"
+    },
+    {
       "type": "astralenchant:config_condition",
-      "path": "last_stand"
+      "path": "slot_expansion"
     }
   ],
-  "anvil_cost": 32,
+  "anvil_cost": 16,
   "description": {
-    "translate": "enchantment.astralenchant.last_stand"
+    "translate": "enchantment.astralenchant.slot_expansion"
   },
   "max_cost": {
     "base": 150,
@@ -19,8 +23,10 @@
     "per_level_above_first": 10
   },
   "slots": [
-    "armor"
+    "any"
   ],
-  "supported_items": "#minecraft:enchantable/armor",
+  "supported_items": {
+    "type": "neoforge:any"
+  },
   "weight": 1
 }

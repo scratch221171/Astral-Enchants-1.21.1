@@ -2,12 +2,12 @@
   "neoforge:conditions": [
     {
       "type": "astralenchant:config_condition",
-      "path": "last_stand"
+      "path": "adventurers_lore"
     }
   ],
-  "anvil_cost": 32,
+  "anvil_cost": 8,
   "description": {
-    "translate": "enchantment.astralenchant.last_stand"
+    "translate": "enchantment.astralenchant.adventurers_lore"
   },
   "max_cost": {
     "base": 150,
@@ -19,8 +19,8 @@
     "per_level_above_first": 10
   },
   "slots": [
-    "armor"
+    "feet"
   ],
-  "supported_items": "#minecraft:enchantable/armor",
+  "supported_items": "#minecraft:enchantable/foot_armor",
   "weight": 1
 }

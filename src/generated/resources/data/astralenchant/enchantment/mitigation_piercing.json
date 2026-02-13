@@ -2,25 +2,25 @@
   "neoforge:conditions": [
     {
       "type": "astralenchant:config_condition",
-      "path": "last_stand"
+      "path": "mitigation_piercing"
     }
   ],
   "anvil_cost": 32,
   "description": {
-    "translate": "enchantment.astralenchant.last_stand"
+    "translate": "enchantment.astralenchant.mitigation_piercing"
   },
   "max_cost": {
     "base": 150,
     "per_level_above_first": 10
   },
-  "max_level": 3,
+  "max_level": 1,
   "min_cost": {
     "base": 100,
     "per_level_above_first": 10
   },
   "slots": [
-    "armor"
+    "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/armor",
+  "supported_items": "#minecraft:enchantable/weapon",
   "weight": 1
 }

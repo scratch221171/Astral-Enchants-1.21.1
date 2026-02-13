@@ -13,9 +13,12 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
+
+import java.util.List;
 
 public class AEEnchantments {
     /**
@@ -284,14 +287,14 @@ public class AEEnchantments {
                 32,
                 EquipmentSlotGroup.ANY)));
         
-//        register(context, SLOT_EXPANSION, Enchantment.enchantment(Enchantment.definition(
-//                any,
-//                1,
-//                3,
-//                Enchantment.dynamicCost(100,10),
-//                Enchantment.dynamicCost(150,10),
-//                16,
-//                EquipmentSlotGroup.ANY)));
+        register(context, SLOT_EXPANSION, Enchantment.enchantment(Enchantment.definition(
+                any,
+                1,
+                3,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                16,
+                EquipmentSlotGroup.ANY)));
         
         register(context, REACTIVE_ARMOR,  Enchantment.enchantment(Enchantment.definition(
                 chest,
