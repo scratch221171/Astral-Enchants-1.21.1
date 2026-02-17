@@ -5,6 +5,7 @@
   "mixins": [
     "DamageSourceMixin",
     "EnchantmentHelperMixin",
+    "EnchantmentMixin",
     "EnderPearlItemMixin",
     "EntityMixin",
     "FoodDataMixin",

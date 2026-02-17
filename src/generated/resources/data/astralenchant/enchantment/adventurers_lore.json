@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "astralenchant:config_condition",
-      "path": "adventurers_lore"
-    }
-  ],
   "anvil_cost": 8,
   "description": {
     "translate": "enchantment.astralenchant.adventurers_lore"

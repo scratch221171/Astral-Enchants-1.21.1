@@ -20,11 +20,12 @@ import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class AdventurersLoreHandler {
+
     @SubscribeEvent
     private static void onTick(PlayerTickEvent.Pre event) {
         if (Config.ADVENTURERS_LORE.isFalse()) return;
@@ -61,6 +62,7 @@ public class AdventurersLoreHandler {
         if (level <= 0) return;
         event.setDroppedExperience(modifyExperience(player, serverLevel, level, event.getDroppedExperience()));
     }
+
     private static int modifyExperience(ServerPlayer player, ServerLevel serverLevel, int level, int original) {
         int count = getAdvancementNumber(player, serverLevel);
         return (int)Math.floor(original * (1 + 0.1f * count * level));

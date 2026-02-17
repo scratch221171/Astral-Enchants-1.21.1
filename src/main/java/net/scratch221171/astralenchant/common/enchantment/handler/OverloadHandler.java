@@ -11,6 +11,7 @@ import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class OverloadHandler {
+
     @SubscribeEvent
     private static void modifyTooltip(ItemTooltipEvent event) {
         if (Config.OVERLOAD.isFalse()) return;

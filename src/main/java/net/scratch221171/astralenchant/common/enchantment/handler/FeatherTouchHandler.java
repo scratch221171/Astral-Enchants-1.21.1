@@ -27,12 +27,15 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
-import net.scratch221171.astralenchant.common.util.FeatherTouchCache;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class FeatherTouchHandler {
+
     @SubscribeEvent
     private static void onBreak(BlockEvent.BreakEvent event) {
         if (Config.FEATHER_TOUCH.isFalse()) return;
@@ -74,7 +77,6 @@ public class FeatherTouchHandler {
 
     @SubscribeEvent
     private static void onDrops(BlockDropsEvent event) {
-        if (Config.FEATHER_TOUCH.isFalse()) return;
         ItemStack cached = FeatherTouchCache.CACHE.remove(event.getPos());
 
         if (cached == null) return;
@@ -92,5 +94,9 @@ public class FeatherTouchHandler {
 
     static <T extends Comparable<T>> boolean checkBlockState(BlockState state, Property<T> properties, T value) {
         return state.hasProperty(properties) && state.getValue(properties) == value;
+    }
+
+    public static class FeatherTouchCache {
+        public static final Map<BlockPos, ItemStack> CACHE = new HashMap<>();
     }
 }

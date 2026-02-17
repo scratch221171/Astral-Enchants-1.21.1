@@ -22,11 +22,11 @@ public class DataGenerators {
 
 
         lookupProvider = generator.addProvider(event.includeServer(), new AEDatapackProvider(packOutput, lookupProvider)).getRegistryProvider();
-        generator.addProvider(event.includeServer(), new AELootModifierProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new AERecipeProvider(packOutput, lookupProvider));
         AEBlockTagsProvider blockTags = new AEBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);
         generator.addProvider(event.includeServer(), new AEItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new AELootModifierProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new AERecipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new AEEnchantmentTagsProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new AELanguageProviderENUS(packOutput));
         generator.addProvider(event.includeServer(), new AELanguageProviderJAJP(packOutput));

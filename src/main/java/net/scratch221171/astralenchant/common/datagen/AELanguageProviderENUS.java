@@ -3,6 +3,8 @@ package net.scratch221171.astralenchant.common.datagen;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.Config;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
@@ -15,6 +17,8 @@ public class AELanguageProviderENUS extends LanguageProvider {
     @Override
     protected void addTranslations() {
         // エンチャント
+        add(AstralEnchant.MOD_ID + ".enchantment.disabled", "[Disabled]");
+
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment"), "Mitigation Piercing");
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "Attacks penetrate various forms of damage mitigation.");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment"), "Last Stand");
@@ -63,29 +67,32 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant Server Config");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "Enchantment Settings");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience", "Base experience points required for Last Stand");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience.tooltip", "The cost for Last Stand at level N is (base value / N). By default, this is approximately equivalent to 34 levels.");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag", "Last Stand ignores invulnerability-bypassing damage");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "When this setting is disabled, revival is not possible if the damage source has the invulnerability-bypassing tag (such as /kill or the void).");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "Include Overload levels in the total level calculation for Essence of Enchanting");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier", "Essence of Enchant level multiplier (%)");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier.tooltip", "Specifies how many percent the modifier multiplier increases for each additional total enchantment level on the item.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast(), "Base experience points required for Last Stand");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() + ".tooltip", "The cost for Last Stand at level N is (base value / N). By default, this is approximately equivalent to 34 levels.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast(), "Last Stand ignores invulnerability-bypassing damage");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast() + ".tooltip", "When this setting is disabled, revival is not possible if the damage source has the invulnerability-bypassing tag (such as /kill or the void).");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast(), "Include Overload levels in the total level calculation for Essence of Enchanting");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "Essence of Enchant level multiplier (%)");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "Specifies how many percent the modifier multiplier increases for each additional total enchantment level on the item.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable Vanilla Item Recipes");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be necessary for game progression, such as bundles.");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "Mitigation Piercing");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.LAST_STAND.location().getPath(), "Last Stand");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ITEM_PROTECTION.location().getPath(), "Item Protection");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), "Essence of Enchantment");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COOLDOWN_REDUCTION.location().getPath(), "Cooldown Reduction");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.FEATHER_TOUCH.location().getPath(), "Feather Touch");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ADVENTURERS_LORE.location().getPath(), "Adventurer’s Lore");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COMPATIBILITY.location().getPath(), "Compatibility");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "Endless Appetite");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "Momentum");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "Instant Teleport");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "Overload");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.SLOT_EXPANSION.location().getPath(), "Slot Expansion");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.REACTIVE_ARMOR.location().getPath(), "Reactive Armor");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MITIGATION_PIERCING.getPath().getLast(), "Mitigation Piercing");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND.getPath().getLast(), "Last Stand");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ITEM_PROTECTION.getPath().getLast(), "Item Protection");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANTMENT.getPath().getLast(), "Essence of Enchantment");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.COOLDOWN_REDUCTION.getPath().getLast(), "Cooldown Reduction");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.FEATHER_TOUCH.getPath().getLast(), "Feather Touch");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ADVENTURERS_LORE.getPath().getLast(), "Adventurer's Lore");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.COMPATIBILITY.getPath().getLast(), "Compatibility");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENDLESS_APPETITE.getPath().getLast(), "Endless Appetite");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MOMENTUM.getPath().getLast(), "Momentum");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT.getPath().getLast(), "Instant Teleport");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.OVERLOAD.getPath().getLast(), "Overload");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "Slot Expansion");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "Reactive Armor");
+
     }
 }

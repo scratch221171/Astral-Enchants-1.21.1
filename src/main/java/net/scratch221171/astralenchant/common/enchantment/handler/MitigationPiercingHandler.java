@@ -15,12 +15,13 @@ import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class MitigationPiercingHandler {
+
     @SubscribeEvent
     private static void addDamageTag(EntityInvulnerabilityCheckEvent event) {
         if (Config.MITIGATION_PIERCING.isFalse()) return;
@@ -42,6 +43,7 @@ public class MitigationPiercingHandler {
     // パーティクル
     @SubscribeEvent
     private static void onDamage(LivingIncomingDamageEvent event) {
+        if (Config.MITIGATION_PIERCING.isFalse()) return;
         Entity entity = event.getEntity();
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MITIGATION_PIERCING, entity.level());
         ItemStack weapon = event.getSource().getWeaponItem();

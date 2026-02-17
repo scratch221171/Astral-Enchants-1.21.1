@@ -3,6 +3,8 @@ package net.scratch221171.astralenchant.common.datagen;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.Config;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
@@ -15,6 +17,8 @@ public class AELanguageProviderJAJP extends LanguageProvider {
     @Override
     protected void addTranslations() {
         // エンチャント
+        add(AstralEnchant.MOD_ID + ".enchantment.disabled", "[無効化済み]");
+
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment"), "軽減貫通");
         add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "攻撃が様々なダメージ軽減を貫通します。");
         add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment"), "ラストスタンド");
@@ -63,30 +67,33 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant サーバー設定");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "エンチャントの設定");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience", "ラストスタンドに必要な経験値ポイントの基本値");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_required_base_experience.tooltip", "レベルNのラストスタンドの消費量は（基本値/N）です。デフォルトではおおよそ34レベルです。");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag", "ラストスタンドが無敵貫通を無視");
-        add(AstralEnchant.MOD_ID + ".configuration.last_stand_ignore_bypasses_invulnerability_tag.tooltip", "この設定がオフのとき、ダメージソースに無敵貫通タグが付いている場合（/killや奈落など）は復活できません。");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation", "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_include_overload_in_calculation.tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier", "エンチャントの極意のレベル倍率（％）");
-        add(AstralEnchant.MOD_ID + ".configuration.essence_of_enchant_level_multiplier.tooltip", "アイテムのエンチャントの合計レベルが1レベル増えるごとに、モディファイアの倍率が何％伸びるか指定します。");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() , "ラストスタンドに必要な経験値ポイントの基本値");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() + ".tooltip", "レベルNのラストスタンドの消費量は（基本値/N）です。デフォルトではおおよそ34レベルです。");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast(), "ラストスタンドが無敵貫通を無視");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast() + ".tooltip", "この設定がオフのとき、ダメージソースに無敵貫通タグが付いている場合（/killや奈落など）は復活できません。");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast(), "オーバーロードレベルをエンチャントの極意の総レベル計算に適用");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "この設定に関係なく、エンチャントの極意自体のレベルには適用されます。");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "エンチャントの極意のレベル倍率（％）");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "アイテムのエンチャントの合計レベルが1レベル増えるごとに、モディファイアの倍率が何％伸びるか指定します。");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "バニラアイテムのレシピを有効化");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "バンドルなど、ゲーム進行上必要になるかもしれないバニラアイテムのレシピを有効化します。");
+
 
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "エンチャントの切り替え");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MITIGATION_PIERCING.location().getPath(), "軽減貫通");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.LAST_STAND.location().getPath(), "ラストスタンド");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ITEM_PROTECTION.location().getPath(), "アイテム保護");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().getPath(), "エンチャントの極意");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COOLDOWN_REDUCTION.location().getPath(), "クールダウン削減");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.FEATHER_TOUCH.location().getPath(), "フェザータッチ");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ADVENTURERS_LORE.location().getPath(), "冒険者の心得");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.COMPATIBILITY.location().getPath(), "適合");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.ENDLESS_APPETITE.location().getPath(), "果てしない食欲");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.MOMENTUM.location().getPath(), "速度維持");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.INSTANT_TELEPORT.location().getPath(), "即時テレポート");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.OVERLOAD.location().getPath(), "オーバーロード");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.SLOT_EXPANSION.location().getPath(), "スロット拡張");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEEnchantments.REACTIVE_ARMOR.location().getPath(), "反応装甲");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MITIGATION_PIERCING.getPath().getLast(), "軽減貫通");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND.getPath().getLast(), "ラストスタンド");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ITEM_PROTECTION.getPath().getLast(), "アイテム保護");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANTMENT.getPath().getLast(), "エンチャントの極意");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.COOLDOWN_REDUCTION.getPath().getLast(), "クールダウン削減");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.FEATHER_TOUCH.getPath().getLast(), "フェザータッチ");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ADVENTURERS_LORE.getPath().getLast(), "冒険者の心得");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.COMPATIBILITY.getPath().getLast(), "適合");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENDLESS_APPETITE.getPath().getLast(), "果てしない食欲");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MOMENTUM.getPath().getLast(), "速度維持");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT.getPath().getLast(), "即時テレポート");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.OVERLOAD.getPath().getLast(), "オーバーロード");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "スロット拡張");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "反応装甲");
     }
 }

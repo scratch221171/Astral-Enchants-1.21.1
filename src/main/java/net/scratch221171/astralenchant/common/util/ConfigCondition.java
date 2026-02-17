@@ -10,14 +10,13 @@ import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 
 public record ConfigCondition(String key) implements ICondition {
     private static final Path path = FMLPaths.CONFIGDIR.get().resolve(AstralEnchant.MOD_ID + "-server.toml");
-    private static final CommentedFileConfig config = CommentedFileConfig.builder(path).build();
+    private static final CommentedFileConfig configFile = CommentedFileConfig.builder(path).build();
 
     public static final MapCodec<ConfigCondition> CODEC =
             RecordCodecBuilder.mapCodec(inst -> inst.group(
@@ -34,15 +33,15 @@ public record ConfigCondition(String key) implements ICondition {
 
     @Override
     public boolean test(@NotNull IContext context) {
-        config.load();
-        String path = Config.BOOLEAN_PATH_DICT.get(key);
-        AstralEnchant.LOGGER.info(key);
-        AstralEnchant.LOGGER.info(path);
-        return config.get(path);
+//        String path = Config.BOOLEAN_PATH_DICT.get(key);
+        // 設定ファイル生成時(ワールド作成時など)に参照できず
+        var config = Config.TOGGLING_CONFIG_DICT.get(key);
+        configFile.load();
+        return configFile.getOrElse(config.getPath(), config.getDefault());
     }
 
     @Override
-    public MapCodec<? extends ICondition> codec() {
+    public @NotNull MapCodec<? extends ICondition> codec() {
         return CODEC;
     }
 }

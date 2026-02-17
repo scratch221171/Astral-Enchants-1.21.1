@@ -11,12 +11,13 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class ReactiveArmorHandler {
+
     @SubscribeEvent
     private static void addDisabledDamageTag(EntityInvulnerabilityCheckEvent event) {
         if (Config.REACTIVE_ARMOR.isFalse()) return;

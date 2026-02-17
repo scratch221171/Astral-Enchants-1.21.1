@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "astralenchant:config_condition",
-      "path": "mitigation_piercing"
-    }
-  ],
   "anvil_cost": 32,
   "description": {
     "translate": "enchantment.astralenchant.mitigation_piercing"

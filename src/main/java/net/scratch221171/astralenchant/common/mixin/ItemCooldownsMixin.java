@@ -2,7 +2,7 @@ package net.scratch221171.astralenchant.common.mixin;
 
 import net.minecraft.world.item.ItemCooldowns;
 import net.scratch221171.astralenchant.common.Config;
-import net.scratch221171.astralenchant.common.datagen.AEEnchantments;
+import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,6 +24,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
     @Override
     public float astralEnchant$getCooldownReductionMultiplier() { return this.astralEnchant$cooldownReductionMultiplier; }
 
+    // astralEnchant$cooldownReductionMultiplier更新時にConfigチェック済みだが、付けたまま設定を切るとmultiplierが固定されて大変なので設定チェック
     /**
      * {@link AEEnchantments#COOLDOWN_REDUCTION} が付いている場合はクールダウンの終了時間を早める。
      */

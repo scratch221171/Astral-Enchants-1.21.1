@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "astralenchant:config_condition",
-      "path": "feather_touch"
-    }
-  ],
   "anvil_cost": 16,
   "description": {
     "translate": "enchantment.astralenchant.feather_touch"

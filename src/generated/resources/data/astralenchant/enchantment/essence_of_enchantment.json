@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "astralenchant:config_condition",
-      "path": "essence_of_enchantment"
-    }
-  ],
   "anvil_cost": 32,
   "description": {
     "translate": "enchantment.astralenchant.essence_of_enchantment"

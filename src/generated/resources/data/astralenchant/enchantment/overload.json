@@ -1,10 +1,4 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "astralenchant:config_condition",
-      "path": "overload"
-    }
-  ],
   "anvil_cost": 32,
   "description": {
     "translate": "enchantment.astralenchant.overload"
