@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
@@ -36,7 +37,7 @@ import java.util.Map;
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class FeatherTouchHandler {
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     private static void onBreak(BlockEvent.BreakEvent event) {
         if (Config.FEATHER_TOUCH.isFalse()) return;
         Player player = event.getPlayer();
@@ -75,7 +76,7 @@ public class FeatherTouchHandler {
         FeatherTouchCache.CACHE.put(pos, stack);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     private static void onDrops(BlockDropsEvent event) {
         ItemStack cached = FeatherTouchCache.CACHE.remove(event.getPos());
 

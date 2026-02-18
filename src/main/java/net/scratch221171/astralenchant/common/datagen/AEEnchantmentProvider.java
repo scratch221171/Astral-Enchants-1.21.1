@@ -168,7 +168,7 @@ public class AEEnchantmentProvider {
                 16,
                 EquipmentSlotGroup.ANY)));
 
-        register(context, AEEnchantments.REACTIVE_ARMOR,  Enchantment.enchantment(Enchantment.definition(
+        register(context, AEEnchantments.REACTIVE_ARMOR, Enchantment.enchantment(Enchantment.definition(
                 chest,
                 1,
                 1,
@@ -176,6 +176,15 @@ public class AEEnchantmentProvider {
                 Enchantment.dynamicCost(150,10),
                 16,
                 EquipmentSlotGroup.CHEST)));
+
+        register(context, AEEnchantments.MYSTIC_REMNANTS, Enchantment.enchantment(Enchantment.definition(
+                weapon,
+                1,
+                5,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                16,
+                EquipmentSlotGroup.MAINHAND)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

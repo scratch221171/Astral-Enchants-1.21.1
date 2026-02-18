@@ -146,4 +146,10 @@ public class AEEnchantments {
      */
     public static final ResourceKey<Enchantment> REACTIVE_ARMOR = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "reactive_armor"));
+
+    /**
+     * 敵を倒した際に稀にエンチャントの本をドロップするようになる。
+     */
+    public static final ResourceKey<Enchantment> MYSTIC_REMNANTS = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mystic_remnants"));
 }

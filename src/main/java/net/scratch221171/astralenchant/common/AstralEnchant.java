@@ -11,6 +11,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.scratch221171.astralenchant.common.registries.*;
 import net.scratch221171.astralenchant.compat.accessories.AccessoriesCompat;
+import net.scratch221171.astralenchant.compat.apotheosis.ApotheosisCompat;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -40,6 +41,10 @@ public class AstralEnchant {
 
         if (ModList.get().isLoaded("accessories")) {
             AccessoriesCompat.register(modEventBus);
+        }
+
+        if (ModList.get().isLoaded("apotheosis")) {
+            ApotheosisCompat.register(modEventBus);
         }
     }
 
