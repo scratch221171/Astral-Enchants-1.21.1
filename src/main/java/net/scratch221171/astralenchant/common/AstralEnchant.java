@@ -32,6 +32,7 @@ public class AstralEnchant {
         AEDataComponents.register(modEventBus);
         AELootModifiers.register(modEventBus);
         AEConfigCondition.register(modEventBus);
+        AENumberProviders.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

@@ -180,10 +180,10 @@ public class AEEnchantmentProvider {
         register(context, AEEnchantments.MYSTIC_REMNANTS, Enchantment.enchantment(Enchantment.definition(
                 weapon,
                 1,
-                5,
+                3,
                 Enchantment.dynamicCost(100,10),
                 Enchantment.dynamicCost(150,10),
-                16,
+                4,
                 EquipmentSlotGroup.MAINHAND)));
     }
 

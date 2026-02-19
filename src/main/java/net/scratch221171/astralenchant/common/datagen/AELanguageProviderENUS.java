@@ -49,6 +49,8 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "Increases the number of accessory slots the item currently occupies by the enchantment level.");
         add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment"), "Reactive Armor");
         add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "Negates effects that bypass armor and enchantments for certain types of damage.");
+        add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment"), "Mystic Remnants");
+        add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment", "desc"), "Killed mobs will occasionally drop enchanted books.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
@@ -93,6 +95,7 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + Config.OVERLOAD.getPath().getLast(), "Overload");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "Slot Expansion");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "Reactive Armor");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MYSTIC_REMNANTS.getPath().getLast(), "Mystic Remnants");
 
     }
 }

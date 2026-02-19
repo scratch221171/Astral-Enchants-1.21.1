@@ -16,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -180,6 +181,14 @@ public class AERecipeProvider extends RecipeProvider {
                     .add('5', AEItems.ARCANE_QUARTZ)
                     .add('6', EBIngredient(Enchantments.FEATHER_FALLING, 4, holderLookup))
                     .add('7', Items.DRAGON_BREATH)
+                    .save(output);
+
+            AERecipeBuildingHelper.shapedEB(AEEnchantments.MYSTIC_REMNANTS, 1, holderLookup)
+                    .pattern(" 1 ").pattern("232").pattern(" 4 ")
+                    .add('1', Ingredient.of(Tags.Items.GEMS))
+                    .add('2', Items.AMETHYST_SHARD)
+                    .add('3', Items.BOOK)
+                    .add('4', AEItems.ARCANE_QUARTZ)
                     .save(output);
         }
 

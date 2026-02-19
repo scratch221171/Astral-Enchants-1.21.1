@@ -35,6 +35,7 @@ public class Config {
     public static final ModConfigSpec.BooleanValue OVERLOAD;
     public static final ModConfigSpec.BooleanValue SLOT_EXPANSION;
     public static final ModConfigSpec.BooleanValue REACTIVE_ARMOR;
+    public static final ModConfigSpec.BooleanValue MYSTIC_REMNANTS;
 
     static {
         BUILDER.push("settings");
@@ -60,6 +61,7 @@ public class Config {
         OVERLOAD = registerEnchantmentTogglingConfig(AEEnchantments.OVERLOAD);
         SLOT_EXPANSION = registerEnchantmentTogglingConfig(AEEnchantments.SLOT_EXPANSION);
         REACTIVE_ARMOR = registerEnchantmentTogglingConfig(AEEnchantments.REACTIVE_ARMOR);
+        MYSTIC_REMNANTS = registerEnchantmentTogglingConfig(AEEnchantments.MYSTIC_REMNANTS);
         BUILDER.pop();
     }
 
