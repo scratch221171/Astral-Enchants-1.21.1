@@ -36,6 +36,7 @@ public class Config {
     public static final ModConfigSpec.BooleanValue SLOT_EXPANSION;
     public static final ModConfigSpec.BooleanValue REACTIVE_ARMOR;
     public static final ModConfigSpec.BooleanValue MYSTIC_REMNANTS;
+    public static final ModConfigSpec.BooleanValue CURSE_OF_IGNORANCE;
 
     static {
         BUILDER.push("settings");
@@ -62,6 +63,7 @@ public class Config {
         SLOT_EXPANSION = registerEnchantmentTogglingConfig(AEEnchantments.SLOT_EXPANSION);
         REACTIVE_ARMOR = registerEnchantmentTogglingConfig(AEEnchantments.REACTIVE_ARMOR);
         MYSTIC_REMNANTS = registerEnchantmentTogglingConfig(AEEnchantments.MYSTIC_REMNANTS);
+        CURSE_OF_IGNORANCE = registerEnchantmentTogglingConfig(AEEnchantments.CURSE_OF_IGNORANCE);
         BUILDER.pop();
     }
 

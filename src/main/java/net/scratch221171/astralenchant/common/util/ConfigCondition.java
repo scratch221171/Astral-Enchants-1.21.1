@@ -15,9 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.file.Path;
 
 public record ConfigCondition(String key) implements ICondition {
-    private static final Path path = FMLPaths.CONFIGDIR.get().resolve(AstralEnchant.MOD_ID + "-server.toml");
-    private static final CommentedFileConfig configFile = CommentedFileConfig.builder(path).build();
-
     public static final MapCodec<ConfigCondition> CODEC =
             RecordCodecBuilder.mapCodec(inst -> inst.group(
                     Codec.STRING.fieldOf("path").forGetter(ConfigCondition::key)
@@ -31,12 +28,18 @@ public record ConfigCondition(String key) implements ICondition {
         return new ConfigCondition(key);
     }
 
+    private static final Path path = FMLPaths.CONFIGDIR.get().resolve(AstralEnchant.MOD_ID + "-server.toml");
+    private static final CommentedFileConfig configFile = CommentedFileConfig.builder(path).build();
+
     @Override
     public boolean test(@NotNull IContext context) {
-//        String path = Config.BOOLEAN_PATH_DICT.get(key);
-        // 設定ファイル生成時(ワールド作成時など)に参照できず
+        return test();
+    }
+
+    public boolean test() {
         var config = Config.TOGGLING_CONFIG_DICT.get(key);
         configFile.load();
+        // 設定ファイル生成時(ワールド作成時など)に参照できない時はデフォルト値を返す
         return configFile.getOrElse(config.getPath(), config.getDefault());
     }
 

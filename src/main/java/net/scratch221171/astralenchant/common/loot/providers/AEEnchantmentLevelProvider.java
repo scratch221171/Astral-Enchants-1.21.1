@@ -20,11 +20,11 @@ import javax.annotation.Nullable;
 
 public record AEEnchantmentLevelProvider(Holder<Enchantment> enchantment, LevelBasedValue amount, EnchantmentTarget target) implements NumberProvider {
     public static final MapCodec<AEEnchantmentLevelProvider> CODEC = RecordCodecBuilder.mapCodec(
-            p_345879_ -> p_345879_.group(
+            inst -> inst.group(
                     Enchantment.CODEC.fieldOf("enchantment").forGetter(AEEnchantmentLevelProvider::enchantment),
                     LevelBasedValue.CODEC.fieldOf("amount").forGetter(AEEnchantmentLevelProvider::amount),
                     EnchantmentTarget.CODEC.fieldOf("target").forGetter(AEEnchantmentLevelProvider::target)
-                    ).apply(p_345879_, AEEnchantmentLevelProvider::new)
+                    ).apply(inst, AEEnchantmentLevelProvider::new)
     );
 
     @Override

@@ -18,6 +18,6 @@ public class AEEnchantmentTagsProvider extends EnchantmentTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        tag(EnchantmentTags.CURSE).add(AEEnchantments.ITEM_PROTECTION).replace(false);
+        tag(EnchantmentTags.CURSE).add(AEEnchantments.ITEM_PROTECTION).add(AEEnchantments.CURSE_OF_IGNORANCE).replace(false);
     }
 }

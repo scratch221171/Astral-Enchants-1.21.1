@@ -185,6 +185,15 @@ public class AEEnchantmentProvider {
                 Enchantment.dynamicCost(150,10),
                 4,
                 EquipmentSlotGroup.MAINHAND)));
+
+        register(context, AEEnchantments.CURSE_OF_IGNORANCE, Enchantment.enchantment(Enchantment.definition(
+                weapon,
+                1,
+                1,
+                Enchantment.dynamicCost(100,10),
+                Enchantment.dynamicCost(150,10),
+                4,
+                EquipmentSlotGroup.ANY)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

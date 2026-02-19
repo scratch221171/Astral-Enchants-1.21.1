@@ -51,6 +51,8 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "Negates effects that bypass armor and enchantments for certain types of damage.");
         add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment"), "Mystic Remnants");
         add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment", "desc"), "Killed mobs will occasionally drop enchanted books.");
+        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment"), "Curse of Ignorance");
+        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment", "desc"), "Replaces the tooltip with cursed text.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
@@ -96,6 +98,7 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "Slot Expansion");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "Reactive Armor");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.MYSTIC_REMNANTS.getPath().getLast(), "Mystic Remnants");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.CURSE_OF_IGNORANCE.getPath().getLast(), "Curse of Ignorance");
 
     }
 }

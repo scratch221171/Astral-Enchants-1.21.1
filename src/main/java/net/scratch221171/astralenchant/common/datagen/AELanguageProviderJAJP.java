@@ -51,6 +51,9 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "一部のダメージタイプのアーマーおよびエンチャントを貫通する効果を無効化します。");
         add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment"), "神秘の残滓");
         add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment", "desc"), "倒されたmobが稀にエンチャントの本をドロップするようになります。");
+        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment"), "無知の呪い");
+        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment", "desc"), "ツールチップを呪われた文字に置き換えます。");
+
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "クールダウン短縮率");
@@ -98,5 +101,6 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "スロット拡張");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "反応装甲");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.MYSTIC_REMNANTS.getPath().getLast(), "神秘の残滓");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.CURSE_OF_IGNORANCE.getPath().getLast(), "無知の呪い");
     }
 }

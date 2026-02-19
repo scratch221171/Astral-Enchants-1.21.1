@@ -10,7 +10,7 @@ import net.scratch221171.astralenchant.common.util.ConfigCondition;
 
 import java.util.function.Supplier;
 
-public class AEConfigCondition {
+public class AEConditions {
     public static final DeferredRegister<MapCodec<? extends ICondition>> CONDITION_CODECS =
             DeferredRegister.create(NeoForgeRegistries.Keys.CONDITION_CODECS, AstralEnchant.MOD_ID);
 

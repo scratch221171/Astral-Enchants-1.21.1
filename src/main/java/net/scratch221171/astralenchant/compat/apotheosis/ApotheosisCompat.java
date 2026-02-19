@@ -4,6 +4,5 @@ import net.neoforged.bus.api.IEventBus;
 
 public class ApotheosisCompat {
     public static void register(IEventBus bus) {
-
     }
 }

@@ -11,6 +11,7 @@ import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.loot.EBLootModifier;
+import net.scratch221171.astralenchant.common.loot.predicates.LootItemConfigCondition;
 import net.scratch221171.astralenchant.common.loot.providers.AEEnchantmentLevelProvider;
 import net.scratch221171.astralenchant.common.util.ConfigCondition;
 
@@ -31,14 +32,15 @@ public class AELootModifierProvider extends GlobalLootModifierProvider {
                                         0f,
                                         LevelBasedValue.perLevel(0.05f, 0.01f),
                                         this.registries.holderOrThrow(AEEnchantments.MYSTIC_REMNANTS)
-                                )
+                                ),
+                                new LootItemConfigCondition(ConfigCondition.of(AEEnchantments.MYSTIC_REMNANTS).key())
+
                         },
                         AEEnchantmentLevelProvider.of(this.registries.holderOrThrow(AEEnchantments.MYSTIC_REMNANTS),
                                         new LevelBasedValue.Linear(4, 4),
                                         EnchantmentTarget.ATTACKER),
                         EnchantmentTags.IN_ENCHANTING_TABLE
-                ),
-                ConfigCondition.of(AEEnchantments.MYSTIC_REMNANTS)
+                )
         );
     }
 }

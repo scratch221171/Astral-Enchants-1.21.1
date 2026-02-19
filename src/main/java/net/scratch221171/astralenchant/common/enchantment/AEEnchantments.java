@@ -152,4 +152,10 @@ public class AEEnchantments {
      */
     public static final ResourceKey<Enchantment> MYSTIC_REMNANTS = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mystic_remnants"));
+
+    /**
+     * ツールチップが呪われた文字に置き換わる。
+     */
+    public static final ResourceKey<Enchantment> CURSE_OF_IGNORANCE = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "curse_of_ignorance"));
 }
