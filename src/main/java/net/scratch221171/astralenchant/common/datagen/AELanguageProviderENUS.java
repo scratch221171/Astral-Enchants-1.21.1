@@ -1,6 +1,8 @@
 package net.scratch221171.astralenchant.common.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
@@ -19,40 +21,24 @@ public class AELanguageProviderENUS extends LanguageProvider {
         // エンチャント
         add(AstralEnchant.MOD_ID + ".enchantment.disabled", "[Disabled]");
 
-        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment"), "Mitigation Piercing");
-        add(AEEnchantments.MITIGATION_PIERCING.location().toLanguageKey("enchantment", "desc"), "Attacks penetrate various forms of damage mitigation.");
-        add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment"), "Last Stand");
-        add(AEEnchantments.LAST_STAND.location().toLanguageKey("enchantment", "desc"), "Consumes experience points to avoid death.");
-        add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment"), "Item Protection");
-        add(AEEnchantments.ITEM_PROTECTION.location().toLanguageKey("enchantment", "desc"), "Dropped items will never disappear by any means. As a trade-off, the enchantments on the item can no longer be modified.");
-        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment"), "Essence of Enchantment");
-        add(AEEnchantments.ESSENCE_OF_ENCHANTMENT.location().toLanguageKey("enchantment", "desc"), "All item stats increase based on the total level of all enchantments other than this one.");
-        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment"), "Cooldown Reduction");
-        add(AEEnchantments.COOLDOWN_REDUCTION.location().toLanguageKey("enchantment", "desc"), "Reduces the cooldown of all items, including shields and Ender Pearls.");
-        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment"), "Feather Touch");
-        add(AEEnchantments.FEATHER_TOUCH.location().toLanguageKey("enchantment", "desc"), "All breakable blocks are collected as items. While sneaking, block states and components are preserved.");
-        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment"), "Adventurer's Lore");
-        add(AEEnchantments.ADVENTURERS_LORE.location().toLanguageKey("enchantment", "desc"), "Increases luck and the amount of experience gained from mobs and blocks based on the number of completed advancements.");
-        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment"), "Compatibility");
-        add(AEEnchantments.COMPATIBILITY.location().toLanguageKey("enchantment", "desc"), "Allows additional enchantments to be applied to internal items of a bundle with this enchantment while ignoring conflicts.");
-        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment"), "Endless Appetite");
-        add(AEEnchantments.ENDLESS_APPETITE.location().toLanguageKey("enchantment", "desc"), "Enhances natural regeneration and directly heals based on the amount of excess hunger and hidden saturation beyond their caps.");
-        add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment"), "Momentum");
-        add(AEEnchantments.MOMENTUM.location().toLanguageKey("enchantment", "desc"), "Negates movement speed reductions caused by item use or blocks.");
-        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment"), "Instant Teleport");
-        add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "desc"), "When using an Ender Pearl, teleports you to the point you are looking at. While sneaking, the teleport ray passes through a block and sends you to the opposite side of it.");
+        addEnchantWithDesc(AEEnchantments.MITIGATION_PIERCING, "Mitigation Piercing", "Attacks penetrate various forms of damage mitigation.");
+        addEnchantWithDesc(AEEnchantments.LAST_STAND, "Last Stand", "Consumes experience points to avoid death.");
+        addEnchantWithDesc(AEEnchantments.ITEM_PROTECTION, "Item Protection", "Dropped items will never disappear by any means. As a trade-off, the enchantments on the item can no longer be modified.");
+        addEnchantWithDesc(AEEnchantments.ESSENCE_OF_ENCHANTMENT, "Essence of Enchantment", "All item stats increase based on the total level of all enchantments other than this one.");
+        addEnchantWithDesc(AEEnchantments.COOLDOWN_REDUCTION, "Cooldown Reduction", "Reduces the cooldown of all items, including shields and Ender Pearls.");
+        addEnchantWithDesc(AEEnchantments.FEATHER_TOUCH, "Feather Touch", "All breakable blocks are collected as items. While sneaking, block states and components are preserved.");
+        addEnchantWithDesc(AEEnchantments.ADVENTURERS_LORE, "Adventurer's Lore", "Increases luck and the amount of experience gained from mobs and blocks based on the number of completed advancements.");
+        addEnchantWithDesc(AEEnchantments.COMPATIBILITY, "Compatibility", "Allows additional enchantments to be applied to internal items of a bundle with this enchantment while ignoring conflicts.");
+        addEnchantWithDesc(AEEnchantments.ENDLESS_APPETITE, "Endless Appetite", "Enhances natural regeneration and directly heals based on the amount of excess hunger and hidden saturation beyond their caps.");
+        addEnchantWithDesc(AEEnchantments.MOMENTUM, "Momentum", "Negates movement speed reductions caused by item use or blocks.");
+        addEnchantWithDesc(AEEnchantments.INSTANT_TELEPORT, "Instant Teleport", "When using an Ender Pearl, teleports you to the point you are looking at. While sneaking, the teleport ray passes through a block and sends you to the opposite side of it.");
         add(AEEnchantments.INSTANT_TELEPORT.location().toLanguageKey("enchantment", "message.fail"), "No valid block exists within range!");
-        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment"), "Overload");
-        add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "desc"), "Grants Overload to the item, increasing the level of existing enchantments by the Overload value.");
+        addEnchantWithDesc(AEEnchantments.OVERLOAD, "Overload", "Grants Overload to the item, increasing the level of existing enchantments by the Overload value.");
         add(AEEnchantments.OVERLOAD.location().toLanguageKey("enchantment", "tooltip.text"), "Overload: %s Levels");
-        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment"), "Slot Expansion");
-        add(AEEnchantments.SLOT_EXPANSION.location().toLanguageKey("enchantment", "desc"), "Increases the number of accessory slots the item currently occupies by the enchantment level.");
-        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment"), "Reactive Armor");
-        add(AEEnchantments.REACTIVE_ARMOR.location().toLanguageKey("enchantment", "desc"), "Negates effects that bypass armor and enchantments for certain types of damage.");
-        add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment"), "Mystic Remnants");
-        add(AEEnchantments.MYSTIC_REMNANTS.location().toLanguageKey("enchantment", "desc"), "Killed mobs will occasionally drop enchanted books.");
-        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment"), "Curse of Ignorance");
-        add(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment", "desc"), "Replaces the tooltip with cursed text.");
+        addEnchantWithDesc(AEEnchantments.SLOT_EXPANSION, "Slot Expansion", "Increases the number of accessory slots the item currently occupies by the enchantment level.");
+        addEnchantWithDesc(AEEnchantments.REACTIVE_ARMOR, "Reactive Armor", "Negates effects that bypass armor and enchantments for certain types of damage.");
+        addEnchantWithDesc(AEEnchantments.MYSTIC_REMNANTS, "Mystic Remnants", "Killed mobs will occasionally drop enchanted books.");
+        addEnchantWithDesc(AEEnchantments.CURSE_OF_IGNORANCE, "Curse of Ignorance", "Replaces the tooltip with cursed text.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
@@ -83,22 +69,11 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be necessary for game progression, such as bundles.");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.MITIGATION_PIERCING.getPath().getLast(), "Mitigation Piercing");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND.getPath().getLast(), "Last Stand");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ITEM_PROTECTION.getPath().getLast(), "Item Protection");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANTMENT.getPath().getLast(), "Essence of Enchantment");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.COOLDOWN_REDUCTION.getPath().getLast(), "Cooldown Reduction");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.FEATHER_TOUCH.getPath().getLast(), "Feather Touch");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ADVENTURERS_LORE.getPath().getLast(), "Adventurer's Lore");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.COMPATIBILITY.getPath().getLast(), "Compatibility");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENDLESS_APPETITE.getPath().getLast(), "Endless Appetite");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.MOMENTUM.getPath().getLast(), "Momentum");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT.getPath().getLast(), "Instant Teleport");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.OVERLOAD.getPath().getLast(), "Overload");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.SLOT_EXPANSION.getPath().getLast(), "Slot Expansion");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR.getPath().getLast(), "Reactive Armor");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.MYSTIC_REMNANTS.getPath().getLast(), "Mystic Remnants");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.CURSE_OF_IGNORANCE.getPath().getLast(), "Curse of Ignorance");
+    }
 
+    private void addEnchantWithDesc(ResourceKey<Enchantment> key, String name, String desc) {
+        add(key.location().toLanguageKey("enchantment"), name);
+        add(key.location().toLanguageKey("enchantment", "desc"), desc);
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.TOGGLING_CONFIG_DICT.get(key.location().getPath()).getPath().getLast(), name);
     }
 }

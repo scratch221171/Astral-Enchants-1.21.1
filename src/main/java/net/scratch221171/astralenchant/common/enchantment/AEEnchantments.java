@@ -6,7 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AEEnchantments {
+    public static final List<ResourceKey<Enchantment>> ENCHANTMENTS = new ArrayList<>();
+
     /**
      * 与えた攻撃に様々なダメージタイプタグを付与し、ダメージ軽減を貫通する。
      * <p>
@@ -110,9 +115,9 @@ public class AEEnchantments {
     /**
      * エンダーパール使用時、瞬時に視線の先に真っ直ぐテレポートする。スニーク時はブロックを貫通する。
      * <p>
-     * Handler : none
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.InstantTeleportHandler}
      * <p>
-     * Mixin : {@link net.scratch221171.astralenchant.common.mixin.EnderPearlItemMixin}
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> INSTANT_TELEPORT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "instant_teleport"));
@@ -149,13 +154,40 @@ public class AEEnchantments {
 
     /**
      * 敵を倒した際に稀にエンチャントの本をドロップするようになる。
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.datagen.AELootModifierProvider}
+     * <p>
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> MYSTIC_REMNANTS = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "mystic_remnants"));
 
     /**
      * ツールチップが呪われた文字に置き換わる。
+     * <p>
+     * Handler : {@link net.scratch221171.astralenchant.common.enchantment.handler.CurseOfIgnoranceHandler}
+     * <p>
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> CURSE_OF_IGNORANCE = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "curse_of_ignorance"));
+
+    static {
+        ENCHANTMENTS.add(MITIGATION_PIERCING);
+        ENCHANTMENTS.add(LAST_STAND);
+        ENCHANTMENTS.add(ITEM_PROTECTION);
+        ENCHANTMENTS.add(ESSENCE_OF_ENCHANTMENT);
+        ENCHANTMENTS.add(COOLDOWN_REDUCTION);
+        ENCHANTMENTS.add(FEATHER_TOUCH);
+        ENCHANTMENTS.add(ADVENTURERS_LORE);
+        ENCHANTMENTS.add(COMPATIBILITY);
+        ENCHANTMENTS.add(ENDLESS_APPETITE);
+        ENCHANTMENTS.add(MOMENTUM);
+        ENCHANTMENTS.add(INSTANT_TELEPORT);
+        ENCHANTMENTS.add(OVERLOAD);
+        ENCHANTMENTS.add(SLOT_EXPANSION);
+        ENCHANTMENTS.add(REACTIVE_ARMOR);
+        ENCHANTMENTS.add(MYSTIC_REMNANTS);
+        ENCHANTMENTS.add(CURSE_OF_IGNORANCE);
+    }
 }

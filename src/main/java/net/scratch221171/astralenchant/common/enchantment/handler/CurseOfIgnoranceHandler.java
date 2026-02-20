@@ -2,6 +2,7 @@ package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.EventPriority;
@@ -29,7 +30,12 @@ public class CurseOfIgnoranceHandler {
 
             List<Component> tooltip = new ArrayList<>();
             for (Component entry : event.getToolTip()) {
-                tooltip.add(entry.copy().setStyle(entry.getStyle().withObfuscated(true)));
+                tooltip.add(
+                        entry.getContents() instanceof TranslatableContents contents
+                                && (contents.getKey().equals(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment"))
+                                    || contents.getKey().equals(AEEnchantments.CURSE_OF_IGNORANCE.location().toLanguageKey("enchantment", "desc"))) ?
+                                entry.copy() : entry.copy().setStyle(entry.getStyle().withObfuscated(true))
+                        );
             }
             event.getToolTip().clear();
             event.getToolTip().addAll(tooltip);

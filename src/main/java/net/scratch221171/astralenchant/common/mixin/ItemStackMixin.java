@@ -15,6 +15,7 @@ import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -25,72 +26,138 @@ import java.util.List;
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
-    /**
-     * {@link AEEnchantments#COMPATIBILITY} が付いている場合は、バンドルにつけられようとしたエンチャントをバンドル内の各アイテムに付け、バンドル自体へのエンチャントをキャンセルする。
-     * {@link AEEnchantments#OVERLOAD} が付与されようとしたエンチャントに含まれていた場合は、このエンチャントを削除し、そのレベルだけ {@link AEDataComponents#OVERLOAD} を増やす。
-     * {@link AEEnchantments#ITEM_PROTECTION} が付いている場合はエンチャントの編集を無効化する。
-     */
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
-    public <T> void astralEnchant$onEnchanted(DataComponentType<? super T> component, T value, CallbackInfoReturnable<T> cir) {
-        if (component != DataComponents.ENCHANTMENTS || !(value instanceof ItemEnchantments itemEnchantments)) return;
-        ItemStack stack = (ItemStack)(Object)this;
+    private <T> void astralEnchant$onEnchanted(
+            DataComponentType<? super T> component,
+            T value,
+            CallbackInfoReturnable<T> cir
+    ) {
+        if (!astralEnchant$isEnchantmentComponent(component, value)) {
+            return;
+        }
+
+        ItemStack stack = (ItemStack) (Object) this;
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server == null) return;
-
-        // バンドル
-        if (Config.COMPATIBILITY.isTrue() && stack.is(Items.BUNDLE)) {
-            Holder<Enchantment> compatible = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
-            BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-            if (stack.getEnchantmentLevel(compatible) > 0 && !contents.isEmpty()) {
-                ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-                itemEnchantments.entrySet().stream()
-                    // Compatible自身および現在バンドルについているエンチャントは、中身に付与されないようにする(つまり新しく追加されたエンチャントのみ付与する)
-                    // バンドル自身と合成されたエンチャント本に同じエンチャントが含まれていた場合は...知りません
-                    .filter(entry -> !entry.getKey().is(AEEnchantments.COMPATIBILITY) && stack.getEnchantmentLevel(entry.getKey()) <= 0)
-                    .forEach(entry -> added.set(entry.getKey(), entry.getIntValue()));
-
-                List<ItemStack> newItems = new ArrayList<>();
-                for (ItemStack s : contents.items()) {
-                    ItemStack copy = s.copy();
-
-                    ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
-                    ItemEnchantments result;
-                    if (current != null) {
-                        result = AEUtils.mergeItemEnchants(added.toImmutable(), current);
-                        copy.set(DataComponents.ENCHANTMENTS, result);
-                    }
-
-                    newItems.add(copy);
-                }
-
-                stack.set(DataComponents.BUNDLE_CONTENTS, new BundleContents(newItems));
-                cir.setReturnValue(null);
-                // バンドルへのOverload付与&ItemProtectionを無視する
-                return;
-            }
+        if (server == null) {
+            return;
         }
 
-        // Overload コンポーネントを更新
-        if (Config.OVERLOAD.isTrue()) {
-            Holder<Enchantment> overload = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
-            int level = itemEnchantments.getLevel(overload);
-            if (level > 0) {
-                ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-                itemEnchantments.entrySet().stream()
-                        .filter(entry -> !entry.getKey().is(AEEnchantments.OVERLOAD))
-                        .forEach(entry -> newEnchantments.set(entry.getKey(), entry.getIntValue()));
-                stack.set(DataComponents.ENCHANTMENTS, newEnchantments.toImmutable());
-                stack.set(AEDataComponents.OVERLOAD, stack.getOrDefault(AEDataComponents.OVERLOAD, 0) + level);
-                cir.setReturnValue(null);
-            }
+        ItemEnchantments enchantments = (ItemEnchantments) value;
+
+        if (astralEnchant$tryHandleBundle(stack, enchantments, server, cir)) return;
+        if (astralEnchant$tryHandleOverload(stack, enchantments, server, cir)) return;
+        if (astralEnchant$tryHandleItemProtection(stack, server, cir)) return;
+    }
+
+    @Unique
+    private static boolean astralEnchant$isEnchantmentComponent(
+            DataComponentType<?> component,
+            Object value
+    ) {
+        return component == DataComponents.ENCHANTMENTS
+                && value instanceof ItemEnchantments;
+    }
+
+    @Unique
+    private static boolean astralEnchant$tryHandleBundle(
+            ItemStack stack,
+            ItemEnchantments enchantments,
+            MinecraftServer server,
+            CallbackInfoReturnable<?> cir
+    ) {
+        if (!Config.COMPATIBILITY.isTrue() || !stack.is(Items.BUNDLE)) {
+            return false;
         }
 
-        // エンチャントを変更不可にする
-        if (Config.ITEM_PROTECTION.isTrue()) {
-            Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
-            if (stack.getEnchantmentLevel(enchantment) > 0) {
-                cir.setReturnValue(null);
-            }
+        Holder<Enchantment> compatibility =
+                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
+
+        if (stack.getEnchantmentLevel(compatibility) <= 0) {
+            return false;
         }
+
+        BundleContents contents =
+                stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        if (contents.isEmpty()) {
+            return false;
+        }
+
+        ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+        enchantments.entrySet().stream()
+                .filter(e ->
+                        !e.getKey().is(AEEnchantments.COMPATIBILITY)
+                                && stack.getEnchantmentLevel(e.getKey()) <= 0
+                )
+                .forEach(e -> added.set(e.getKey(), e.getIntValue()));
+
+        List<ItemStack> newItems = new ArrayList<>();
+        for (ItemStack item : contents.items()) {
+            ItemStack copy = item.copy();
+            ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
+            if (current != null) {
+                copy.set(
+                        DataComponents.ENCHANTMENTS,
+                        AEUtils.mergeItemEnchants(added.toImmutable(), current)
+                );
+            }
+            newItems.add(copy);
+        }
+
+        stack.set(DataComponents.BUNDLE_CONTENTS, new BundleContents(newItems));
+        cir.setReturnValue(null);
+        return true;
+    }
+
+    @Unique
+    private static boolean astralEnchant$tryHandleOverload(
+            ItemStack stack,
+            ItemEnchantments enchantments,
+            MinecraftServer server,
+            CallbackInfoReturnable<?> cir
+    ) {
+        if (!Config.OVERLOAD.isTrue()) {
+            return false;
+        }
+
+        Holder<Enchantment> overload =
+                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
+        int level = enchantments.getLevel(overload);
+        if (level <= 0) {
+            return false;
+        }
+
+        ItemEnchantments.Mutable filtered =
+                new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+        enchantments.entrySet().stream()
+                .filter(e -> !e.getKey().is(AEEnchantments.OVERLOAD))
+                .forEach(e -> filtered.set(e.getKey(), e.getIntValue()));
+
+        stack.set(DataComponents.ENCHANTMENTS, filtered.toImmutable());
+        stack.set(
+                AEDataComponents.OVERLOAD,
+                stack.getOrDefault(AEDataComponents.OVERLOAD, 0) + level
+        );
+        cir.setReturnValue(null);
+        return true;
+    }
+
+    @Unique
+    private static boolean astralEnchant$tryHandleItemProtection(
+            ItemStack stack,
+            MinecraftServer server,
+            CallbackInfoReturnable<?> cir
+    ) {
+        if (!Config.ITEM_PROTECTION.isTrue()) {
+            return false;
+        }
+
+        Holder<Enchantment> protection =
+                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
+        if (stack.getEnchantmentLevel(protection) <= 0) {
+            return false;
+        }
+
+        cir.setReturnValue(null);
+        return true;
     }
 }

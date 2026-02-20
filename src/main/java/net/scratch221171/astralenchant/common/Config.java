@@ -13,7 +13,6 @@ import java.util.Map;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
     public static final Map<String, ModConfigSpec.BooleanValue> TOGGLING_CONFIG_DICT = new HashMap<>();
-    public static final Map<ResourceKey<Enchantment>, ModConfigSpec.BooleanValue> ENCHANTMENT_CONFIG_DICT = new HashMap<>();
 
     public static final ModConfigSpec.BooleanValue ENABLE_VANILLA_ITEM_RECIPES;
     public static final ModConfigSpec.IntValue LAST_STAND_REQUIRED_BASE_EXPERIENCE;
@@ -48,29 +47,27 @@ public class Config {
         BUILDER.pop();
 
         BUILDER.push("enchantment_toggling");
-        MITIGATION_PIERCING = registerEnchantmentTogglingConfig(AEEnchantments.MITIGATION_PIERCING);
-        LAST_STAND = registerEnchantmentTogglingConfig(AEEnchantments.LAST_STAND);
-        ITEM_PROTECTION = registerEnchantmentTogglingConfig(AEEnchantments.ITEM_PROTECTION);
-        ESSENCE_OF_ENCHANTMENT = registerEnchantmentTogglingConfig(AEEnchantments.ESSENCE_OF_ENCHANTMENT);
-        COOLDOWN_REDUCTION = registerEnchantmentTogglingConfig(AEEnchantments.COOLDOWN_REDUCTION);
-        FEATHER_TOUCH = registerEnchantmentTogglingConfig(AEEnchantments.FEATHER_TOUCH);
-        ADVENTURERS_LORE = registerEnchantmentTogglingConfig(AEEnchantments.ADVENTURERS_LORE);
-        COMPATIBILITY = registerEnchantmentTogglingConfig(AEEnchantments.COMPATIBILITY);
-        ENDLESS_APPETITE = registerEnchantmentTogglingConfig(AEEnchantments.ENDLESS_APPETITE);
-        MOMENTUM = registerEnchantmentTogglingConfig(AEEnchantments.MOMENTUM);
-        INSTANT_TELEPORT = registerEnchantmentTogglingConfig(AEEnchantments.INSTANT_TELEPORT);
-        OVERLOAD = registerEnchantmentTogglingConfig(AEEnchantments.OVERLOAD);
-        SLOT_EXPANSION = registerEnchantmentTogglingConfig(AEEnchantments.SLOT_EXPANSION);
-        REACTIVE_ARMOR = registerEnchantmentTogglingConfig(AEEnchantments.REACTIVE_ARMOR);
-        MYSTIC_REMNANTS = registerEnchantmentTogglingConfig(AEEnchantments.MYSTIC_REMNANTS);
-        CURSE_OF_IGNORANCE = registerEnchantmentTogglingConfig(AEEnchantments.CURSE_OF_IGNORANCE);
+        MITIGATION_PIERCING = registerTogglingConfig(AEEnchantments.MITIGATION_PIERCING);
+        LAST_STAND = registerTogglingConfig(AEEnchantments.LAST_STAND);
+        ITEM_PROTECTION = registerTogglingConfig(AEEnchantments.ITEM_PROTECTION);
+        ESSENCE_OF_ENCHANTMENT = registerTogglingConfig(AEEnchantments.ESSENCE_OF_ENCHANTMENT);
+        COOLDOWN_REDUCTION = registerTogglingConfig(AEEnchantments.COOLDOWN_REDUCTION);
+        FEATHER_TOUCH = registerTogglingConfig(AEEnchantments.FEATHER_TOUCH);
+        ADVENTURERS_LORE = registerTogglingConfig(AEEnchantments.ADVENTURERS_LORE);
+        COMPATIBILITY = registerTogglingConfig(AEEnchantments.COMPATIBILITY);
+        ENDLESS_APPETITE = registerTogglingConfig(AEEnchantments.ENDLESS_APPETITE);
+        MOMENTUM = registerTogglingConfig(AEEnchantments.MOMENTUM);
+        INSTANT_TELEPORT = registerTogglingConfig(AEEnchantments.INSTANT_TELEPORT);
+        OVERLOAD = registerTogglingConfig(AEEnchantments.OVERLOAD);
+        SLOT_EXPANSION = registerTogglingConfig(AEEnchantments.SLOT_EXPANSION);
+        REACTIVE_ARMOR = registerTogglingConfig(AEEnchantments.REACTIVE_ARMOR);
+        MYSTIC_REMNANTS = registerTogglingConfig(AEEnchantments.MYSTIC_REMNANTS);
+        CURSE_OF_IGNORANCE = registerTogglingConfig(AEEnchantments.CURSE_OF_IGNORANCE);
         BUILDER.pop();
     }
 
-    private static ModConfigSpec.BooleanValue registerEnchantmentTogglingConfig(ResourceKey<Enchantment> enchantment) {
-        ModConfigSpec.BooleanValue value = registerTogglingConfig(enchantment.location().getPath(), true);
-        ENCHANTMENT_CONFIG_DICT.put(enchantment, value);
-        return value;
+    private static ModConfigSpec.BooleanValue registerTogglingConfig(ResourceKey<Enchantment> enchantment) {
+        return registerTogglingConfig(enchantment.location().getPath(), true);
     }
 
     private static ModConfigSpec.BooleanValue registerTogglingConfig(String path) {

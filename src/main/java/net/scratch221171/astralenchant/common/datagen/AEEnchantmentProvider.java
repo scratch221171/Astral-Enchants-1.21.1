@@ -187,11 +187,11 @@ public class AEEnchantmentProvider {
                 EquipmentSlotGroup.MAINHAND)));
 
         register(context, AEEnchantments.CURSE_OF_IGNORANCE, Enchantment.enchantment(Enchantment.definition(
-                weapon,
+                any,
                 1,
                 1,
-                Enchantment.dynamicCost(100,10),
-                Enchantment.dynamicCost(150,10),
+                Enchantment.constantCost(25),
+                Enchantment.constantCost(50),
                 4,
                 EquipmentSlotGroup.ANY)));
     }
