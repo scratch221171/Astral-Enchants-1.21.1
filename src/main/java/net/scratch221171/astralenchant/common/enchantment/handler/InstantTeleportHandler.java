@@ -60,7 +60,8 @@ public class InstantTeleportHandler {
             ItemStack stack,
             PlayerInteractEvent.RightClickItem event
     ) {
-        double maxDistance = 32 * enchantmentLevel;
+        int distPerLevel = Config.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getAsInt();
+        double maxDistance = Math.min(distPerLevel * enchantmentLevel, Config.INSTANT_TELEPORT_MAX_DISTANCE.getAsInt());
         Vec3 start = player.getEyePosition(1.0F);
         Vec3 direction = player.getLookAngle();
         Vec3 end = start.add(direction.scale(maxDistance));

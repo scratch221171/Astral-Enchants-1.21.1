@@ -57,16 +57,24 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant Server Config");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "Enchantment Settings");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast(), "Base experience points required for Last Stand");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() + ".tooltip", "The cost for Last Stand at level N is (base value / N). By default, this is approximately equivalent to 34 levels.");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast(), "Last Stand ignores invulnerability-bypassing damage");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast() + ".tooltip", "When this setting is disabled, revival is not possible if the damage source has the invulnerability-bypassing tag (such as /kill or the void).");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast(), "Include Overload levels in the total level calculation for Essence of Enchanting");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "Regardless of this setting, it is always applied to the level of Essence of Enchanting itself.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast(), "Required experience points for Last Stand (base value)");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() + ".tooltip", "The experience cost of Last Stand at level N is \"base value ÷ N\". By default, this is approximately 34 levels.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast(), "Last Stand ignores bypass-invulnerability");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast() + ".tooltip", "When disabled, Last Stand will not activate against damage that has the BYPASSES_INVULNERABILITY tag (such as /kill or void damage).");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast(), "Include Overload levels in Essence of Enchant total level calculation");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "Regardless of this setting, Overload levels are always applied to the level of Essence of Enchant itself.");
         add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "Essence of Enchant level multiplier (%)");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "Specifies how many percent the modifier multiplier increases for each additional total enchantment level on the item.");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable Vanilla Item Recipes");
-        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be necessary for game progression, such as bundles.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "Specifies how many percent the modifier multiplier increases for each increase of 1 in the total enchantment level.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable vanilla item recipes");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be required for game progression (such as bundles).");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast(), "Instant Teleport distance increase per level");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast() + ".tooltip", "Specifies how much the maximum teleportable distance increases for each level gained.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast(), "Instant Teleport maximum distance");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast() + ".tooltip", "Specifies the maximum teleport distance provided by this enchantment.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast(), "Damage type tags added by Mitigation Piercing");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags added by Mitigation Piercing. These take priority over Reactive Armor.");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast(), "Damage type tags disabled by Reactive Armor");
+        add(AstralEnchant.MOD_ID + ".configuration." + Config.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags that are disabled by Reactive Armor.");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
     }

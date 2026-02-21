@@ -1,8 +1,11 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import net.minecraft.core.Holder;
-import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -15,6 +18,8 @@ import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 
+import java.util.List;
+
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class ReactiveArmorHandler {
 
@@ -26,8 +31,9 @@ public class ReactiveArmorHandler {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.REACTIVE_ARMOR, entity.level());
             if (EnchantmentHelper.getEnchantmentLevel(enchantment, entity) > 0) {
                 IDamageSourceExtension acc = (IDamageSourceExtension) source;
-                acc.astralEnchant$addDisabledTag(DamageTypeTags.BYPASSES_ARMOR);
-                acc.astralEnchant$addDisabledTag(DamageTypeTags.BYPASSES_ENCHANTMENTS);
+                List<TagKey<DamageType>> tags = Config.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.get()
+                        .stream().map(id -> TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.read(id).getOrThrow())).toList();
+                tags.forEach(acc::astralEnchant$addExtraTag);
             }
         }
     }

@@ -13,7 +13,9 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.Config;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class DisabledEnchantmentTooltip {
@@ -21,6 +23,7 @@ public class DisabledEnchantmentTooltip {
     @SubscribeEvent
     private static void onTooltip(ItemTooltipEvent event) {
         List<Component> tooltip = event.getToolTip();
+        Set<String> cachedDisabled = getDisabledEnchantments();
 
         for (int i = 0; i < tooltip.size(); i++) {
             Component entry = tooltip.get(i);
@@ -28,8 +31,7 @@ public class DisabledEnchantmentTooltip {
             if (!(entry.getContents() instanceof TranslatableContents contents)) {
                 continue;
             }
-
-            if (!isDisabledEnchantment(contents.getKey())) {
+            if (!cachedDisabled.contains(contents.getKey())) {
                 continue;
             }
 
@@ -37,23 +39,20 @@ public class DisabledEnchantmentTooltip {
         }
     }
 
-    private static boolean isDisabledEnchantment(String translationKey) {
+    private static Set<String> getDisabledEnchantments() {
+        Set<String> hashSet = new HashSet<>();
         for (ResourceKey<Enchantment> key : AEEnchantments.ENCHANTMENTS) {
-            if (Config.TOGGLING_CONFIG_DICT.get(key.location().getPath()).isFalse()
-                    && key.location().toLanguageKey("enchantment").equals(translationKey)) {
-                return true;
+            if (Config.TOGGLING_CONFIG_DICT.get(key.location().getPath()).isFalse()) {
+                hashSet.add(key.location().toLanguageKey("enchantment"));
             }
         }
-        return false;
+        return hashSet;
     }
 
     private static MutableComponent createDisabledComponent(Component original) {
         MutableComponent component = original.copy();
         component.setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GRAY).withStrikethrough(true));
-        component.append(
-                Component.translatable("astralenchant.enchantment.disabled")
-                        .setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withStrikethrough(false))
-        );
+        component.append(Component.translatable("astralenchant.enchantment.disabled").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withStrikethrough(false)));
         return component;
     }
 }

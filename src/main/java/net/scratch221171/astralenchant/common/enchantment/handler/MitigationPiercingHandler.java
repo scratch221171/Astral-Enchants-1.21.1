@@ -2,9 +2,12 @@ package net.scratch221171.astralenchant.common.enchantment.handler;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +22,8 @@ import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import net.scratch221171.astralenchant.common.util.IDamageSourceExtension;
 
+import java.util.List;
+
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class MitigationPiercingHandler {
 
@@ -32,10 +37,9 @@ public class MitigationPiercingHandler {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MITIGATION_PIERCING, attacker.level());
             if ((source.getWeaponItem() instanceof ItemStack weapon) && weapon.getEnchantmentLevel(enchantment) > 0) {
                 IDamageSourceExtension acc = (IDamageSourceExtension) source;
-                acc.astralEnchant$addExtraTag(DamageTypeTags.BYPASSES_ARMOR);
-                acc.astralEnchant$addExtraTag(DamageTypeTags.BYPASSES_COOLDOWN);
-                acc.astralEnchant$addExtraTag(DamageTypeTags.BYPASSES_EFFECTS);
-                acc.astralEnchant$addExtraTag(DamageTypeTags.BYPASSES_INVULNERABILITY);
+                List<TagKey<DamageType>> tags = Config.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.get()
+                        .stream().map(id -> TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.read(id).getOrThrow())).toList();
+                tags.forEach(acc::astralEnchant$addExtraTag);
             }
         }
     }
