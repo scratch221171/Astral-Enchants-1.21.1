@@ -17,7 +17,6 @@ import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import net.scratch221171.astralenchant.common.AstralEnchant;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -55,7 +54,6 @@ public class EBLootModifier extends LootModifier{
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(@NotNull ObjectArrayList<ItemStack> generatedLoot, @NotNull LootContext context) {
         Optional<HolderSet.Named<Enchantment>> optional = context.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT).getTag(this.enchantmentTag);
-        AstralEnchant.LOGGER.info(String.valueOf(cost.getInt(context)));
         List<EnchantmentInstance> list = EnchantmentHelper.selectEnchantment(
                 context.getRandom(),
                 new ItemStack(Items.BOOK),
