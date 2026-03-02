@@ -159,11 +159,11 @@ dependencies {
 
     compileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
 
-//    compileOnly("dev.shadowsoffire:Placebo:${minecraft_version}-${project.placebo_version}")
-//    compileOnly("dev.shadowsoffire:ApothicAttributes:${minecraft_version}-${project.apoth_attribs_version}")
-//    compileOnly("dev.shadowsoffire:ApothicSpawners:${minecraft_version}-${project.apoth_spawners_version}")
-//    compileOnly("dev.shadowsoffire:ApothicEnchanting:${minecraft_version}-${project.apoth_ench_version}")
-//    compileOnly("dev.shadowsoffire:Apotheosis:${minecraft_version}-${project.apoth_version}")
+    compileOnly("dev.shadowsoffire:Placebo:${minecraft_version}-${project.placebo_version}")
+    compileOnly("dev.shadowsoffire:ApothicAttributes:${minecraft_version}-${project.apoth_attribs_version}")
+    compileOnly("dev.shadowsoffire:ApothicSpawners:${minecraft_version}-${project.apoth_spawners_version}")
+    compileOnly("dev.shadowsoffire:ApothicEnchanting:${minecraft_version}-${project.apoth_ench_version}")
+    compileOnly("dev.shadowsoffire:Apotheosis:${minecraft_version}-${project.apoth_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

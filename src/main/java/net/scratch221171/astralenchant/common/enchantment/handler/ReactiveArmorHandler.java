@@ -33,7 +33,7 @@ public class ReactiveArmorHandler {
                 IDamageSourceExtension acc = (IDamageSourceExtension) source;
                 List<TagKey<DamageType>> tags = Config.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.get()
                         .stream().map(id -> TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.read(id).getOrThrow())).toList();
-                tags.forEach(acc::astralEnchant$addExtraTag);
+                tags.forEach(acc::astralEnchant$addDisabledTag);
             }
         }
     }

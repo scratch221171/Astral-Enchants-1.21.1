@@ -62,8 +62,8 @@ public class Config {
         LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG = BUILDER.define("last_stand_ignore_bypasses_invulnerability_tag", true);
         ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION = BUILDER.define("essence_of_enchant_include_overload_in_calculation", false);
         ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER = BUILDER.defineInRange("essence_of_enchant_level_multiplier", 1, 0, Double.MAX_VALUE);
-        INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL = BUILDER.defineInRange("instant_teleport_distance_increase_per_level", 0, 32, Integer.MAX_VALUE);
-        INSTANT_TELEPORT_MAX_DISTANCE = BUILDER.defineInRange("instant_teleport_max_distance", 0, 256, Integer.MAX_VALUE);
+        INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL = BUILDER.defineInRange("instant_teleport_distance_increase_per_level", 32, 0, Integer.MAX_VALUE);
+        INSTANT_TELEPORT_MAX_DISTANCE = BUILDER.defineInRange("instant_teleport_max_distance", 256, 0, Integer.MAX_VALUE);
         REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS = BUILDER.defineListAllowEmpty(
                 "reactive_armor_disabled_damage_type_tags",
                 () -> List.of(

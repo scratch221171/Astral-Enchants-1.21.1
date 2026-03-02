@@ -38,7 +38,7 @@ public class AELanguageProviderENUS extends LanguageProvider {
         addEnchantWithDesc(AEEnchantments.SLOT_EXPANSION, "Slot Expansion", "Increases the number of accessory slots the item currently occupies by the enchantment level.");
         addEnchantWithDesc(AEEnchantments.REACTIVE_ARMOR, "Reactive Armor", "Negates effects that bypass armor and enchantments for certain types of damage.");
         addEnchantWithDesc(AEEnchantments.MYSTIC_REMNANTS, "Mystic Remnants", "Killed mobs will occasionally drop enchanted books.");
-        addEnchantWithDesc(AEEnchantments.CURSE_OF_IGNORANCE, "Curse of Ignorance", "Replaces the tooltip with cursed text.");
+        addEnchantWithDesc(AEEnchantments.CURSE_OF_IGNORANCE, "Curse of Ignorance", "Replaces the tooltip with obscured text.");
 
         // attribute
         add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
