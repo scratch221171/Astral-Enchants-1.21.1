@@ -5,8 +5,6 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
@@ -20,13 +18,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
-    @Inject(method = "set", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "set", at = @At("RETURN"), cancellable = true)
     private <T> void astralEnchant$onEnchanted(
             DataComponentType<? super T> component,
             T value,
@@ -44,7 +39,6 @@ public abstract class ItemStackMixin {
 
         ItemEnchantments enchantments = (ItemEnchantments) value;
 
-        if (astralEnchant$tryHandleBundle(stack, enchantments, server, cir)) return;
         if (astralEnchant$tryHandleOverload(stack, enchantments, server, cir)) return;
         if (astralEnchant$tryHandleItemProtection(stack, server, cir)) return;
     }
@@ -56,56 +50,6 @@ public abstract class ItemStackMixin {
     ) {
         return component == DataComponents.ENCHANTMENTS
                 && value instanceof ItemEnchantments;
-    }
-
-    @Unique
-    private static boolean astralEnchant$tryHandleBundle(
-            ItemStack stack,
-            ItemEnchantments enchantments,
-            MinecraftServer server,
-            CallbackInfoReturnable<?> cir
-    ) {
-        if (!Config.COMPATIBILITY.isTrue() || !stack.is(Items.BUNDLE)) {
-            return false;
-        }
-
-        Holder<Enchantment> compatibility =
-                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
-
-        if (stack.getEnchantmentLevel(compatibility) <= 0) {
-            return false;
-        }
-
-        BundleContents contents =
-                stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        if (contents.isEmpty()) {
-            return false;
-        }
-
-        ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
-        enchantments.entrySet().stream()
-                .filter(e ->
-                        !e.getKey().is(AEEnchantments.COMPATIBILITY)
-                                && stack.getEnchantmentLevel(e.getKey()) <= 0
-                )
-                .forEach(e -> added.set(e.getKey(), e.getIntValue()));
-
-        List<ItemStack> newItems = new ArrayList<>();
-        for (ItemStack item : contents.items()) {
-            ItemStack copy = item.copy();
-            ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
-            if (current != null) {
-                copy.set(
-                        DataComponents.ENCHANTMENTS,
-                        AEUtils.mergeItemEnchants(added.toImmutable(), current)
-                );
-            }
-            newItems.add(copy);
-        }
-
-        stack.set(DataComponents.BUNDLE_CONTENTS, new BundleContents(newItems));
-        cir.setReturnValue(null);
-        return true;
     }
 
     @Unique
