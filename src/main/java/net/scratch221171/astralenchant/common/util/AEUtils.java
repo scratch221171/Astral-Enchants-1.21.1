@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
@@ -14,8 +14,23 @@ public class AEUtils {
         return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
     }
 
-    public static Holder<Enchantment> getEnchantmentHolderFromServer(ResourceKey<Enchantment> enchantment, MinecraftServer server) {
-        return server.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
+    public static int getEnchantmentLevelFromNBT(ItemStack stack, ResourceKey<Enchantment> enchantment) {
+        for (Object2IntMap.Entry<Holder<Enchantment>> entry : stack.getTagEnchantments().entrySet()) {
+            if (entry.getKey().is(enchantment)) {
+                // 専用メソッドを尊重
+                return stack.getEnchantmentLevel(entry.getKey());
+            }
+        }
+        return 0;
+    }
+
+    public static int getEnchantmentLevelFromNBT(ItemEnchantments enchantments, ResourceKey<Enchantment> enchantment) {
+        for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
+            if (entry.getKey().is(enchantment)) {
+                return entry.getIntValue();
+            }
+        }
+        return 0;
     }
 
     public static ItemEnchantments mergeItemEnchants(ItemEnchantments a, ItemEnchantments b) {

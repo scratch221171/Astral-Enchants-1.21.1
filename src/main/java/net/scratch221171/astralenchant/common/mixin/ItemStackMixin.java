@@ -1,15 +1,11 @@
 package net.scratch221171.astralenchant.common.mixin;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BundleContents;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.scratch221171.astralenchant.common.Config;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
@@ -37,16 +33,12 @@ public abstract class ItemStackMixin {
         }
 
         ItemStack stack = (ItemStack) (Object) this;
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-        if (server == null) {
-            return;
-        }
 
         ItemEnchantments enchantments = (ItemEnchantments) value;
 
-        if (astralEnchant$tryHandleBundle(stack, enchantments, server, cir)) return;
-        if (astralEnchant$tryHandleOverload(stack, enchantments, server, cir)) return;
-        if (astralEnchant$tryHandleItemProtection(stack, server, cir)) return;
+        if (astralEnchant$tryHandleBundle(stack, enchantments, cir)) return;
+        if (astralEnchant$tryHandleOverload(stack, enchantments, cir)) return;
+        if (astralEnchant$tryHandleItemProtection(stack, cir)) return;
     }
 
     @Unique
@@ -62,25 +54,13 @@ public abstract class ItemStackMixin {
     private static boolean astralEnchant$tryHandleBundle(
             ItemStack stack,
             ItemEnchantments enchantments,
-            MinecraftServer server,
             CallbackInfoReturnable<?> cir
     ) {
-        if (!Config.COMPATIBILITY.isTrue() || !stack.is(Items.BUNDLE)) {
-            return false;
-        }
+        if (!Config.COMPATIBILITY.isTrue() || !stack.is(Items.BUNDLE)) return false;
+        if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.COMPATIBILITY) <= 0) return false;
 
-        Holder<Enchantment> compatibility =
-                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.COMPATIBILITY, server);
-
-        if (stack.getEnchantmentLevel(compatibility) <= 0) {
-            return false;
-        }
-
-        BundleContents contents =
-                stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        if (contents.isEmpty()) {
-            return false;
-        }
+        BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
+        if (contents.isEmpty()) return false;
 
         ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
         enchantments.entrySet().stream()
@@ -112,16 +92,13 @@ public abstract class ItemStackMixin {
     private static boolean astralEnchant$tryHandleOverload(
             ItemStack stack,
             ItemEnchantments enchantments,
-            MinecraftServer server,
             CallbackInfoReturnable<?> cir
     ) {
         if (!Config.OVERLOAD.isTrue()) {
             return false;
         }
 
-        Holder<Enchantment> overload =
-                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.OVERLOAD, server);
-        int level = enchantments.getLevel(overload);
+        int level = AEUtils.getEnchantmentLevelFromNBT(enchantments, AEEnchantments.OVERLOAD);
         if (level <= 0) {
             return false;
         }
@@ -144,16 +121,13 @@ public abstract class ItemStackMixin {
     @Unique
     private static boolean astralEnchant$tryHandleItemProtection(
             ItemStack stack,
-            MinecraftServer server,
             CallbackInfoReturnable<?> cir
     ) {
         if (!Config.ITEM_PROTECTION.isTrue()) {
             return false;
         }
 
-        Holder<Enchantment> protection =
-                AEUtils.getEnchantmentHolderFromServer(AEEnchantments.ITEM_PROTECTION, server);
-        if (stack.getEnchantmentLevel(protection) <= 0) {
+        if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.ITEM_PROTECTION) <= 0) {
             return false;
         }
 
