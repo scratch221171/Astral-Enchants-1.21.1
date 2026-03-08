@@ -13,7 +13,7 @@ import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.loot.EBLootModifier;
 import net.scratch221171.astralenchant.common.loot.predicates.LootItemConfigCondition;
 import net.scratch221171.astralenchant.common.loot.providers.AEEnchantmentLevelProvider;
-import net.scratch221171.astralenchant.common.util.ConfigCondition;
+import net.scratch221171.astralenchant.common.conditions.ConfigCondition;
 
 import java.util.concurrent.CompletableFuture;
 

@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common.util;
+package net.scratch221171.astralenchant.common.conditions;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 public record ConfigCondition(String key) implements ICondition {
     public static final MapCodec<ConfigCondition> CODEC =
             RecordCodecBuilder.mapCodec(inst -> inst.group(
-                    Codec.STRING.fieldOf("path").forGetter(ConfigCondition::key)
+                    Codec.STRING.fieldOf("key").forGetter(ConfigCondition::key)
             ).apply(inst, ConfigCondition::new));
 
     public static ConfigCondition of(ResourceKey<Enchantment> enchantment) {
@@ -23,23 +23,12 @@ public record ConfigCondition(String key) implements ICondition {
         return new ConfigCondition(key);
     }
 
-//    private static final Path path = FMLPaths.CONFIGDIR.get().resolve(AstralEnchant.MOD_ID + "-server.toml");
-//    private static final CommentedFileConfig configFile = CommentedFileConfig.builder(path).build();
-//
-//    private static boolean loaded = false;
-
     @Override
     public boolean test(@NotNull IContext context) {
         return test();
     }
 
     public boolean test() {
-//        var config = AEConfig.TOGGLING_CONFIG_DICT.get(key);
-//        AstralEnchant.LOGGER.info(config.toString());
-//        configFile.load();
-//        // 設定ファイル生成時(ワールド作成時など)に参照できない時はデフォルト値を返す
-//        AstralEnchant.LOGGER.info(configFile.getOrElse(config.getPath(), config.getDefault()).toString());
-//        AstralEnchant.LOGGER.info(configFile.toString());
         return RuntimeConfigState.get(key);
     }
 

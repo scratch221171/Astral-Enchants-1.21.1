@@ -6,7 +6,7 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.util.ConfigCondition;
+import net.scratch221171.astralenchant.common.conditions.ConfigCondition;
 
 import java.util.function.Supplier;
 
