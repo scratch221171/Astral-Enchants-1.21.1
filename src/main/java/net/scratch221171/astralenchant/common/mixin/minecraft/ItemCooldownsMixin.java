@@ -1,7 +1,7 @@
 package net.scratch221171.astralenchant.common.mixin.minecraft;
 
 import net.minecraft.world.item.ItemCooldowns;
-import net.scratch221171.astralenchant.common.Config;
+import net.scratch221171.astralenchant.common.config.Config;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
 import org.spongepowered.asm.mixin.Mixin;

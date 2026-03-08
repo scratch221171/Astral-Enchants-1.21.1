@@ -9,6 +9,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.registries.*;
 import net.scratch221171.astralenchant.compat.accessories.AccessoriesCompat;
 import net.scratch221171.astralenchant.compat.apotheosis.ApotheosisCompat;
@@ -25,6 +27,7 @@ public class AstralEnchant {
     public AstralEnchant(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
 
+        // registriesを呼ぶ
         AEItems.register(modEventBus);
         AEBlocks.register(modEventBus);
         AEAttributes.register(modEventBus);
@@ -40,7 +43,10 @@ public class AstralEnchant {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.CONFIG_SPEC);
+        // RuntimeConfigStateを初期化
+        RuntimeConfigState.bootstrap();
 
+        // 連携
         if (ModList.get().isLoaded("accessories")) {
             AccessoriesCompat.register(modEventBus);
         }

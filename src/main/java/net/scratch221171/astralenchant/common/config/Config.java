@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common;
+package net.scratch221171.astralenchant.common.config;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
@@ -42,6 +42,7 @@ public class Config {
     public static final ModConfigSpec.BooleanValue REACTIVE_ARMOR;
     public static final ModConfigSpec.BooleanValue MYSTIC_REMNANTS;
     public static final ModConfigSpec.BooleanValue CURSE_OF_IGNORANCE;
+    public static final ModConfigSpec.BooleanValue CURSE_OF_ENCHANTMENT;
 
     static {
         BUILDER.push("settings");
@@ -92,6 +93,7 @@ public class Config {
         REACTIVE_ARMOR = registerTogglingConfig(AEEnchantments.REACTIVE_ARMOR);
         MYSTIC_REMNANTS = registerTogglingConfig(AEEnchantments.MYSTIC_REMNANTS);
         CURSE_OF_IGNORANCE = registerTogglingConfig(AEEnchantments.CURSE_OF_IGNORANCE);
+        CURSE_OF_ENCHANTMENT = registerTogglingConfig(AEEnchantments.CURSE_OF_ENCHANTMENT);
         BUILDER.pop();
 
         ENABLE_VANILLA_ITEM_RECIPES = registerTogglingConfig("enable_vanilla_items_recipes");
@@ -111,5 +113,5 @@ public class Config {
         return value;
     }
 
-    static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
+    public static final ModConfigSpec CONFIG_SPEC = BUILDER.build();
 }

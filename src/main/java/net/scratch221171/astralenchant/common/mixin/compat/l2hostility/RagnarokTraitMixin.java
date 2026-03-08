@@ -3,7 +3,7 @@ package net.scratch221171.astralenchant.common.mixin.compat.l2hostility;
 import dev.xkmc.l2hostility.compat.curios.EntitySlotAccess;
 import dev.xkmc.l2hostility.content.traits.legendary.RagnarokTrait;
 import net.minecraft.world.item.ItemStack;
-import net.scratch221171.astralenchant.common.Config;
+import net.scratch221171.astralenchant.common.config.Config;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
