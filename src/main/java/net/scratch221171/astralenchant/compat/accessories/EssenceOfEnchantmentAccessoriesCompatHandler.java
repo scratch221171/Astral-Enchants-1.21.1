@@ -13,7 +13,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AEUtils;
@@ -24,7 +25,7 @@ import java.util.Set;
 public class EssenceOfEnchantmentAccessoriesCompatHandler {
 
     public static void onAdjustAttributeModifier(ItemStack stack, SlotReference reference, AccessoryAttributeBuilder builder) {
-        if (Config.ESSENCE_OF_ENCHANTMENT.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANTMENT)) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ESSENCE_OF_ENCHANTMENT, reference.entity().level());
         int level = stack.getEnchantmentLevel(enchantment);
         if (!stack.isEmpty() && level > 0) {
@@ -33,11 +34,11 @@ public class EssenceOfEnchantmentAccessoriesCompatHandler {
             for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments) {
                 if (!entry.getKey().is(AEEnchantments.ESSENCE_OF_ENCHANTMENT)) totalLevel += entry.getIntValue();
             }
-            if (Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.isTrue())
+            if (RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION))
                 totalLevel += stack.getOrDefault(AEDataComponents.OVERLOAD, 0) * (enchantments.size() - 1);
 
             Multimap<Holder<Attribute>, AttributeModifier> attributeModifiers = builder.getAttributeModifiers(false);
-            double multiplier = Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getAsDouble();
+            double multiplier = RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER);
 
             for (Map.Entry<Holder<Attribute>, AttributeModifier> entry : attributeModifiers.entries()
                     // スロット数増加のモディファイアは除外

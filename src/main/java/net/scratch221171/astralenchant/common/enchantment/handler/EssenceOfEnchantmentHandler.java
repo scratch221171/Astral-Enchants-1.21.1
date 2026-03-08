@@ -11,7 +11,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AEUtils;
@@ -23,7 +24,7 @@ public class EssenceOfEnchantmentHandler {
 
     @SubscribeEvent
     private static void ApplyAttributeModifier(ItemAttributeModifierEvent event) {
-        if (Config.ESSENCE_OF_ENCHANTMENT.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANTMENT)) return;
 
         ItemStack stack = event.getItemStack();
         int level = AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.ESSENCE_OF_ENCHANTMENT);
@@ -34,14 +35,14 @@ public class EssenceOfEnchantmentHandler {
         for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments) {
             if (!entry.getKey().is(AEEnchantments.ESSENCE_OF_ENCHANTMENT)) totalLevel += entry.getIntValue();
         }
-        if (Config.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.isTrue()) totalLevel += stack.getOrDefault(AEDataComponents.OVERLOAD, 0) * (enchantments.size() - 1);
+        if (RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION)) totalLevel += stack.getOrDefault(AEDataComponents.OVERLOAD, 0) * (enchantments.size() - 1);
 
         ItemAttributeModifiers attributeModifiers = event.getDefaultModifiers();
-        double multiplier = Config.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getAsDouble();
+        double multiplier = RuntimeConfigState.get(AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER);
 
         for (ItemAttributeModifiers.Entry entry : attributeModifiers.modifiers()) {
             ResourceLocation id = entry.modifier().id();
-                ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "eoe_bonus_" + id.getPath() + "_" + entry.slot().name().toLowerCase());
+                ResourceLocation newId = ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "eoe_bonus_" + id.getPath() + "_" + entry.slot().getSerializedName());
                 AttributeModifier newBonusModifier = new AttributeModifier(newId, totalLevel * level * multiplier / 100f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
                 event.addModifier(entry.attribute(), newBonusModifier, entry.slot());
         }

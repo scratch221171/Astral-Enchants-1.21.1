@@ -4,7 +4,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +21,7 @@ public abstract class PlayerMixin {
      */
     @Inject(method = "canEat", at = @At("RETURN"), cancellable = true)
     private void astralEnchant$alwaysEdible(CallbackInfoReturnable<Boolean> cir) {
-        if (Config.ENDLESS_APPETITE.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.ENDLESS_APPETITE)) return;
         Player player = (Player)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
@@ -33,7 +34,7 @@ public abstract class PlayerMixin {
      */
     @Inject(method = "makeStuckInBlock", at = @At("HEAD"), cancellable = true)
     private void astralEnchant$disableStuckInBlock(CallbackInfo ci) {
-        if (Config.MOMENTUM.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.MOMENTUM)) return;
         Player player = (Player)(Object)this;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {

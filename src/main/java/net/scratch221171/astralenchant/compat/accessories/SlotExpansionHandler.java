@@ -9,7 +9,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -18,7 +19,7 @@ public class SlotExpansionHandler {
      * {@link AEEnchantments#SLOT_EXPANSION} が付いていた場合スロット数を増やす。
      */
     public static void onAdjustAttributeModifier(ItemStack stack, SlotReference reference, AccessoryAttributeBuilder builder) {
-        if (Config.SLOT_EXPANSION.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.SLOT_EXPANSION)) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.SLOT_EXPANSION, reference.entity().level());
         int  level = stack.getEnchantmentLevel(enchantment);
         if (!stack.isEmpty() && level > 0) {

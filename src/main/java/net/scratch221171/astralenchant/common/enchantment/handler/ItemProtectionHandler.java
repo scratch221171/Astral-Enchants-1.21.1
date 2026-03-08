@@ -7,7 +7,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -16,7 +17,7 @@ public class ItemProtectionHandler {
 
     @SubscribeEvent
     private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
-        if (Config.ITEM_PROTECTION.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.ITEM_PROTECTION)) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
         if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {

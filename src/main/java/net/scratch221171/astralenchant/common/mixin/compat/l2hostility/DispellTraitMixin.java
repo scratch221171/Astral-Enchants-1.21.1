@@ -1,7 +1,8 @@
 package net.scratch221171.astralenchant.common.mixin.compat.l2hostility;
 
 import net.minecraft.world.item.ItemStack;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ public class DispellTraitMixin {
     )
     private boolean preventEnchantmentsFromBeingDisabled(List<ItemStack> list, Object obj) {
         ItemStack stack = (ItemStack) obj;
-        if (Config.ITEM_PROTECTION.isTrue()) {
+        if (RuntimeConfigState.get(AEConfig.ITEM_PROTECTION)) {
 
             if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.ITEM_PROTECTION) > 0) {
                 return false;

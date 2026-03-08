@@ -7,7 +7,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
 
@@ -25,7 +26,7 @@ public class CooldownAttributeHandler {
     // ここで一旦チェック
     @SubscribeEvent
     private static void onPlayerTick(PlayerTickEvent.Post event) {
-        if (Config.COOLDOWN_REDUCTION.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return;
         if (event.getEntity().level().isClientSide) return;
         Player player = event.getEntity();
         float value = 1.0F - (float) player.getAttributeValue(AEAttributes.COOLDOWN_REDUCTION);

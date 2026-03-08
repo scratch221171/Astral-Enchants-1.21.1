@@ -27,7 +27,8 @@ import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -39,7 +40,7 @@ public class FeatherTouchHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     private static void onBreak(BlockEvent.BreakEvent event) {
-        if (Config.FEATHER_TOUCH.isFalse()) return;
+        if (!RuntimeConfigState.get(AEConfig.FEATHER_TOUCH)) return;
         Player player = event.getPlayer();
 
         Level level = event.getPlayer().level();

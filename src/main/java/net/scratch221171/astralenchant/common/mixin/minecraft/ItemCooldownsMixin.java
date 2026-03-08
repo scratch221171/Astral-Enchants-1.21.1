@@ -1,7 +1,8 @@
 package net.scratch221171.astralenchant.common.mixin.minecraft;
 
 import net.minecraft.world.item.ItemCooldowns;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,7 +31,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns$CooldownInstance;<init>(II)V"), index = 1)
     private int astralEnchant$modifyEndTick(int endTick) {
-        if (Config.COOLDOWN_REDUCTION.isFalse()) return endTick;
+        if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return endTick;
         int start = this.tickCount;
         int ticks = endTick - start;
         return start + (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
@@ -41,7 +42,7 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;onCooldownStarted(Lnet/minecraft/world/item/Item;I)V"), index = 1)
     private int astralEnchant$modifyStartedTicks(int ticks) {
-        if (Config.COOLDOWN_REDUCTION.isFalse()) return ticks;
+        if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return ticks;
         return (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
     }
 }

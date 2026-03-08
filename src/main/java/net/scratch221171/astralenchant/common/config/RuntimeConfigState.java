@@ -2,6 +2,7 @@ package net.scratch221171.astralenchant.common.config;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 
 import java.nio.file.Path;
@@ -41,5 +42,9 @@ public class RuntimeConfigState {
     @SuppressWarnings("unchecked")
     public static <T> T get(String key) {
         return (T) VALUES.get(key);
+    }
+
+    public static <T> T get(ModConfigSpec.ConfigValue<T> configValue) {
+        return get(AEConfig.get(configValue));
     }
 }

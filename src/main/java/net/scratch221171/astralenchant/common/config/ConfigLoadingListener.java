@@ -20,7 +20,7 @@ public class ConfigLoadingListener {
     }
 
     static void refresh(ModConfigEvent event) {
-        if (event.getConfig().getSpec() == Config.CONFIG_SPEC) {
+        if (event.getConfig().getSpec() == AEConfig.CONFIG_SPEC) {
             RuntimeConfigState.refresh();
         }
     }

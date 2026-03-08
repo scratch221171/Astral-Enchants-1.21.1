@@ -11,7 +11,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +42,7 @@ public class DisabledEnchantmentTooltip {
     private static Set<String> getDisabledEnchantments() {
         Set<String> hashSet = new HashSet<>();
         for (ResourceKey<Enchantment> key : AEEnchantments.ENCHANTMENTS) {
-            if (Config.TOGGLING_CONFIG_DICT.get(key.location().getPath()).isFalse()) {
+            if (RuntimeConfigState.get(key.location().getPath())) {
                 hashSet.add(key.location().toLanguageKey("enchantment"));
             }
         }

@@ -6,7 +6,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
-import net.scratch221171.astralenchant.common.config.Config;
+import net.scratch221171.astralenchant.common.config.AEConfig;
+import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEDataComponents;
 import net.scratch221171.astralenchant.common.util.AEUtils;
@@ -56,7 +57,7 @@ public abstract class ItemStackMixin {
             ItemEnchantments enchantments,
             CallbackInfoReturnable<?> cir
     ) {
-        if (!Config.COMPATIBILITY.isTrue() || !stack.is(Items.BUNDLE)) return false;
+        if (RuntimeConfigState.get(AEConfig.COMPATIBILITY) || !stack.is(Items.BUNDLE)) return false;
         if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.COMPATIBILITY) <= 0) return false;
 
         BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
@@ -94,7 +95,7 @@ public abstract class ItemStackMixin {
             ItemEnchantments enchantments,
             CallbackInfoReturnable<?> cir
     ) {
-        if (!Config.OVERLOAD.isTrue()) return false;
+        if (!RuntimeConfigState.get(AEConfig.OVERLOAD)) return false;
 
         int level = AEUtils.getEnchantmentLevelFromNBT(enchantments, AEEnchantments.OVERLOAD);
         if (level <= 0) return false;
@@ -119,7 +120,7 @@ public abstract class ItemStackMixin {
             ItemStack stack,
             CallbackInfoReturnable<?> cir
     ) {
-        if (!Config.CURSE_OF_ENCHANTMENT.isTrue()) return false;
+        if (!RuntimeConfigState.get(AEConfig.CURSE_OF_ENCHANTMENT)) return false;
         if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.CURSE_OF_ENCHANTMENT) <= 0) return false;
 
         cir.setReturnValue(null);
