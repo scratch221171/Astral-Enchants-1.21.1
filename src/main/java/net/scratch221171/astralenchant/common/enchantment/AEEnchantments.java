@@ -6,7 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.enchantment.handler.*;
+import net.scratch221171.astralenchant.common.mixin.compat.l2hostility.DispellTraitMixin;
+import net.scratch221171.astralenchant.common.mixin.compat.l2hostility.RagnarokTraitMixin;
 import net.scratch221171.astralenchant.common.mixin.minecraft.*;
+import net.scratch221171.astralenchant.compat.accessories.EssenceOfEnchantmentAccessoriesCompatHandler;
+import net.scratch221171.astralenchant.compat.accessories.SlotExpansionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +39,11 @@ public class AEEnchantments {
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "last_stand"));
 
     /**
-     * 耐久力を除くアイテムのDataComponentを毎ティック置き換える。
+     * L2のDispellによるエンチャント無効化及びRagnarokによる封印を防ぐ
      * <p>
-     * Handler : {@link ItemProtectionHandler}
+     * Handler : none
      * <p>
-     * Mixin : {@link PlayerMixin}, {@link ItemStackMixin}
+     * Mixin : {@link DispellTraitMixin}, {@link RagnarokTraitMixin}
      */
     public static final ResourceKey<Enchantment> ITEM_PROTECTION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "item_protection"));
@@ -47,7 +51,7 @@ public class AEEnchantments {
     /**
      * アイテムの合計エンチャントレベル(自身を除く)に応じて全てのAttributeModifierを上昇させる。
      * <p>
-     * Handler : {@link EssenceOfEnchantmentHandler}, {@link net.scratch221171.astralenchant.compat.accessories.EssenceOfEnchantmentAccessoriesCompatHandler}
+     * Handler : {@link EssenceOfEnchantmentHandler}, {@link EssenceOfEnchantmentAccessoriesCompatHandler}
      * <p>
      * Mixin : none
      */
@@ -69,7 +73,7 @@ public class AEEnchantments {
      * <p>
      * Handler : {@link FeatherTouchHandler}
      * <p>
-     * Mixin : {@link LocalPlayerMixin}, {@link PlayerMixin}
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> FEATHER_TOUCH = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "feather_touch"));
@@ -137,7 +141,7 @@ public class AEEnchantments {
     /**
      * Accessories連携：アイテムが装着されたスロットの数をエンチャントのレベルだけ増やす。
      * <p>
-     * Handler : {@link net.scratch221171.astralenchant.compat.accessories.SlotExpansionHandler}
+     * Handler : {@link SlotExpansionHandler}
      * <p>
      * Mixin : none
      */
@@ -177,7 +181,7 @@ public class AEEnchantments {
     /**
      * そのアイテムのエンチャントが変更できなくなる。
      * <p>
-     * Handler : none
+     * Handler : {@link CurseOfEnchantmentHandler}
      * <p>
      * Mixin : {@link ItemStackMixin }
      */

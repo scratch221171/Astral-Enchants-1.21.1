@@ -18,7 +18,7 @@ public class LocalPlayerMixin {
      * {@link AEEnchantments#MOMENTUM} が付いている場合はアイテム使用中の移動速度低下を無効化する。
      */
     @Redirect(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
-    private boolean astralEnchant$disableUsingItemSlowdown(LocalPlayer instance) {
+    private boolean astralenchant$disableUsingItemSlowdown(LocalPlayer instance) {
         if (RuntimeConfigState.get(AEConfig.MOMENTUM)) {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
             if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;
@@ -30,7 +30,7 @@ public class LocalPlayerMixin {
      * {@link AEEnchantments#MOMENTUM} が付いている場合はアイテム使用中でも走り始められるようにする。
      */
     @Redirect(method = "canStartSprinting", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
-    private boolean astralEnchant$enableSprintingWhileUsingItem(LocalPlayer instance) {
+    private boolean astralenchant$enableSprintingWhileUsingItem(LocalPlayer instance) {
         if (RuntimeConfigState.get(AEConfig.MOMENTUM)) {
             Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.MOMENTUM, instance.level());
             if (EnchantmentHelper.getEnchantmentLevel(enchantment, instance) > 0) return false;

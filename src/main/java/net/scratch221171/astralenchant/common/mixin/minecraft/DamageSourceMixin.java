@@ -27,7 +27,7 @@ public class DamageSourceMixin implements IDamageSourceExtension {
      * {@link AEEnchantments#MITIGATION_PIERCING} または {@link AEEnchantments#REACTIVE_ARMOR} によるタグ編集を反映する。
      */
     @Inject(method = "is(Lnet/minecraft/tags/TagKey;)Z", at = @At("RETURN"), cancellable = true)
-    private void astralEnchant$isExtraTag(TagKey<DamageType> tag, CallbackInfoReturnable<Boolean> cir) {
+    private void astralenchant$isExtraTag(TagKey<DamageType> tag, CallbackInfoReturnable<Boolean> cir) {
         if (this.astralenchant$extraTags != null && this.astralenchant$extraTags.contains(tag)) {
             cir.setReturnValue(true);
         } else if (this.astralenchant$disabledTags != null && this.astralenchant$disabledTags.contains(tag)) {
@@ -36,7 +36,7 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     }
 
     @Override
-    public void astralEnchant$addExtraTag(TagKey<DamageType> tag) {
+    public void astralenchant$addExtraTag(TagKey<DamageType> tag) {
         if (this.astralenchant$extraTags == null) {
             this.astralenchant$extraTags = new HashSet<>();
         }
@@ -44,14 +44,14 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     }
 
     @Override
-    public void astralEnchant$removeExtraTag(TagKey<DamageType> tag) {
+    public void astralenchant$removeExtraTag(TagKey<DamageType> tag) {
         if (this.astralenchant$extraTags != null) {
             this.astralenchant$extraTags.remove(tag);
         }
     }
 
     @Override
-    public void astralEnchant$addDisabledTag(TagKey<DamageType> tag) {
+    public void astralenchant$addDisabledTag(TagKey<DamageType> tag) {
         if (this.astralenchant$disabledTags == null) {
             this.astralenchant$disabledTags = new HashSet<>();
         }
@@ -59,7 +59,7 @@ public class DamageSourceMixin implements IDamageSourceExtension {
     }
 
     @Override
-    public void astralEnchant$removeDisabledTag(TagKey<DamageType> tag) {
+    public void astralenchant$removeDisabledTag(TagKey<DamageType> tag) {
         if (this.astralenchant$disabledTags != null) {
             this.astralenchant$disabledTags.remove(tag);
         }

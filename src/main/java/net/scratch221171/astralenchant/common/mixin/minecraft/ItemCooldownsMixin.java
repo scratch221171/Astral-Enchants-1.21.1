@@ -17,32 +17,32 @@ public abstract class ItemCooldownsMixin implements IItemCooldownsExtention {
     private int tickCount;
 
     @Unique
-    private float astralEnchant$cooldownReductionMultiplier = 1;
+    private float astralenchant$cooldownReductionMultiplier = 1;
 
     @Override
-    public void astralEnchant$setCooldownReductionMultiplier(float f) { this.astralEnchant$cooldownReductionMultiplier = f; }
+    public void astralenchant$setCooldownReductionMultiplier(float f) { this.astralenchant$cooldownReductionMultiplier = f; }
 
     @Override
-    public float astralEnchant$getCooldownReductionMultiplier() { return this.astralEnchant$cooldownReductionMultiplier; }
+    public float astralenchant$getCooldownReductionMultiplier() { return this.astralenchant$cooldownReductionMultiplier; }
 
-    // astralEnchant$cooldownReductionMultiplier更新時にConfigチェック済みだが、付けたまま設定を切るとmultiplierが固定されて大変なので設定チェック
+    // astralenchant$cooldownReductionMultiplier更新時にConfigチェック済みだが、付けたまま設定を切るとmultiplierが固定されて大変なので設定チェック
     /**
      * {@link AEEnchantments#COOLDOWN_REDUCTION} が付いている場合はクールダウンの終了時間を早める。
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns$CooldownInstance;<init>(II)V"), index = 1)
-    private int astralEnchant$modifyEndTick(int endTick) {
+    private int astralenchant$modifyEndTick(int endTick) {
         if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return endTick;
         int start = this.tickCount;
         int ticks = endTick - start;
-        return start + (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
+        return start + (int)(ticks * this.astralenchant$cooldownReductionMultiplier);
     }
 
     /**
      * {@link AEEnchantments#COOLDOWN_REDUCTION} が付いている場合はクールダウンの終了時間を早める。
      */
     @ModifyArg(method = "addCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;onCooldownStarted(Lnet/minecraft/world/item/Item;I)V"), index = 1)
-    private int astralEnchant$modifyStartedTicks(int ticks) {
+    private int astralenchant$modifyStartedTicks(int ticks) {
         if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return ticks;
-        return (int)(ticks * this.astralEnchant$cooldownReductionMultiplier);
+        return (int)(ticks * this.astralenchant$cooldownReductionMultiplier);
     }
 }

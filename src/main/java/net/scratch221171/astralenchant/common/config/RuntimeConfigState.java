@@ -4,6 +4,7 @@ import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -40,6 +41,7 @@ public class RuntimeConfigState {
     }
 
     @SuppressWarnings("unchecked")
+    @Nullable
     public static <T> T get(String key) {
         return (T) VALUES.get(key);
     }

@@ -13,13 +13,13 @@ import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class ItemProtectionHandler {
+public class CurseOfEnchantmentHandler {
 
     @SubscribeEvent
     private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
-        if (!RuntimeConfigState.get(AEConfig.ITEM_PROTECTION)) return;
+        if (!RuntimeConfigState.get(AEConfig.CURSE_OF_ENCHANTMENT)) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
-        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ITEM_PROTECTION, event.getLevel());
+        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.CURSE_OF_ENCHANTMENT, event.getLevel());
         if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {
             itemEntity.setUnlimitedLifetime();
             itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));

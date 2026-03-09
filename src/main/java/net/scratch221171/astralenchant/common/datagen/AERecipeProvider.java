@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
@@ -21,10 +22,10 @@ import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.conditions.ConfigCondition;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
-import net.scratch221171.astralenchant.common.conditions.ConfigCondition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,11 +62,16 @@ public class AERecipeProvider extends RecipeProvider {
                     .save(output);
 
             AERecipeBuildingHelper.shapedEB(AEEnchantments.ITEM_PROTECTION, 1, holderLookup)
-                    .pattern("323").pattern("212").pattern("323")
+                    .pattern("323").pattern("415").pattern("626")
                     .add('1', EBIngredient(Enchantments.MENDING, 1, holderLookup))
                     .add('2', Items.ENDER_CHEST)
                     .add('3', AEItems.BUDDING_ARCANIUM_INGOT)
-                    .save(output);
+                    .add('4', getFromRegistry("l2hostility", "reprint"))
+                    .add('5', getFromRegistry("l2hostility", "dispell"))
+                    .add('6', getFromRegistry("l2hostility", "hostility_essence"))
+                    .save(output.withConditions(
+                            new ModLoadedCondition("l2hostility")
+                    ));
 
             AERecipeBuildingHelper.shapedEB(AEEnchantments.ESSENCE_OF_ENCHANTMENT, 1, holderLookup)
                     .pattern("353").pattern("323").pattern("414")
@@ -168,8 +174,7 @@ public class AERecipeProvider extends RecipeProvider {
                     .add('3', Items.BUNDLE)
                     .add('4', Items.CHAIN)
                     .save(output.withConditions(new AndCondition(List.of(
-                            new ModLoadedCondition("accessories"),
-                            ConfigCondition.of(AEEnchantments.SLOT_EXPANSION)
+                            new ModLoadedCondition("accessories")
                     ))));
 
             AERecipeBuildingHelper.shapedEB(AEEnchantments.REACTIVE_ARMOR, 1, holderLookup)
@@ -257,7 +262,9 @@ public class AERecipeProvider extends RecipeProvider {
             AERecipeBuildingHelper.shapedItem(Items.BUNDLE)
                 .pattern("121").pattern("2 2").pattern("222")
                 .add('1', Items.STRING).add('2', Items.RABBIT_HIDE)
-                .save(output.withConditions(ConfigCondition.of("enable_vanilla_items_recipes")));
+                .save(output.withConditions(
+                        ConfigCondition.of("enable_vanilla_items_recipes")
+                ));
         }
     }
 
@@ -275,6 +282,12 @@ public class AERecipeProvider extends RecipeProvider {
                 DataComponents.STORED_ENCHANTMENTS,
                 mutable.toImmutable(),
                 Items.ENCHANTED_BOOK);
+    }
+
+    private static Item getFromRegistry(String namespace, String path) {
+        return BuiltInRegistries.ITEM.get(
+                ResourceLocation.fromNamespaceAndPath(namespace, path)
+        ).asItem();
     }
 
     private static class AERecipeBuildingHelper extends ShapedRecipeBuilder {

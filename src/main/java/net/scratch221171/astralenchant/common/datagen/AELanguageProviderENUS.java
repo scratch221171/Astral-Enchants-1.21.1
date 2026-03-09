@@ -66,8 +66,6 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "Regardless of this setting, Overload levels are always applied to the level of Essence of Enchant itself.");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "Essence of Enchant level multiplier (%)");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "Specifies how many percent the modifier multiplier increases for each increase of 1 in the total enchantment level.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable vanilla item recipes");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be required for game progression (such as bundles).");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast(), "Instant Teleport distance increase per level");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast() + ".tooltip", "Specifies how much the maximum teleportable distance increases for each level gained.");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast(), "Instant Teleport maximum distance");
@@ -76,6 +74,10 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags added by Mitigation Piercing. These take priority over Reactive Armor.");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast(), "Damage type tags disabled by Reactive Armor");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags that are disabled by Reactive Armor.");
+
+        add(AstralEnchant.MOD_ID + ".configuration.misc", "Misc Settings");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable vanilla item recipes");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be required for game progression (such as bundles).");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
     }

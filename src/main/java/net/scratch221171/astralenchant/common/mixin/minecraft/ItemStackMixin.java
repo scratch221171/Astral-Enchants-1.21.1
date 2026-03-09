@@ -24,12 +24,12 @@ import java.util.List;
 public abstract class ItemStackMixin {
 
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
-    private <T> void astralEnchant$onEnchanted(
+    private <T> void astralenchant$onEnchanted(
             DataComponentType<? super T> component,
             T value,
             CallbackInfoReturnable<T> cir
     ) {
-        if (!astralEnchant$isEnchantmentComponent(component, value)) {
+        if (!astralenchant$isEnchantmentComponent(component, value)) {
             return;
         }
 
@@ -37,13 +37,13 @@ public abstract class ItemStackMixin {
 
         ItemEnchantments enchantments = (ItemEnchantments) value;
 
-        if (astralEnchant$tryHandleBundle(stack, enchantments, cir)) return;
-        if (astralEnchant$tryHandleOverload(stack, enchantments, cir)) return;
-        if (astralEnchant$tryHandleItemProtection(stack, cir)) return;
+        if (astralenchant$tryHandleBundle(stack, enchantments, cir)) return;
+        if (astralenchant$tryHandleOverload(stack, enchantments, cir)) return;
+        if (astralenchant$tryHandleItemProtection(stack, cir)) return;
     }
 
     @Unique
-    private static boolean astralEnchant$isEnchantmentComponent(
+    private static boolean astralenchant$isEnchantmentComponent(
             DataComponentType<?> component,
             Object value
     ) {
@@ -52,7 +52,7 @@ public abstract class ItemStackMixin {
     }
 
     @Unique
-    private static boolean astralEnchant$tryHandleBundle(
+    private static boolean astralenchant$tryHandleBundle(
             ItemStack stack,
             ItemEnchantments enchantments,
             CallbackInfoReturnable<?> cir
@@ -90,7 +90,7 @@ public abstract class ItemStackMixin {
     }
 
     @Unique
-    private static boolean astralEnchant$tryHandleOverload(
+    private static boolean astralenchant$tryHandleOverload(
             ItemStack stack,
             ItemEnchantments enchantments,
             CallbackInfoReturnable<?> cir
@@ -116,7 +116,7 @@ public abstract class ItemStackMixin {
     }
 
     @Unique
-    private static boolean astralEnchant$tryHandleItemProtection(
+    private static boolean astralenchant$tryHandleItemProtection(
             ItemStack stack,
             CallbackInfoReturnable<?> cir
     ) {

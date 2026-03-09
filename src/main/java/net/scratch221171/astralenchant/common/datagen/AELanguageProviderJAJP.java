@@ -66,8 +66,6 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "この設定に関係なく、オーバーロードレベルはエンチャントの極意自身のレベルには適用されます。");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "エンチャントの極意のレベル倍率（％）");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "エンチャントの合計レベルが 1 増えるごとに、モディファイア倍率が何％増加するかを指定します。");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "バニラアイテムのレシピを有効化");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "ゲーム進行に必要となる可能性のあるバニラアイテムのレシピを有効化します（バンドルなど）。");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast(), "即時テレポートのレベル毎の距離増加");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast() + ".tooltip", "レベルが 1 上がるごとの、テレポート可能距離の上限の増加量を指定します。");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast(), "即時テレポートの最大距離");
@@ -76,6 +74,10 @@ public class AELanguageProviderJAJP extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "軽減貫通によって追加されるダメージタイプタグを設定します。反応装甲より優先されます。");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast(), "反応装甲で無効化されるダメージタイプタグ");
         add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "反応装甲によって無効化されるダメージタイプタグを設定します。");
+
+        add(AstralEnchant.MOD_ID + ".configuration.misc", "その他の設定");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "バニラアイテムのレシピを有効化");
+        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "ゲーム進行に必要となる可能性のあるバニラアイテムのレシピを有効化します（バンドルなど）。");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "エンチャントの切り替え");
     }

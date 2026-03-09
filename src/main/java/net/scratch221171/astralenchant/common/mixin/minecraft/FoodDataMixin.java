@@ -32,7 +32,7 @@ public abstract class FoodDataMixin {
      * {@link AEEnchantments#ENDLESS_APPETITE} が付いている場合は溢れた(隠し)満腹度分だけ回復する。
      */
     @Inject(method = "add", at = @At("HEAD"))
-    private void astralEnchant$onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
+    private void astralenchant$onAdd(int foodLevel, float saturationLevel, CallbackInfo ci) {
         if (!RuntimeConfigState.get(AEConfig.ENDLESS_APPETITE)) return;
         FoodData self = (FoodData)(Object)this;
         int newFoodLevel = Math.clamp(foodLevel + self.getFoodLevel(), 0, 20);
@@ -44,7 +44,7 @@ public abstract class FoodDataMixin {
      * {@link AEEnchantments#ENDLESS_APPETITE} が付いている場合は自然治癒を加速する。
      */
     @Inject(method = "tick", at = @At("HEAD"))
-    private void astralEnchant$onTick(Player player, CallbackInfo ci) {
+    private void astralenchant$onTick(Player player, CallbackInfo ci) {
         if (!RuntimeConfigState.get(AEConfig.ENDLESS_APPETITE)) return;
         Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.ENDLESS_APPETITE, player.level());
         if (EnchantmentHelper.getEnchantmentLevel(enchantment, player) > 0) {
