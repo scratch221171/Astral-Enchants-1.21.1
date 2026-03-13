@@ -195,6 +195,15 @@ public class AERecipeProvider extends RecipeProvider {
                     .add('3', Items.BOOK)
                     .add('4', AEItems.ARCANE_QUARTZ)
                     .save(output);
+
+            AERecipeBuildingHelper.shapedEB(AEEnchantments.DISTORTION, 1, holderLookup)
+                    .pattern("121").pattern("343").pattern("151")
+                    .add('1', Items.FISHING_ROD)
+                    .add('2', Items.FEATHER)
+                    .add('3', Items.WIND_CHARGE)
+                    .add('4', EBIngredient(Enchantments.WIND_BURST, 3, holderLookup))
+                    .add('5', Items.ENDER_EYE)
+                    .save(output);
         }
 
         // 精錬
