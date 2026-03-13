@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:fishing_rod"
+    },
+    "2": {
+      "item": "minecraft:feather"
+    },
+    "3": {
+      "item": "minecraft:wind_charge"
+    },
+    "4": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:wind_burst": 3
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "5": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "pattern": [
+    "121",
+    "343",
+    "151"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:distortion": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

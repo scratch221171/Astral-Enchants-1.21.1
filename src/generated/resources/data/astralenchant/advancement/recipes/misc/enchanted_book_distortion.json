@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_minecraft:ender_eye": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:ender_eye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft:feather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:feather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft:fishing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:fishing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_minecraft:wind_charge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:wind_charge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "astralenchant:enchanted_book_distortion"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_minecraft:fishing_rod",
+      "has_minecraft:feather",
+      "has_minecraft:wind_charge",
+      "has_minecraft:ender_eye"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "astralenchant:enchanted_book_distortion"
+    ]
+  }
+}
