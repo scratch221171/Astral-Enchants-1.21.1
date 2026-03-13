@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.scratch221171.astralenchant.client.mixin.MinecraftMixin;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.enchantment.handler.*;
 import net.scratch221171.astralenchant.common.mixin.compat.l2hostility.DispellTraitMixin;
@@ -12,11 +13,7 @@ import net.scratch221171.astralenchant.common.mixin.minecraft.*;
 import net.scratch221171.astralenchant.compat.accessories.EssenceOfEnchantmentAccessoriesCompatHandler;
 import net.scratch221171.astralenchant.compat.accessories.SlotExpansionHandler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AEEnchantments {
-    public static final List<ResourceKey<Enchantment>> ENCHANTMENTS = new ArrayList<>();
 
     /**
      * 与えた攻撃に様々なダメージタイプタグを付与し、ダメージ軽減を貫通する。
@@ -61,7 +58,7 @@ public class AEEnchantments {
     /**
      * アイテム使用のクールダウンを短縮する。
      * <p>
-     * Handler : {@link CooldownAttributeHandler}
+     * Handler : {@link CooldownDurationAttributeHandler}
      * <p>
      * Mixin : {@link ItemCooldownsMixin}
      */
@@ -188,23 +185,13 @@ public class AEEnchantments {
     public static final ResourceKey<Enchantment> CURSE_OF_ENCHANTMENT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "curse_of_enchantment"));
 
-    static {
-        ENCHANTMENTS.add(MITIGATION_PIERCING);
-        ENCHANTMENTS.add(LAST_STAND);
-        ENCHANTMENTS.add(ITEM_PROTECTION);
-        ENCHANTMENTS.add(ESSENCE_OF_ENCHANTMENT);
-        ENCHANTMENTS.add(COOLDOWN_REDUCTION);
-        ENCHANTMENTS.add(FEATHER_TOUCH);
-        ENCHANTMENTS.add(ADVENTURERS_LORE);
-        ENCHANTMENTS.add(COMPATIBILITY);
-        ENCHANTMENTS.add(ENDLESS_APPETITE);
-        ENCHANTMENTS.add(MOMENTUM);
-        ENCHANTMENTS.add(INSTANT_TELEPORT);
-        ENCHANTMENTS.add(OVERLOAD);
-        ENCHANTMENTS.add(SLOT_EXPANSION);
-        ENCHANTMENTS.add(REACTIVE_ARMOR);
-        ENCHANTMENTS.add(MYSTIC_REMNANTS);
-        ENCHANTMENTS.add(CURSE_OF_IGNORANCE);
-        ENCHANTMENTS.add(CURSE_OF_ENCHANTMENT);
-    }
+    /**
+     * 攻撃時より大きい当たり判定を作り直し、照準があっていなくても攻撃が当たるようになる。
+     * <p>
+     * Handler : none
+     * <p>
+     * Mixin : {@link MinecraftMixin}
+     */
+    public static final ResourceKey<Enchantment> DISTORTION = ResourceKey.create(Registries.ENCHANTMENT,
+            ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "distortion"));
 }

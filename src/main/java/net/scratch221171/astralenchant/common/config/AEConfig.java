@@ -38,6 +38,7 @@ public class AEConfig {
     public static final ModConfigSpec.IntValue INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL;
     public static final ModConfigSpec.IntValue INSTANT_TELEPORT_MAX_DISTANCE;
     public static final ModConfigSpec.ConfigValue<List<? extends String>> REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS;
+    public static final ModConfigSpec.DoubleValue DISTORTION_ANGLE_PER_LEVEL;
 
     public static final ModConfigSpec.BooleanValue ENABLE_VANILLA_ITEM_RECIPES;
 
@@ -58,6 +59,7 @@ public class AEConfig {
     public static final ModConfigSpec.BooleanValue MYSTIC_REMNANTS;
     public static final ModConfigSpec.BooleanValue CURSE_OF_IGNORANCE;
     public static final ModConfigSpec.BooleanValue CURSE_OF_ENCHANTMENT;
+    public static final ModConfigSpec.BooleanValue DISTORTION;
 
     static {
         BUILDER.push("settings");
@@ -106,6 +108,9 @@ public class AEConfig {
                         obj -> obj instanceof String s && s.contains(":")
                     );
 
+        DISTORTION_ANGLE_PER_LEVEL =
+                registerDouble("distortion_angle_per_level", 7.5, 0, Double.MAX_VALUE);
+
         BUILDER.pop();
 
         BUILDER.push("misc");
@@ -149,6 +154,8 @@ public class AEConfig {
             CURSE_OF_IGNORANCE = registerEnchantment(AEEnchantments.CURSE_OF_IGNORANCE);
 
             CURSE_OF_ENCHANTMENT = registerEnchantment(AEEnchantments.CURSE_OF_ENCHANTMENT);
+
+            DISTORTION = registerEnchantment(AEEnchantments.DISTORTION);
 
         BUILDER.pop();
     }

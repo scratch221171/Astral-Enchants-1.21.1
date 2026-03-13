@@ -10,16 +10,16 @@ import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
 import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
-import net.scratch221171.astralenchant.common.util.IItemCooldownsExtention;
+import net.scratch221171.astralenchant.common.util.IItemCooldownsExtension;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
-public class CooldownAttributeHandler {
+public class CooldownDurationAttributeHandler {
 
     // attribute関連、エンチャントではないのでConfigで無効化されない
     @SubscribeEvent
     private static void modifyDefaultAttributes(EntityAttributeModificationEvent event) {
-        if (!event.has(EntityType.PLAYER, AEAttributes.COOLDOWN_REDUCTION)) {
-            event.add(EntityType.PLAYER, AEAttributes.COOLDOWN_REDUCTION, 0.0);
+        if (!event.has(EntityType.PLAYER, AEAttributes.COOLDOWN_DURATION)) {
+            event.add(EntityType.PLAYER, AEAttributes.COOLDOWN_DURATION, 1.0);
         }
     }
 
@@ -29,7 +29,7 @@ public class CooldownAttributeHandler {
         if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return;
         if (event.getEntity().level().isClientSide) return;
         Player player = event.getEntity();
-        float value = 1.0F - (float) player.getAttributeValue(AEAttributes.COOLDOWN_REDUCTION);
-        ((IItemCooldownsExtention) player.getCooldowns()).astralenchant$setCooldownReductionMultiplier(value);
+        float value = (float) player.getAttributeValue(AEAttributes.COOLDOWN_DURATION);
+        ((IItemCooldownsExtension) player.getCooldowns()).astralenchant$setCooldownDurationMultiplier(value);
     }
 }

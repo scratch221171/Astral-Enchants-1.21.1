@@ -92,9 +92,9 @@ public class AEEnchantmentProvider {
                         EquipmentSlotGroup.CHEST))
                 .withEffect(EnchantmentEffectComponents.ATTRIBUTES, new EnchantmentAttributeEffect(
                         ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "cr_bonus"),
-                        AEAttributes.COOLDOWN_REDUCTION,
-                        LevelBasedValue.perLevel(0.1F),
-                        AttributeModifier.Operation.ADD_VALUE
+                        AEAttributes.COOLDOWN_DURATION,
+                        LevelBasedValue.perLevel(-0.15f),
+                        AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                 )));
 
         register(context, AEEnchantments.FEATHER_TOUCH, Enchantment.enchantment(Enchantment.definition(
@@ -204,6 +204,15 @@ public class AEEnchantmentProvider {
                 Enchantment.constantCost(50),
                 4,
                 EquipmentSlotGroup.ANY)));
+
+        register(context, AEEnchantments.DISTORTION, Enchantment.enchantment(Enchantment.definition(
+                any,
+                1,
+                3,
+                Enchantment.dynamicCost(100, 10),
+                Enchantment.dynamicCost(150, 10),
+                16,
+                EquipmentSlotGroup.HAND)));
     }
 
     private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {

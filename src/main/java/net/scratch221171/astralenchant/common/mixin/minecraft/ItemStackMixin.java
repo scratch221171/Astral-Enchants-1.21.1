@@ -6,6 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
 import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
@@ -57,11 +58,16 @@ public abstract class ItemStackMixin {
             ItemEnchantments enchantments,
             CallbackInfoReturnable<?> cir
     ) {
-        if (RuntimeConfigState.get(AEConfig.COMPATIBILITY) || !stack.is(Items.BUNDLE)) return false;
+        AstralEnchant.LOGGER.info("1");
+        if (!RuntimeConfigState.get(AEConfig.COMPATIBILITY) || !stack.is(Items.BUNDLE)) return false;
         if (AEUtils.getEnchantmentLevelFromNBT(stack, AEEnchantments.COMPATIBILITY) <= 0) return false;
+        AstralEnchant.LOGGER.info("compatibility");
+        AstralEnchant.LOGGER.info("stack: {}\nenchantments: {}", stack, enchantments);
 
         BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
         if (contents.isEmpty()) return false;
+
+        AstralEnchant.LOGGER.info("not empty");
 
         ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
         enchantments.entrySet().stream()
@@ -71,21 +77,27 @@ public abstract class ItemStackMixin {
                 )
                 .forEach(e -> added.set(e.getKey(), e.getIntValue()));
 
+        AstralEnchant.LOGGER.info("added enchantments: {}", added);
+
         List<ItemStack> newItems = new ArrayList<>();
         for (ItemStack item : contents.items()) {
             ItemStack copy = item.copy();
+            AstralEnchant.LOGGER.info("copy: {}", copy);
             ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
+            AstralEnchant.LOGGER.info("current: {}", current);
             if (current != null) {
                 copy.set(
                         DataComponents.ENCHANTMENTS,
                         AEUtils.mergeItemEnchants(added.toImmutable(), current)
                 );
+                AstralEnchant.LOGGER.info("after: {}", copy.get(DataComponents.ENCHANTMENTS));
             }
             newItems.add(copy);
         }
 
         stack.set(DataComponents.BUNDLE_CONTENTS, new BundleContents(newItems));
         cir.setReturnValue(null);
+        AstralEnchant.LOGGER.info("finish");
         return true;
     }
 

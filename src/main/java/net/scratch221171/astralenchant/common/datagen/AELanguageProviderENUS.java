@@ -3,6 +3,7 @@ package net.scratch221171.astralenchant.common.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
@@ -25,7 +26,7 @@ public class AELanguageProviderENUS extends LanguageProvider {
         addEnchantWithDesc(AEEnchantments.LAST_STAND, "Last Stand", "Consumes experience points to avoid death.");
         addEnchantWithDesc(AEEnchantments.ITEM_PROTECTION, "Item Protection", "Disables the enchantment-disabling effect of the “Dispell” trait and the sealing effect of the “Ragnarok” trait added by L2Hostility.");
         addEnchantWithDesc(AEEnchantments.ESSENCE_OF_ENCHANTMENT, "Essence of Enchantment", "All item stats increase based on the total level of all enchantments other than this one.");
-        addEnchantWithDesc(AEEnchantments.COOLDOWN_REDUCTION, "Cooldown Reduction", "Reduces the cooldown of all items, including shields and Ender Pearls.");
+        addEnchantWithDesc(AEEnchantments.COOLDOWN_REDUCTION, "Cooldown Reduction", "Reduces the cooldown of all items.");
         addEnchantWithDesc(AEEnchantments.FEATHER_TOUCH, "Feather Touch", "All breakable blocks are collected as items. While sneaking, block states and components are preserved.");
         addEnchantWithDesc(AEEnchantments.ADVENTURERS_LORE, "Adventurer's Lore", "Increases luck and the amount of experience gained from mobs and blocks based on the number of completed advancements.");
         addEnchantWithDesc(AEEnchantments.COMPATIBILITY, "Compatibility", "Allows additional enchantments to be applied to internal items of a bundle with this enchantment while ignoring conflicts.");
@@ -40,9 +41,11 @@ public class AELanguageProviderENUS extends LanguageProvider {
         addEnchantWithDesc(AEEnchantments.MYSTIC_REMNANTS, "Mystic Remnants", "Killed mobs will occasionally drop enchanted books.");
         addEnchantWithDesc(AEEnchantments.CURSE_OF_IGNORANCE, "Curse of Ignorance", "Replaces the tooltip with obscured text.");
         addEnchantWithDesc(AEEnchantments.CURSE_OF_ENCHANTMENT, "Curse of Enchantment", "Prevents enchantments on the item from being modified.");
+        addEnchantWithDesc(AEEnchantments.DISTORTION, "Distortion", "Missed attacks distort toward a nearby target.");
 
         // attribute
-        add(AEAttributes.COOLDOWN_REDUCTION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Reduction");
+        add(AEAttributes.COOLDOWN_DURATION.unwrapKey().orElseThrow().location().toLanguageKey("attribute"), "Cooldown Duration");
+        add(AEAttributes.COOLDOWN_DURATION.unwrapKey().orElseThrow().location().toLanguageKey("attribute", "desc"), "Multiplier applied to item use cooldown duration");
 
         // アイテム
         add(AEItems.ENCHANTMENT_SHARD.getKey().location().toLanguageKey("item"), "Enchantment Shard");
@@ -58,26 +61,17 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(AstralEnchant.MOD_ID + ".configuration.section.astralenchant.server.toml.title", "Astral Enchant Server Config");
 
         add(AstralEnchant.MOD_ID + ".configuration.settings", "Enchantment Settings");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast(), "Required experience points for Last Stand (base value)");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.LAST_STAND_REQUIRED_BASE_EXPERIENCE.getPath().getLast() + ".tooltip", "The experience cost of Last Stand at level N is \"base value ÷ N\". By default, this is approximately 34 levels.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast(), "Last Stand ignores bypass-invulnerability");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getPath().getLast() + ".tooltip", "When disabled, Last Stand will not activate against damage that has the BYPASSES_INVULNERABILITY tag (such as /kill or void damage).");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast(), "Include Overload levels in Essence of Enchant total level calculation");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION.getPath().getLast() + ".tooltip", "Regardless of this setting, Overload levels are always applied to the level of Essence of Enchant itself.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast(), "Essence of Enchant level multiplier (%)");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER.getPath().getLast() + ".tooltip", "Specifies how many percent the modifier multiplier increases for each increase of 1 in the total enchantment level.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast(), "Instant Teleport distance increase per level");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getPath().getLast() + ".tooltip", "Specifies how much the maximum teleportable distance increases for each level gained.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast(), "Instant Teleport maximum distance");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.INSTANT_TELEPORT_MAX_DISTANCE.getPath().getLast() + ".tooltip", "Specifies the maximum teleport distance provided by this enchantment.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast(), "Damage type tags added by Mitigation Piercing");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags added by Mitigation Piercing. These take priority over Reactive Armor.");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast(), "Damage type tags disabled by Reactive Armor");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS.getPath().getLast() + ".tooltip", "Configures the damage type tags that are disabled by Reactive Armor.");
+        addConfigWithDesc(AEConfig.LAST_STAND_REQUIRED_BASE_EXPERIENCE, "Required experience points for Last Stand (base value)", "The experience cost of Last Stand at level N is \"base value ÷ N\". By default, this is approximately 34 levels.");
+        addConfigWithDesc(AEConfig.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG, "Last Stand ignores bypass-invulnerability", "When disabled, Last Stand will not activate against damage that has the BYPASSES_INVULNERABILITY tag (such as /kill or void damage).");
+        addConfigWithDesc(AEConfig.ESSENCE_OF_ENCHANT_INCLUDE_OVERLOAD_IN_CALCULATION, "Include Overload levels in Essence of Enchant total level calculation", "Regardless of this setting, Overload levels are always applied to the level of Essence of Enchant itself.");
+        addConfigWithDesc(AEConfig.ESSENCE_OF_ENCHANT_LEVEL_MULTIPLIER, "Essence of Enchant level multiplier (%)", "Specifies how many percent the modifier multiplier increases for each increase of 1 in the total enchantment level.");
+        addConfigWithDesc(AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL, "Instant Teleport distance increase per level", "Specifies how much the maximum teleportable distance increases for each level gained.");
+        addConfigWithDesc(AEConfig.INSTANT_TELEPORT_MAX_DISTANCE, "Instant Teleport maximum distance", "Specifies the maximum teleport distance provided by this enchantment.");
+        addConfigWithDesc(AEConfig.MITIGATION_PIERCING_ADDED_DAMAGE_TYPE_TAGS, "Damage type tags added by Mitigation Piercing", "Configures the damage type tags added by Mitigation Piercing. These take priority over Reactive Armor.");
+        addConfigWithDesc(AEConfig.REACTIVE_ARMOR_DISABLED_DAMAGE_TYPE_TAGS, "Damage type tags disabled by Reactive Armor", "Configures the damage type tags that are disabled by Reactive Armor.");
 
         add(AstralEnchant.MOD_ID + ".configuration.misc", "Misc Settings");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast(), "Enable vanilla item recipes");
-        add(AstralEnchant.MOD_ID + ".configuration." + AEConfig.ENABLE_VANILLA_ITEM_RECIPES.getPath().getLast() + ".tooltip", "Enables recipes for vanilla items that may be required for game progression (such as bundles).");
+        addConfigWithDesc(AEConfig.ENABLE_VANILLA_ITEM_RECIPES, "Enable vanilla item recipes", "Enables recipes for vanilla items that may be required for game progression (such as bundles).");
 
         add(AstralEnchant.MOD_ID + ".configuration.enchantment_toggling", "Enchantment Toggling");
     }
@@ -87,5 +81,10 @@ public class AELanguageProviderENUS extends LanguageProvider {
         add(key.location().toLanguageKey("enchantment", "desc"), desc);
         // configのidはエンチャントpath参照なのでここもpath参照でええやろ
         add(AstralEnchant.MOD_ID + ".configuration." + key.location().getPath(), name);
+    }
+
+    private void addConfigWithDesc(ModConfigSpec.ConfigValue<?> key, String name, String desc) {
+        add(AstralEnchant.MOD_ID + ".configuration." + key.getPath().getLast(), name);
+        add(AstralEnchant.MOD_ID + ".configuration." + key.getPath().getLast() + ".tooltip", desc);
     }
 }

@@ -50,8 +50,8 @@ public class FeatherTouchHandler {
         if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
 
         // 複数ブロックのもの(ドアやベッド)を除外する
-        if (checkBlockState(state, BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER) ||
-            checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
+        if (checkBlockState(state, BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER)
+            || checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
 
         ItemStack stack;
         BlockEntity be = level.getBlockEntity(pos);
@@ -63,12 +63,16 @@ public class FeatherTouchHandler {
                 be.setRemoved();
             } else {
                 stack = new ItemStack(state.getBlock());
-                BlockItemStateProperties properties = BlockItemStateProperties.EMPTY;
-                for (Property<?> property : state.getProperties()) {
-                    properties = properties.with(property, state);
-                }
-                stack.set(DataComponents.BLOCK_STATE, properties);
             }
+
+            // 元々上のelse文に入っていたが、サーバー上だと変な挙動をしたので、
+            // BlockState保存はBEの存在に関わらず共通で保存する
+            BlockItemStateProperties properties = BlockItemStateProperties.EMPTY;
+            for (Property<?> property : state.getProperties()) {
+                properties = properties.with(property, state);
+            }
+            stack.set(DataComponents.BLOCK_STATE, properties);
+
             ((ServerLevel)level).sendParticles(ParticleTypes.ENCHANT, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, 20, 0.5f, 0.5f, 0.5f, 1f);
         } else {
             stack = new ItemStack(state.getBlock());

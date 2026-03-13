@@ -174,15 +174,15 @@ dependencies {
     compileOnly("dev.shadowsoffire:ApothicEnchanting:${minecraft_version}-${project.apoth_ench_version}")
     compileOnly("dev.shadowsoffire:Apotheosis:${minecraft_version}-${project.apoth_version}")
 
-    compileOnly("curse.maven:l2hostility-909207:7685921")
-    compileOnly("curse.maven:l2-complements-758349:7606344")
-    compileOnly("curse.maven:l2library-620203:7584599")
+    compileOnly("maven.modrinth:l2hostility:${project.l2hostility_version}")
+    compileOnly("maven.modrinth:l2-complements:${project.l2complements_version}")
+    compileOnly("maven.modrinth:l2library:${project.l2library_version}")
 
-    localRuntime("curse.maven:l2hostility-909207:7685921")
-    localRuntime("curse.maven:l2-complements-758349:7606344")
-    localRuntime("curse.maven:l2library-620203:7584599")
-    localRuntime("maven.modrinth:patchouli:1.21.1-93-neoforge")
-    localRuntime("maven.modrinth:curios:9.5.1+1.21.1")
+    localRuntime("maven.modrinth:l2hostility:${project.l2hostility_version}")
+    localRuntime("maven.modrinth:l2-complements:${project.l2complements_version}")
+    localRuntime("maven.modrinth:l2library:${project.l2library_version}")
+    localRuntime("maven.modrinth:patchouli:${project.patchouli_version}")
+    localRuntime("maven.modrinth:curios:${project.curios_version}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -198,7 +198,10 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+
+            accessories_version_range: accessories_version_range,
+            l2hostility_version_range: l2hostility_version_range
     ]
     inputs.properties replaceProperties
     expand replaceProperties
