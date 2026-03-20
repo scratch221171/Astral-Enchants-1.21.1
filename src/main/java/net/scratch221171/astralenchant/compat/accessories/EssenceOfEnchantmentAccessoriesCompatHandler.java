@@ -56,7 +56,6 @@ public class EssenceOfEnchantmentAccessoriesCompatHandler {
                     // /(1 + a)
                     case NEGATIVE -> newBonusModifier = new AttributeModifier(newId, - 1 + 1 / (totalLevel * level * multiplier / 100f + 1), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
                     default -> {
-                        AstralEnchant.LOGGER.info("default");
                         continue;
                     }
                 }

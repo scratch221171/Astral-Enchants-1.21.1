@@ -52,7 +52,7 @@ public class MysticRemnantsLootModifier extends LootModifier{
 
         int enchantmentLevel = EnchantmentHelper.getEnchantmentLevel(AEUtils.getEnchantmentHolder(AEEnchantments.MYSTIC_REMNANTS, context.getLevel()), player);
         // (5 + level)%で成功
-        if (context.getRandom().nextDouble() > 0.05 + (double) enchantmentLevel / 100) return generatedLoot;
+        if (enchantmentLevel <= 0 || context.getRandom().nextDouble() > 0.05 + (double) enchantmentLevel / 100) return generatedLoot;
 
         Optional<HolderSet.Named<Enchantment>> inEnchantingTable = context.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT)
                 .getTag(EnchantmentTags.IN_ENCHANTING_TABLE);

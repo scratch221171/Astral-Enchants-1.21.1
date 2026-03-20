@@ -23,10 +23,8 @@ public class CooldownDurationAttributeHandler {
         }
     }
 
-    // ここで一旦チェック
     @SubscribeEvent
     private static void onPlayerTick(PlayerTickEvent.Post event) {
-        if (!RuntimeConfigState.get(AEConfig.COOLDOWN_REDUCTION)) return;
         if (event.getEntity().level().isClientSide) return;
         Player player = event.getEntity();
         float value = (float) player.getAttributeValue(AEAttributes.COOLDOWN_DURATION);

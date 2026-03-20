@@ -13,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemCooldowns.class)
 public abstract class ItemCooldownsMixin implements IItemCooldownsExtension {
-    @Shadow
-    private int tickCount;
 
     @Unique
     private float astralenchant$cooldownDurationMultiplier = 1;
