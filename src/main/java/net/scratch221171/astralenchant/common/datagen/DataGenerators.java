@@ -8,6 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.datagen.providers.*;
 
 import java.util.concurrent.CompletableFuture;
 

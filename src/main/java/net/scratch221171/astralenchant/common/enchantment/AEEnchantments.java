@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.scratch221171.astralenchant.client.mixin.MinecraftMixin;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.common.datagen.providers.AELootModifierProvider;
 import net.scratch221171.astralenchant.common.enchantment.handler.*;
 import net.scratch221171.astralenchant.common.mixin.compat.l2hostility.DispellTraitMixin;
 import net.scratch221171.astralenchant.common.mixin.compat.l2hostility.RagnarokTraitMixin;
@@ -158,7 +159,7 @@ public class AEEnchantments {
     /**
      * 敵を倒した際に稀にエンチャントの本をドロップするようになる。
      * <p>
-     * Handler : {@link net.scratch221171.astralenchant.common.datagen.AELootModifierProvider}
+     * Handler : {@link AELootModifierProvider}
      * <p>
      * Mixin : none
      */

@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common.datagen;
+package net.scratch221171.astralenchant.common.enchantment;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -17,12 +17,12 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.registries.holdersets.AnyHolderSet;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
+import net.scratch221171.astralenchant.common.datagen.providers.AEItemTagsProvider;
 import net.scratch221171.astralenchant.common.registries.AEAttributes;
 
 import java.util.HashMap;
 
-public class AEEnchantmentProvider {
+public class AEEnchantmentBootstrap {
     private static final HashMap<ResourceKey<Enchantment>, ICondition> conditions = new HashMap<>();
 
     public static HashMap<ResourceKey<Enchantment>, ICondition> getConditions() {

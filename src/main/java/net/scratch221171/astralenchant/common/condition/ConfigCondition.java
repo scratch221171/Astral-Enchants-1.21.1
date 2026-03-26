@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common.conditions;
+package net.scratch221171.astralenchant.common.condition;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;

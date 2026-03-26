@@ -23,6 +23,7 @@ run
 runs
 run-data
 run-server
+memo.md
 
 src/generated/resources/.cache
 

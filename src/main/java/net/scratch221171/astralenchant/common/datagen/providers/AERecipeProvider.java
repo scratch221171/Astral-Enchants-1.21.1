@@ -1,4 +1,4 @@
-package net.scratch221171.astralenchant.common.datagen;
+package net.scratch221171.astralenchant.common.datagen.providers;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
@@ -22,7 +22,7 @@ import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.scratch221171.astralenchant.common.AstralEnchant;
-import net.scratch221171.astralenchant.common.conditions.ConfigCondition;
+import net.scratch221171.astralenchant.common.condition.ConfigCondition;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.registries.AEBlocks;
 import net.scratch221171.astralenchant.common.registries.AEItems;
