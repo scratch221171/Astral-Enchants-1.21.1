@@ -204,6 +204,16 @@ public class AERecipeProvider extends RecipeProvider {
                     .add('4', EBIngredient(Enchantments.WIND_BURST, 3, holderLookup))
                     .add('5', Items.ENDER_EYE)
                     .save(output);
+
+            AERecipeBuildingHelper.shapedEB(AEEnchantments.OVER_MENDING, 1, holderLookup)
+                    .pattern("123").pattern("454").pattern("361")
+                    .add('1', AEItems.BUDDING_ARCANIUM_INGOT)
+                    .add('2', EBIngredient(Enchantments.CHANNELING, 1, holderLookup))
+                    .add('3', Items.EXPERIENCE_BOTTLE)
+                    .add('4', EBIngredient(Enchantments.MENDING, 1, holderLookup))
+                    .add('5', Items.LIGHTNING_ROD)
+                    .add('4', EBIngredient(Enchantments.UNBREAKING, 3, holderLookup))
+                    .save(output);
         }
 
         // 精錬
