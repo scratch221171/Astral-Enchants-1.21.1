@@ -74,6 +74,7 @@ public abstract class MinecraftMixin {
         Vec3 eye = player.getEyePosition();
         Vec3 look = player.getLookAngle().normalize();
 
+        // 視線との偏角が一番小さいエンティティを探す
         double bestCos = Math.cos(Math.min(apexAngle, Math.PI));
         Entity best = null;
 

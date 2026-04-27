@@ -88,9 +88,9 @@ public class AEEnchantments {
     /**
      * このエンチャントがついたバンドルに付けられたエンチャントが、競合などを無視して内部アイテムに付与される。
      * <p>
-     * Handler : none
+     * Handler : {@link CompatibilityHandler}
      * <p>
-     * Mixin : {@link ItemStackMixin}, {@link IItemExtensionMixin}
+     * Mixin : {@link IItemExtensionMixin}
      */
     public static final ResourceKey<Enchantment> COMPATIBILITY = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "compatibility"));
@@ -150,7 +150,7 @@ public class AEEnchantments {
      * <p>
      * Handler : {@link ReactiveArmorHandler}
      * <p>
-     * Mixin : {@link DamageSourceMixin}
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> REACTIVE_ARMOR = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "reactive_armor"));
@@ -180,7 +180,7 @@ public class AEEnchantments {
      * <p>
      * Handler : {@link CurseOfEnchantmentHandler}
      * <p>
-     * Mixin : {@link ItemStackMixin }
+     * Mixin : none
      */
     public static final ResourceKey<Enchantment> CURSE_OF_ENCHANTMENT = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "curse_of_enchantment"));
@@ -195,6 +195,13 @@ public class AEEnchantments {
     public static final ResourceKey<Enchantment> DISTORTION = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "distortion"));
 
+    /**
+     * アイテムに経験値を注ぎ込み、最後に雷にあたり事でツールが不可壊になる。雷のダメージがデフォ16倍。
+     * <p>
+     * Handler : {@link OverloadHandler}
+     * <p>
+     * Mixin : none
+     */
     public static final ResourceKey<Enchantment> OVER_MENDING = ResourceKey.create(Registries.ENCHANTMENT,
             ResourceLocation.fromNamespaceAndPath(AstralEnchant.MOD_ID, "over_mending"));
 }

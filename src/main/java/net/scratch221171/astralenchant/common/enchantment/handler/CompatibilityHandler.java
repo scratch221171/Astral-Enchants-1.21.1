@@ -35,6 +35,7 @@ public class CompatibilityHandler {
         if (contents.isEmpty()) return;
 
         ItemEnchantments.Mutable added = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+        // 現在のバンドルになければ、新しく付けられたものだと判断する
         enchantments.entrySet().stream()
                 .filter(e ->
                         !e.getKey().is(AEEnchantments.COMPATIBILITY)
@@ -43,6 +44,7 @@ public class CompatibilityHandler {
                 .forEach(e -> added.set(e.getKey(), e.getIntValue()));
 
         List<ItemStack> newItems = new ArrayList<>();
+        // 全ての内容物に対してそれぞれマージ
         for (ItemStack item : contents.items()) {
             ItemStack copy = item.copy();
             ItemEnchantments current = copy.get(DataComponents.ENCHANTMENTS);
@@ -55,6 +57,7 @@ public class CompatibilityHandler {
             newItems.add(copy);
         }
 
+        // バンドルの内容物をまとめて書き換え
         stack.set(DataComponents.BUNDLE_CONTENTS, new BundleContents(newItems));
         event.setCanceled(true);
     }
