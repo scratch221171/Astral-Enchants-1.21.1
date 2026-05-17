@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "c:gems/amethyst"
+    },
+    "2": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:silk_touch": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "3": {
+      "item": "minecraft:deepslate"
+    },
+    "4": {
+      "item": "minecraft:echo_shard"
+    },
+    "5": {
+      "tag": "c:feathers"
+    },
+    "6": {
+      "tag": "c:cobblestones/mossy"
+    }
+  },
+  "pattern": [
+    "515",
+    "623",
+    "545"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:feather_touch": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

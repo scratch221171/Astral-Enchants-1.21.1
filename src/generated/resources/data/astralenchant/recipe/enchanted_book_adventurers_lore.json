@@ -1,0 +1,49 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:book"
+    },
+    "2": {
+      "item": "minecraft:brain_coral"
+    },
+    "3": {
+      "item": "minecraft:glow_berries"
+    },
+    "4": {
+      "item": "minecraft:blue_ice"
+    },
+    "5": {
+      "item": "minecraft:mycelium"
+    },
+    "6": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "7": {
+      "item": "minecraft:red_sandstone"
+    },
+    "8": {
+      "item": "minecraft:sweet_berries"
+    },
+    "9": {
+      "item": "minecraft:deepslate_coal_ore"
+    }
+  },
+  "pattern": [
+    "823",
+    "517",
+    "496"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:adventurers_lore": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

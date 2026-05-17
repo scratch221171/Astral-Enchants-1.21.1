@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:anvil"
+    },
+    "2": {
+      "item": "minecraft:book"
+    },
+    "3": {
+      "item": "minecraft:conduit"
+    },
+    "4": {
+      "item": "astralenchant:budding_arcanium_ingot"
+    },
+    "5": {
+      "tag": "c:storage_blocks/arcanium"
+    }
+  },
+  "pattern": [
+    "313",
+    "525",
+    "414"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:compatibility": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    },
+    {
+      "item": "astralenchant:enchantment_shard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "astralenchant:arcane_quartz"
+  }
+}

@@ -8,16 +8,17 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 
-
 public class AEAttributes {
-    public static final DeferredRegister<Attribute> ATTRIBUTES =
+    public static final DeferredRegister<Attribute> REGISTER =
             DeferredRegister.create(Registries.ATTRIBUTE, AstralEnchant.MOD_ID);
 
-    public static final Holder<Attribute> COOLDOWN_DURATION = ATTRIBUTES.register("cooldown_duration",
+    public static final Holder<Attribute> COOLDOWN_DURATION = REGISTER.register(
+            "cooldown_duration",
             () -> new RangedAttribute("attribute.astralenchant.cooldown_duration", 1.0, 0.0, 1024.0)
-                    .setSentiment(Attribute.Sentiment.NEGATIVE).setSyncable(true));
+                    .setSentiment(Attribute.Sentiment.NEGATIVE)
+                    .setSyncable(true));
 
     public static void register(IEventBus eventBus) {
-        ATTRIBUTES.register(eventBus);
+        REGISTER.register(eventBus);
     }
 }

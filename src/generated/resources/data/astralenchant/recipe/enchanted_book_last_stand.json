@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:protection": 4
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "2": {
+      "item": "minecraft:experience_bottle"
+    },
+    "3": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "4": {
+      "item": "minecraft:dragon_head"
+    },
+    "5": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:strong_regeneration"
+        }
+      },
+      "items": "minecraft:potion"
+    },
+    "6": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:long_fire_resistance"
+        }
+      },
+      "items": "minecraft:potion"
+    }
+  },
+  "pattern": [
+    "242",
+    "313",
+    "536"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:last_stand": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

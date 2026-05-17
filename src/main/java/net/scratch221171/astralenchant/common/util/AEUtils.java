@@ -1,43 +1,99 @@
 package net.scratch221171.astralenchant.common.util;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import java.util.Optional;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 public class AEUtils {
-
-    public static Holder<Enchantment> getEnchantmentHolder(ResourceKey<Enchantment> enchantment, Level level) {
-        return level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(enchantment);
-    }
-
-    public static int getEnchantmentLevel(ItemStack stack, ResourceKey<Enchantment> enchantment) {
-        for (Holder<Enchantment> e : stack.getTagEnchantments().keySet()) {
-            if (e.unwrapKey().isPresent() && e.unwrapKey().get().equals(enchantment)) {
-                // 専用メソッドを尊重
-                return stack.getEnchantmentLevel(e);
-            }
+    private static Optional<RegistryAccess> getRegistryAccess() {
+        Optional<RegistryAccess> access = Optional.empty();
+        switch (FMLEnvironment.dist) {
+            case CLIENT ->
+                access = Optional.ofNullable(Minecraft.getInstance().level).map(Level::registryAccess);
+            case DEDICATED_SERVER ->
+                access = Optional.ofNullable(ServerLifecycleHooks.getCurrentServer())
+                        .map(MinecraftServer::registryAccess);
         }
-        return 0;
+        return access;
     }
 
-    public static int getEnchantmentLevel(ItemEnchantments enchantments, ResourceKey<Enchantment> enchantment) {
-        for (Holder<Enchantment> e : enchantments.keySet()) {
-            if (e.unwrapKey().isPresent() && e.unwrapKey().get().equals(enchantment)) {
-                // 専用メソッドを尊重
-                return enchantments.getLevel(e);
-            }
-        }
-        return 0;
+    public static Optional<Holder.Reference<Enchantment>> getEnchantmentHolder(ResourceKey<Enchantment> key) {
+        return getRegistryAccess().flatMap(access -> getEnchantmentHolder(key, access));
     }
 
-    public static ItemEnchantments removeEnchantment(ItemEnchantments enchantments, Holder<Enchantment> enchantment) {
+    public static Optional<Holder.Reference<Enchantment>> getEnchantmentHolder(
+            ResourceKey<Enchantment> key, Entity entity) {
+        return getEnchantmentHolder(key, entity.level());
+    }
+
+    public static Optional<Holder.Reference<Enchantment>> getEnchantmentHolder(
+            ResourceKey<Enchantment> key, Level level) {
+        return getEnchantmentHolder(key, level.registryAccess());
+    }
+
+    public static Optional<Holder.Reference<Enchantment>> getEnchantmentHolder(
+            ResourceKey<Enchantment> key, HolderLookup.Provider provider) {
+        return provider.holder(key);
+    }
+
+    public static int getEnchantmentLevel(ResourceKey<Enchantment> key, LivingEntity entity) {
+        return getEnchantmentHolder(key, entity.level())
+                .map(holder -> EnchantmentHelper.getEnchantmentLevel(holder, entity))
+                .orElse(0);
+    }
+
+    // ServerLifecycleHooks.getCurrentServerからレジストリを取得し，エンチャントレベルを取得する
+    public static int getEnchantmentLevel(ItemStack stack, ResourceKey<Enchantment> key) {
+        return getRegistryAccess()
+                .map(access -> getEnchantmentLevel(stack, access, key))
+                .orElse(0);
+    }
+
+    public static int getEnchantmentLevel(ItemStack stack, Level level, ResourceKey<Enchantment> key) {
+        return getEnchantmentLevel(stack, level.registryAccess(), key);
+    }
+
+    public static int getEnchantmentLevel(
+            ItemStack stack, HolderLookup.Provider provider, ResourceKey<Enchantment> key) {
+        return getEnchantmentLevel(stack, provider.lookupOrThrow(Registries.ENCHANTMENT), key);
+    }
+
+    // ItemStack.getAllEnchantmentsに基づいてエンチャントレベルを取得する
+    public static int getEnchantmentLevel(
+            ItemStack stack, HolderLookup.RegistryLookup<Enchantment> lookup, ResourceKey<Enchantment> key) {
+        return stack.getAllEnchantments(lookup).entrySet().stream()
+                .filter(entry -> entry.getKey().is(key))
+                .findFirst()
+                .map(Object2IntMap.Entry::getIntValue)
+                .orElse(0);
+    }
+
+    public static int getEnchantmentLevel(ItemEnchantments enchantments, ResourceKey<Enchantment> key) {
+        return enchantments.entrySet().stream()
+                .filter(entry -> entry.getKey().is(key))
+                .findFirst()
+                .map(Object2IntMap.Entry::getIntValue)
+                .orElse(0);
+    }
+
+    public static ItemEnchantments removeEnchantment(ItemEnchantments enchantments, ResourceKey<Enchantment> key) {
         ItemEnchantments.Mutable newEnchantments = new ItemEnchantments.Mutable(enchantments);
-        newEnchantments.removeIf(holder -> holder.value() == enchantment.value());
+        newEnchantments.removeIf(holder -> holder.is(key));
         return newEnchantments.toImmutable();
     }
 

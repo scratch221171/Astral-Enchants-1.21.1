@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "c:gems/arcane_quartz"
+    },
+    "2": {
+      "tag": "c:ingots/gold"
+    },
+    "3": {
+      "tag": "c:ingots/iron"
+    },
+    "4": {
+      "tag": "c:gems/lapis"
+    }
+  },
+  "pattern": [
+    "323",
+    "414",
+    "323"
+  ],
+  "result": {
+    "count": 1,
+    "id": "astralenchant:arcanium_ingot"
+  }
+}

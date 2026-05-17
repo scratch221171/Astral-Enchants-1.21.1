@@ -1,39 +1,49 @@
 package net.scratch221171.astralenchant.datagen;
 
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
+import java.util.List;
+import java.util.Set;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
+import net.scratch221171.astralenchant.datagen.bootstraps.AEEnchantmentBootstrap;
 import net.scratch221171.astralenchant.datagen.providers.*;
 
-import java.util.concurrent.CompletableFuture;
-
-@SuppressWarnings("removal")
-@EventBusSubscriber(modid = AstralEnchant.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
-    
+@EventBusSubscriber(modid = AstralEnchant.MOD_ID)
+public final class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         AstralEnchant.LOGGER.info("Loading DataGenerators");
-        DataGenerator gen = event.getGenerator();
-        PackOutput packOutput = gen.getPackOutput();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        ExistingFileHelper fileHelper = event.getExistingFileHelper();
+        // Server
+        event.createDatapackRegistryObjects(
+                new RegistrySetBuilder().add(Registries.ENCHANTMENT, AEEnchantmentBootstrap::bootstrap),
+                AEEnchantmentBootstrap::applyConditions);
+        event.createProvider(AELootModifierProvider::new);
 
-        lookupProvider = gen.addProvider(event.includeServer(), new AEDatapackProvider(packOutput, lookupProvider)).getRegistryProvider();
-        AEBlockTagsProvider blockTags = new AEBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-        gen.addProvider(event.includeServer(), blockTags);
-        gen.addProvider(event.includeServer(), new AEItemTagsProvider(packOutput, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
-        gen.addProvider(event.includeServer(), new AELootModifierProvider(packOutput, lookupProvider));
-        gen.addProvider(event.includeServer(), new AERecipeProvider(packOutput, lookupProvider));
-        gen.addProvider(event.includeServer(), new AEEnchantmentTagsProvider(packOutput, lookupProvider, existingFileHelper));
-        gen.addProvider(event.includeServer(), new AELanguageProviderENUS(packOutput));
-        gen.addProvider(event.includeServer(), new AELanguageProviderJAJP(packOutput));
-        gen.addProvider(event.includeClient(), new AEItemModelProvider(packOutput, existingFileHelper));
-        gen.addProvider(event.includeClient(), new AEBlockStateProvider(packOutput, existingFileHelper));
+        event.createProvider((output, future) -> new LootTableProvider(
+                output,
+                Set.of(),
+                List.of(new LootTableProvider.SubProviderEntry(
+                        AEBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
+                future));
+
+        event.createProvider(AERecipeProvider::new);
+
+        event.createProvider(AEEnchantmentTagsProvider::new);
+        event.createProvider(
+                (output, future) -> new AEDamageTypeTagsProvider(output, future, event.getExistingFileHelper()));
+        event.createBlockAndItemTags(AEBlockTagsProvider::new, AEItemTagsProvider::new);
+        // Client
+        event.createProvider(output -> new AEBlockStateProvider(output, fileHelper));
+        event.createProvider(output -> new AEItemModelProvider(output, fileHelper));
+
+        event.createProvider(AEEnglishLangProvider::new);
+        event.createProvider(AEJapaneseLangProvider::new);
     }
 }

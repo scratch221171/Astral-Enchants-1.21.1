@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "astralenchant:budding_arcanium_ingot"
+    },
+    "2": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:channeling": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "3": {
+      "item": "minecraft:experience_bottle"
+    },
+    "4": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:mending": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "5": {
+      "item": "minecraft:lightning_rod"
+    },
+    "6": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:unbreaking": 3
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    }
+  },
+  "pattern": [
+    "123",
+    "454",
+    "361"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:over_mending": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

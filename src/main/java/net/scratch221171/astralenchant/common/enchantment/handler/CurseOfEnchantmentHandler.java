@@ -1,16 +1,13 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
-import net.minecraft.core.Holder;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
-import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.event.ItemEnchantmentSetEvent;
 import net.scratch221171.astralenchant.common.util.AEUtils;
@@ -20,7 +17,7 @@ public class CurseOfEnchantmentHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     private static void cancelModification(ItemEnchantmentSetEvent event) {
-        if (!RuntimeConfigState.get(AEConfig.CURSE_OF_ENCHANTMENT)) return;
+        if (!AEConfig.isEnabled(AEEnchantments.CURSE_OF_ENCHANTMENT)) return;
 
         ItemStack stack = event.getStack();
         if (AEUtils.getEnchantmentLevel(stack, AEEnchantments.CURSE_OF_ENCHANTMENT) <= 0) return;
@@ -30,14 +27,17 @@ public class CurseOfEnchantmentHandler {
 
     @SubscribeEvent
     private static void onItemEntitySpawn(EntityJoinLevelEvent event) {
-        if (!RuntimeConfigState.get(AEConfig.CURSE_OF_ENCHANTMENT)) return;
+        if (!AEConfig.isEnabled(AEEnchantments.CURSE_OF_ENCHANTMENT)) return;
         if (!(event.getEntity() instanceof ItemEntity itemEntity)) return;
-        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.CURSE_OF_ENCHANTMENT, event.getLevel());
-        if (itemEntity.getItem().getEnchantmentLevel(enchantment) > 0) {
-            itemEntity.setUnlimitedLifetime();
-            itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));
-            itemEntity.setNoGravity(true);
-            itemEntity.setInvulnerable(true);
-        }
+        AEUtils.getEnchantmentHolder(AEEnchantments.CURSE_OF_ENCHANTMENT, event.getLevel())
+                .ifPresent(holder -> {
+                    if (itemEntity.getItem().getEnchantmentLevel(holder) > 0) {
+                        itemEntity.setUnlimitedLifetime();
+                        itemEntity.setDeltaMovement(
+                                itemEntity.getDeltaMovement().multiply(0.1, 0.1, 0.1));
+                        itemEntity.setNoGravity(true);
+                        itemEntity.setInvulnerable(true);
+                    }
+                });
     }
 }

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Attribute.class)
-public class AttributeMixin implements IAttributeSentimentExtension {
+public abstract class AttributeMixin implements IAttributeSentimentExtension {
     @Shadow
     private Attribute.Sentiment sentiment;
 

@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "astralenchant:enchanted_book_distortion"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wind_burst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:enchanted_book",
+            "predicates": {
+              "minecraft:stored_enchantments": [
+                {
+                  "enchantments": "minecraft:wind_burst",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wind_burst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "astralenchant:enchanted_book_distortion"
+    ]
+  }
+}

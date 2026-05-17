@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:book"
+    },
+    "2": {
+      "item": "minecraft:enchanting_table"
+    },
+    "3": {
+      "item": "minecraft:bookshelf"
+    },
+    "4": {
+      "tag": "c:storage_blocks/lapis"
+    },
+    "5": {
+      "item": "minecraft:beacon"
+    }
+  },
+  "pattern": [
+    "353",
+    "323",
+    "414"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:essence_of_enchantment": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

@@ -1,6 +1,5 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -11,8 +10,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -23,7 +20,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
-import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -32,7 +28,7 @@ public class InstantTeleportHandler {
 
     @SubscribeEvent
     private static void onUsingEnderPearl(PlayerInteractEvent.RightClickItem event) {
-        if (!RuntimeConfigState.get(AEConfig.INSTANT_TELEPORT)) return;
+        if (!AEConfig.isEnabled(AEEnchantments.INSTANT_TELEPORT)) return;
 
         ItemStack stack = event.getItemStack();
         if (!stack.is(Items.ENDER_PEARL)) return;
@@ -40,9 +36,7 @@ public class InstantTeleportHandler {
         Player player = event.getEntity();
         Level level = event.getLevel();
 
-        Holder<Enchantment> enchantment =
-                AEUtils.getEnchantmentHolder(AEEnchantments.INSTANT_TELEPORT, level);
-        int levelValue = EnchantmentHelper.getEnchantmentLevel(enchantment, player);
+        int levelValue = AEUtils.getEnchantmentLevel(AEEnchantments.INSTANT_TELEPORT, player);
         if (levelValue <= 0) return;
 
         if (level.isClientSide) {
@@ -59,17 +53,16 @@ public class InstantTeleportHandler {
             Level level,
             int enchantmentLevel,
             ItemStack stack,
-            PlayerInteractEvent.RightClickItem event
-    ) {
-        int distPerLevel = RuntimeConfigState.get(AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL);
-        double maxDistance = Math.min(distPerLevel * enchantmentLevel, RuntimeConfigState.get(AEConfig.INSTANT_TELEPORT_MAX_DISTANCE));
+            PlayerInteractEvent.RightClickItem event) {
+        int distPerLevel = AEConfig.INSTANT_TELEPORT_DISTANCE_INCREASE_PER_LEVEL.getAsInt();
+        double maxDistance =
+                Math.min(distPerLevel * enchantmentLevel, AEConfig.INSTANT_TELEPORT_MAX_DISTANCE.getAsInt());
         Vec3 start = player.getEyePosition(1.0F);
         Vec3 direction = player.getLookAngle();
         Vec3 end = start.add(direction.scale(maxDistance));
 
-        BlockHitResult hit = level.clip(
-                new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player)
-        );
+        BlockHitResult hit =
+                level.clip(new ClipContext(start, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player));
 
         if (hit.getType() != HitResult.Type.BLOCK) {
             notifyFail(player, event);
@@ -94,22 +87,17 @@ public class InstantTeleportHandler {
             BlockHitResult hit,
             Vec3 direction,
             double maxDistance,
-            PlayerInteractEvent.RightClickItem event
-    ) {
+            PlayerInteractEvent.RightClickItem event) {
         Vec3 current = hit.getLocation();
-        double remaining =
-                maxDistance - Math.sqrt(hit.getBlockPos().distSqr(player.getOnPos()));
+        double remaining = maxDistance - Math.sqrt(hit.getBlockPos().distSqr(player.getOnPos()));
 
         while (remaining > 0) {
-            BlockHitResult next = level.clip(
-                    new ClipContext(
-                            current,
-                            current.add(direction.scale(0.25)),
-                            ClipContext.Block.COLLIDER,
-                            ClipContext.Fluid.NONE,
-                            player
-                    )
-            );
+            BlockHitResult next = level.clip(new ClipContext(
+                    current,
+                    current.add(direction.scale(0.25)),
+                    ClipContext.Block.COLLIDER,
+                    ClipContext.Fluid.NONE,
+                    player));
 
             if (next.getType() == HitResult.Type.MISS) {
                 return next.getLocation();
@@ -123,20 +111,16 @@ public class InstantTeleportHandler {
         return null;
     }
 
-    private static void performTeleport(
-            Player player,
-            Level level,
-            Vec3 target,
-            ItemStack stack
-    ) {
+    private static void performTeleport(Player player, Level level, Vec3 target, ItemStack stack) {
         level.playSound(
                 null,
-                player.getX(), player.getY(), player.getZ(),
+                player.getX(),
+                player.getY(),
+                player.getZ(),
                 SoundEvents.ENDER_PEARL_THROW,
                 SoundSource.NEUTRAL,
                 0.5F,
-                0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
-        );
+                0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
 
         player.getCooldowns().addCooldown(Items.ENDER_PEARL, 20);
         player.teleportTo(target.x, target.y, target.z);
@@ -145,38 +129,21 @@ public class InstantTeleportHandler {
         player.hurtMarked = true;
 
         // levelがclientの時は既にonUsingEnderPearlでキャンセル済み
-        ((ServerLevel) level).sendParticles(
-                ParticleTypes.PORTAL,
-                target.x, target.y, target.z,
-                32, 0, 0, 0, 0.5
-        );
+        ((ServerLevel) level).sendParticles(ParticleTypes.PORTAL, target.x, target.y, target.z, 32, 0, 0, 0, 0.5);
 
-        level.playSound(
-                null,
-                target.x, target.y, target.z,
-                SoundEvents.PLAYER_TELEPORT,
-                SoundSource.PLAYERS
-        );
+        level.playSound(null, target.x, target.y, target.z, SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
 
         player.awardStat(Stats.ITEM_USED.get(Items.ENDER_PEARL));
         stack.consume(1, player);
     }
 
-    private static void notifyFail(
-            Player player,
-            PlayerInteractEvent.RightClickItem event
-    ) {
+    private static void notifyFail(Player player, PlayerInteractEvent.RightClickItem event) {
         player.displayClientMessage(
-                Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"),
-                true
-        );
+                Component.translatable("enchantment.astralenchant.instant_teleport.message.fail"), true);
         cancel(event, InteractionResult.FAIL);
     }
 
-    private static void cancel(
-            PlayerInteractEvent.RightClickItem event,
-            InteractionResult result
-    ) {
+    private static void cancel(PlayerInteractEvent.RightClickItem event, InteractionResult result) {
         event.setCancellationResult(result);
         event.setCanceled(true);
     }
