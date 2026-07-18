@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:efficiency": 5
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "2": {
+      "item": "minecraft:chorus_fruit"
+    },
+    "3": {
+      "tag": "c:ender_pearls"
+    },
+    "4": {
+      "item": "minecraft:shield"
+    },
+    "5": {
+      "item": "minecraft:wind_charge"
+    },
+    "6": {
+      "tag": "c:gems/arcane_quartz"
+    }
+  },
+  "pattern": [
+    "636",
+    "412",
+    "656"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:cooldown_reduction": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

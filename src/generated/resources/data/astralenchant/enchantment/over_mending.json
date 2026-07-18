@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "key": "over_mending"
+    }
+  ],
+  "anvil_cost": 16,
+  "description": {
+    "translate": "enchantment.astralenchant.over_mending"
+  },
+  "effects": {
+    "minecraft:tick": [
+      {
+        "effect": {
+          "type": "astralenchant:over_mending"
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 150,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 100,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "any"
+  ],
+  "supported_items": "#minecraft:enchantable/durability",
+  "weight": 1
+}

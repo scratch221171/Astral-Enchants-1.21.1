@@ -1,5 +1,6 @@
 package net.scratch221171.astralenchant.common.mixin.minecraft;
 
+import java.util.function.BiConsumer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
@@ -18,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.function.BiConsumer;
-
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
 
@@ -27,14 +26,12 @@ public abstract class ItemStackMixin {
     @ModifyVariable(
             method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V",
             at = @At("HEAD"),
-            argsOnly = true
-    )
+            argsOnly = true)
     private BiConsumer<Holder<Attribute>, AttributeModifier> wrap(
-            BiConsumer<Holder<Attribute>, AttributeModifier> original,
-            EquipmentSlot slot
-    ) {
+            BiConsumer<Holder<Attribute>, AttributeModifier> original, EquipmentSlot slot) {
         return (attr, mod) -> {
-            EssenceOfEnchantmentHandler.handle((ItemStack) (Object) this, attr, original, mod.id(), slot.getSerializedName());
+            EssenceOfEnchantmentHandler.handle(
+                    (ItemStack) (Object) this, attr, original, mod.id(), slot.getSerializedName());
             original.accept(attr, mod);
         };
     }
@@ -43,14 +40,12 @@ public abstract class ItemStackMixin {
     @ModifyVariable(
             method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlotGroup;Ljava/util/function/BiConsumer;)V",
             at = @At("HEAD"),
-            argsOnly = true
-    )
+            argsOnly = true)
     private BiConsumer<Holder<Attribute>, AttributeModifier> wrap(
-            BiConsumer<Holder<Attribute>, AttributeModifier> original,
-            EquipmentSlotGroup slotGroup
-    ) {
+            BiConsumer<Holder<Attribute>, AttributeModifier> original, EquipmentSlotGroup slotGroup) {
         return (attr, mod) -> {
-            EssenceOfEnchantmentHandler.handle((ItemStack) (Object) this, attr, original, mod.id(), slotGroup.getSerializedName());
+            EssenceOfEnchantmentHandler.handle(
+                    (ItemStack) (Object) this, attr, original, mod.id(), slotGroup.getSerializedName());
             original.accept(attr, mod);
         };
     }
@@ -58,17 +53,15 @@ public abstract class ItemStackMixin {
     @SuppressWarnings("unchecked")
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
     private <T> void astralenchant$onEnchanted(
-            DataComponentType<? super T> component,
-            T value,
-            CallbackInfoReturnable<T> cir
-    ) {
-        if (!(component == DataComponents.ENCHANTMENTS
-                && value instanceof ItemEnchantments enchantments)) return;
+            DataComponentType<? super T> component, T value, CallbackInfoReturnable<T> cir) {
+        if (!(component == DataComponents.ENCHANTMENTS && value instanceof ItemEnchantments enchantments)) return;
 
         ItemStack stack = (ItemStack) (Object) this;
 
-        if (NeoForge.EVENT_BUS.post(new ItemEnchantmentSetEvent(stack, enchantments)).isCanceled()) {
-            cir.setReturnValue((T)stack.get(DataComponents.ENCHANTMENTS));
+        if (NeoForge.EVENT_BUS
+                .post(new ItemEnchantmentSetEvent(stack, enchantments))
+                .isCanceled()) {
+            cir.setReturnValue((T) stack.get(DataComponents.ENCHANTMENTS));
         }
     }
 }

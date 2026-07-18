@@ -1,8 +1,9 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
+import java.util.HashMap;
+import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -10,7 +11,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BlockItemStateProperties;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,30 +28,25 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
-import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @EventBusSubscriber(modid = AstralEnchant.MOD_ID)
 public class FeatherTouchHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     private static void onBreak(BlockEvent.BreakEvent event) {
-        if (!RuntimeConfigState.get(AEConfig.FEATHER_TOUCH)) return;
+        if (!AEConfig.isEnabled(AEEnchantments.FEATHER_TOUCH)) return;
         Player player = event.getPlayer();
 
         Level level = event.getPlayer().level();
         BlockState state = event.getState();
         BlockPos pos = event.getPos();
-        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.FEATHER_TOUCH, level);
-        if (player.getMainHandItem().getEnchantmentLevel(enchantment) <= 0) return;
+        if (AEUtils.getEnchantmentLevel(AEEnchantments.FEATHER_TOUCH, player) <= 0) return;
 
         // 複数ブロックのもの(ドアやベッド)を除外する
         if (checkBlockState(state, BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER)
-            || checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
+                || checkBlockState(state, BlockStateProperties.BED_PART, BedPart.FOOT)) return;
 
         ItemStack stack;
         BlockEntity be = level.getBlockEntity(pos);
@@ -73,7 +68,17 @@ public class FeatherTouchHandler {
             }
             stack.set(DataComponents.BLOCK_STATE, properties);
 
-            ((ServerLevel)level).sendParticles(ParticleTypes.ENCHANT, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f, 20, 0.5f, 0.5f, 0.5f, 1f);
+            ((ServerLevel) level)
+                    .sendParticles(
+                            ParticleTypes.ENCHANT,
+                            pos.getX() + 0.5f,
+                            pos.getY() + 0.5f,
+                            pos.getZ() + 0.5f,
+                            20,
+                            0.5f,
+                            0.5f,
+                            0.5f,
+                            1f);
         } else {
             stack = new ItemStack(state.getBlock());
         }
@@ -90,7 +95,13 @@ public class FeatherTouchHandler {
         event.getDrops().clear();
         event.setDroppedExperience(0);
 
-        event.getDrops().add(new ItemEntity(event.getLevel(), event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5, cached));
+        event.getDrops()
+                .add(new ItemEntity(
+                        event.getLevel(),
+                        event.getPos().getX() + 0.5,
+                        event.getPos().getY() + 0.5,
+                        event.getPos().getZ() + 0.5,
+                        cached));
     }
 
     @SubscribeEvent

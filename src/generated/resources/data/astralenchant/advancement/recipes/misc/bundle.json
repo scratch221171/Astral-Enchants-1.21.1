@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "key": "enable_vanilla_items_recipes"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rabbit_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:rabbit_hide"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "astralenchant:bundle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rabbit_hide"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "astralenchant:bundle"
+    ]
+  }
+}

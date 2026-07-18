@@ -1,0 +1,54 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "l2hostility"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "minecraft:mending": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "2": {
+      "tag": "c:chests/ender"
+    },
+    "3": {
+      "item": "astralenchant:budding_arcanium_ingot"
+    },
+    "4": {
+      "item": "l2hostility:reprint"
+    },
+    "5": {
+      "item": "l2hostility:dispell"
+    },
+    "6": {
+      "item": "l2hostility:hostility_essence"
+    }
+  },
+  "pattern": [
+    "323",
+    "415",
+    "626"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:item_protection": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "astralenchant:item/budding_arcanium_ingot"
+  }
+}

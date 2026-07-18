@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "key": "essence_of_enchantment"
+    }
+  ],
+  "anvil_cost": 32,
+  "description": {
+    "translate": "enchantment.astralenchant.essence_of_enchantment"
+  },
+  "max_cost": {
+    "base": 150,
+    "per_level_above_first": 10
+  },
+  "max_level": 5,
+  "min_cost": {
+    "base": 100,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "any"
+  ],
+  "supported_items": {
+    "type": "neoforge:any"
+  },
+  "weight": 1
+}

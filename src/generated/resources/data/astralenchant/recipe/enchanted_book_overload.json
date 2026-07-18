@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "minecraft:enchanting_table"
+    },
+    "2": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "astralenchant:mitigation_piercing": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "3": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "astralenchant:compatibility": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "4": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "astralenchant:essence_of_enchantment": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "5": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "astralenchant:adventurers_lore": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    },
+    "6": {
+      "type": "neoforge:components",
+      "components": {
+        "minecraft:stored_enchantments": {
+          "levels": {
+            "astralenchant:last_stand": 1
+          }
+        }
+      },
+      "items": "minecraft:enchanted_book"
+    }
+  },
+  "pattern": [
+    "121",
+    "345",
+    "161"
+  ],
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "levels": {
+          "astralenchant:overload": 1
+        }
+      }
+    },
+    "count": 1,
+    "id": "minecraft:enchanted_book"
+  }
+}

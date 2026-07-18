@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_budding_amethyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:budding_amethyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "astralenchant:budding_arcanium_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_budding_amethyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "astralenchant:budding_arcanium_ingot"
+    ]
+  }
+}

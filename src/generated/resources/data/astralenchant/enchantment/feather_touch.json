@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "key": "feather_touch"
+    }
+  ],
+  "anvil_cost": 16,
+  "description": {
+    "translate": "enchantment.astralenchant.feather_touch"
+  },
+  "max_cost": {
+    "base": 150,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 100,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/mining_loot",
+  "weight": 1
+}

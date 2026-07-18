@@ -15,27 +15,29 @@ public class AERecipeEventHandler {
 
     @SubscribeEvent
     private static void onExplode(ExplosionEvent.Detonate event) {
-//        Level level = event.getLevel();
-//        if (level.isClientSide) return;
-//        Iterator<Entity> it = event.getAffectedEntities().iterator();
-//        while (it.hasNext()) {
-//            Entity e = it.next();
-//            if (e instanceof ItemEntity item && item.isAlive()) {
-//                if (processExplosionRecipe(item, event)) {
-//                    it.remove();
-//                    item.discard();
-//                }
-//            }
-//        }
+        //        Level level = event.getLevel();
+        //        if (level.isClientSide) return;
+        //        Iterator<Entity> it = event.getAffectedEntities().iterator();
+        //        while (it.hasNext()) {
+        //            Entity e = it.next();
+        //            if (e instanceof ItemEntity item && item.isAlive()) {
+        //                if (processExplosionRecipe(item, event)) {
+        //                    it.remove();
+        //                    item.discard();
+        //                }
+        //            }
+        //        }
     }
 
     static boolean processExplosionRecipe(ItemEntity itemEntity, ExplosionEvent.Detonate event) {
         if (itemEntity.getItem().is(ItemTags.COALS)) {
             Level level = event.getLevel();
             level.addFreshEntity(new ItemEntity(
-                    level, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(),
-                    new ItemStack(Items.DIAMOND, itemEntity.getItem().getCount())
-            ));
+                    level,
+                    itemEntity.getX(),
+                    itemEntity.getY(),
+                    itemEntity.getZ(),
+                    new ItemStack(Items.DIAMOND, itemEntity.getItem().getCount())));
             return true;
         }
         return false;

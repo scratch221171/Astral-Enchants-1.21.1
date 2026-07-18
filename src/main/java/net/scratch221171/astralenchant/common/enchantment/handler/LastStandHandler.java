@@ -1,6 +1,6 @@
 package net.scratch221171.astralenchant.common.enchantment.handler;
 
-import net.minecraft.core.Holder;
+import java.util.concurrent.atomic.AtomicInteger;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -8,13 +8,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.scratch221171.astralenchant.common.AstralEnchant;
 import net.scratch221171.astralenchant.common.config.AEConfig;
-import net.scratch221171.astralenchant.common.config.RuntimeConfigState;
 import net.scratch221171.astralenchant.common.enchantment.AEEnchantments;
 import net.scratch221171.astralenchant.common.util.AEUtils;
 
@@ -23,24 +21,26 @@ public class LastStandHandler {
 
     @SubscribeEvent
     private static void onLivingDeath(LivingDeathEvent event) {
-        if (!RuntimeConfigState.get(AEConfig.LAST_STAND)) return;
+        if (!AEConfig.isEnabled(AEEnchantments.LAST_STAND)) return;
         if (!(event.getEntity() instanceof Player player)) return;
-        if (!RuntimeConfigState.get(AEConfig.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG) && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
+        if (!AEConfig.LAST_STAND_IGNORE_BYPASSES_INVULNERABILITY_TAG.getAsBoolean()
+                && event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
 
         Iterable<ItemStack> armorSlots = player.getArmorSlots();
-        Holder<Enchantment> enchantment = AEUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player.level());
-        int totalEnchantmentLevel = 0;
-        for (ItemStack armor : armorSlots) {
-            int level = armor.getEnchantmentLevel(enchantment);
-            if (level > 0) {
-                totalEnchantmentLevel += level;
+        AtomicInteger totalEnchantmentLevel = new AtomicInteger();
+        AEUtils.getEnchantmentHolder(AEEnchantments.LAST_STAND, player).ifPresent(holder -> {
+            for (ItemStack armor : armorSlots) {
+                int level = armor.getEnchantmentLevel(holder);
+                if (level > 0) {
+                    totalEnchantmentLevel.addAndGet(level);
+                }
             }
-        }
-        if (totalEnchantmentLevel <= 0) return;
+        });
+        if (totalEnchantmentLevel.get() <= 0) return;
 
         // default: 2000
-        float baseXP = RuntimeConfigState.get(AEConfig.LAST_STAND_REQUIRED_BASE_EXPERIENCE);
-        int required = Math.round(baseXP / totalEnchantmentLevel);
+        float baseXP = AEConfig.LAST_STAND_REQUIRED_BASE_EXPERIENCE.get();
+        int required = Math.round(baseXP / totalEnchantmentLevel.get());
         if (!AEUtils.hasEnoughXPPoint(player.experienceProgress, player.experienceLevel, required)) return;
         player.giveExperiencePoints(-required);
 
@@ -50,19 +50,15 @@ public class LastStandHandler {
         if (player.level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(
                     ParticleTypes.TOTEM_OF_UNDYING,
-                    player.getX(), player.getY() + 1.0D, player.getZ(),
+                    player.getX(),
+                    player.getY() + 1.0D,
+                    player.getZ(),
                     30,
-                    0.5, 0.5, 0.5,
-                    0.1
-            );
-            serverLevel.playSound(
-                    null,
-                    player.blockPosition(),
-                    SoundEvents.TOTEM_USE,
-                    SoundSource.PLAYERS,
-                    1.0F,
-                    1.0F
-            );
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.1);
+            serverLevel.playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
         }
     }
 }

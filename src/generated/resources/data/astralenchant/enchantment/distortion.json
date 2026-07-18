@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "astralenchant:config_condition",
+      "key": "distortion"
+    }
+  ],
+  "anvil_cost": 16,
+  "description": {
+    "translate": "enchantment.astralenchant.distortion"
+  },
+  "max_cost": {
+    "base": 150,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 100,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": {
+    "type": "neoforge:any"
+  },
+  "weight": 1
+}
